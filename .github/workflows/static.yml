@@ -24,13 +24,13 @@ jobs:
           node-version: '16'
             
      # 缓存 npm node_modules
-      - name: Cache dependencies
+          - name: Cache dependencies
         uses: actions/cache@v3
         id: npm-cache
         with:
           path: |
-     		~/.npm
-      		**/node_modules
+            ~/.npm
+            **/node_modules
           key: ${{ runner.os }}-npm-cache-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-npm-cache-
@@ -52,6 +52,6 @@ jobs:
           # 部署到 main 分支
           BRANCH: main
           # 部署目录为 VuePress 的默认输出目录
-          FOLDER: /dist
+          FOLDER: docs/.vuepress/dist
           # 当前仓库的密钥
           SSH_PRIVATE_KEY: ${{ secrets.BLOG_CONFIG }}
