@@ -45,6 +45,19 @@ jobs:
       - name: Run Build Script
         run: npm run build
         
+      - name: Configure Git
+        run: |
+          git config --global user.name "tunaizi"
+          git config --global user.email "tunaizi@163.com"
+
+      - name: Configure Git for SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "$BLOG_CONFIG" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
+          git config --global url."git@github.com:".insteadOf "https://github.com/"
+
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
