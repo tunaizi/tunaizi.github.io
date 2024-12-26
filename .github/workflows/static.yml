@@ -21,7 +21,7 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v1
         with:
-          node-version: '16'
+          node-version: '20'
             
       # 缓存 npm node_modules
       - name: Cache dependencies
@@ -50,20 +50,9 @@ jobs:
           git config --global user.name "tunaizi"
           git config --global user.email "tunaizi@163.com"
 
-      - name: Configure Git for SSH
-        run: |
-          mkdir -p ~/.ssh
-          echo "$BLOG_CONFIG" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
-          git config --global url."git@github.com:".insteadOf "https://github.com/"
-
       - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@releases/v3
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          # 部署到 main 分支
-          BRANCH: main
-          # 部署目录为 VuePress 的默认输出目录
-          FOLDER: docs/.vuepress/dist
-          # 当前仓库的密钥
-          SSH_PRIVATE_KEY: ${{ secrets.BLOG_CONFIG }}
+          github_token: ${{ secrets.BLOG_CONFIG }}
+          publish_dir: ./docs/.vuepress/dist
+          publish_branch: blog
