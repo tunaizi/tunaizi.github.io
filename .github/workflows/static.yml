@@ -12,19 +12,19 @@ jobs:
   build:
     # 这部分指定了作业将在 ubuntu-latest 环境下运行。
     runs-on: ubuntu-latest
-	# 每个任务下的运行步骤，短横杠 - 表示一个步骤，从上至下依次执行。
+    # 每个任务下的运行步骤，短横杠 - 表示一个步骤，从上至下依次执行。
     steps:
       - name: checkout # 检出代码
-      - uses: actions/checkout@v2 # 使用 actions/checkout action 检出代码到工作空间。
+        uses: actions/checkout@v2 # 使用 actions/checkout action 检出代码到工作空间。
       
-	  # 这一步安装 Node.js v16。
+      # 这一步安装 Node.js v16。
       - name: Use Node.js
         uses: actions/setup-node@v1
         with:
           node-version: '16'
             
-     # 缓存 npm node_modules
-          - name: Cache dependencies
+      # 缓存 npm node_modules
+      - name: Cache dependencies
         uses: actions/cache@v3
         id: npm-cache
         with:
@@ -41,14 +41,13 @@ jobs:
         if: steps.npm-cache.outputs['restore-keys'] == ''
         run: npm install
 
-     # 运行构建脚本
+      # 运行构建脚本
       - name: Run Build Script
         run: npm run build
         
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
-        # env:
           # 部署到 main 分支
           BRANCH: main
           # 部署目录为 VuePress 的默认输出目录
