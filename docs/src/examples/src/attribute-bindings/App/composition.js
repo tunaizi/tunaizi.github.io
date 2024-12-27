@@ -5,7 +5,6 @@ export default {
     const message = ref('Hello World!')
     const isRed = ref(true)
     const color = ref('green')
-
     function toggleRed() {
       isRed.value = !isRed.value
     }
