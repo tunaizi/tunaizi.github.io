@@ -4,7 +4,7 @@
   },
   "scripts": {
     "dev": "vitepress",
-    "build": "vitepress build --base='./'",
+    "build": "vitepress build",
     "preview": "vitepress preview"
   },
   "dependencies": {
