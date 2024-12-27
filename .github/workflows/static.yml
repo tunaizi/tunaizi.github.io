@@ -16,15 +16,13 @@ jobs:
     steps:
       - name: checkout # 检出代码
         uses: actions/checkout@v2 # 使用 actions/checkout action 检出代码到工作空间。
-
+      
       # 这一步安装 Node.js v20。
       - name: Use Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v1
         with:
           node-version: '20'
-          check-latest: true
-          cache: 'npm' # 启用 npm 缓存
-
+            
       # 缓存 npm node_modules
       - name: Cache dependencies
         uses: actions/cache@v3
@@ -32,20 +30,19 @@ jobs:
         with:
           path: |
             ~/.npm
-            docs/node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('docs/package-lock.json') }}
+            **/node_modules
+          key: ${{ runner.os }}-npm-cache-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-node-
+            ${{ runner.os }}-npm-cache-
 
       # 安装依赖 npm
       - name: Install dependencies
-        working-directory: docs
-        if: steps.npm-cache.outputs.cache-hit != 'true'
+        # 如果没有命中缓存才执行 npm install
+        if: steps.npm-cache.outputs['restore-keys'] == ''
         run: npm install
 
       # 运行构建脚本
       - name: Run Build Script
-        working-directory: docs
         run: npm run build
         
       - name: Configure Git
