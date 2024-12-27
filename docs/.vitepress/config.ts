@@ -31,7 +31,7 @@ const nav: ThemeConfig['nav'] = [
     text: 'API',
     activeMatch: `^/api/`,
     link: '/api/'
-  },
+  }
   // {
   //   text: 'Playground',
   //   link: 'https://play.vuejs.org'
@@ -420,7 +420,7 @@ export const sidebar: ThemeConfig['sidebar'] = {
         { text: 'Custom Renderer', link: '/api/custom-renderer' }
       ]
     }
-  ],
+  ]
   // '/examples/': [
   //   {
   //     text: 'Basic',
@@ -699,6 +699,7 @@ export default defineConfigWithTheme<ThemeConfig>({
 
   markdown: {
     config(md) {
+      //@ts-ignore
       md.use(headerPlugin)
       // .use(textAdPlugin)
     }
@@ -729,6 +730,7 @@ export default defineConfigWithTheme<ThemeConfig>({
     },
     json: {
       stringify: true
-    }
+    },
+    publicDir: './'
   }
 })
