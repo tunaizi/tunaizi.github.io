@@ -4,6 +4,10 @@ import { defineConfigWithTheme } from 'vitepress'
 import type { Config as ThemeConfig } from '@vue/theme'
 import baseConfig from '@vue/theme/config'
 import { headerPlugin } from './headerMdPlugin'
+const isDev = process.env.NODE_ENV === 'development'
+// if (!isDev) {
+//   process.exit(1)
+// }
 // import { textAdPlugin } from './textAdMdPlugin'
 
 const nav: ThemeConfig['nav'] = [
@@ -558,7 +562,7 @@ export const sidebar: ThemeConfig['sidebar'] = {
 
 export default defineConfigWithTheme<ThemeConfig>({
   extends: baseConfig,
-
+  base: isDev ? '/' : '/blog',
   lang: 'en-US',
   title: 'blog',
   description: "This is tunaizi's personal technology blog",
@@ -730,6 +734,6 @@ export default defineConfigWithTheme<ThemeConfig>({
     },
     json: {
       stringify: true
-    },
+    }
   }
 })
