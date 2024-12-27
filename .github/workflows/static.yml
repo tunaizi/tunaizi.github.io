@@ -54,8 +54,10 @@ jobs:
       # 运行构建脚本
       - name: Run Build Script
         working-directory: docs
-        run: npm run build
-        
+        run: |
+          npm run build
+          cd ..
+
       - name: Configure Git
         run: |
           git config --global user.name "tunaizi"
