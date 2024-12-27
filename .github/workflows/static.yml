@@ -32,18 +32,20 @@ jobs:
         with:
           path: |
             ~/.npm
-            **/node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+            docs/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('docs/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
 
       # 安装依赖 npm
       - name: Install dependencies
+        working-directory: docs
         if: steps.npm-cache.outputs.cache-hit != 'true'
         run: npm install
 
       # 运行构建脚本
       - name: Run Build Script
+        working-directory: docs
         run: npm run build
         
       - name: Configure Git
