@@ -39,7 +39,7 @@ jobs:
       - name: Install dependencies
         # 如果没有命中缓存才执行 npm install
         if: steps.npm-cache.outputs['restore-keys'] == ''
-        run: npm install
+        run: npm install --force
 
       # 运行构建脚本
       - name: Run Build Script
