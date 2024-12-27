@@ -609,7 +609,7 @@ In JavaScript, splitting objects with multiple properties over multiple lines is
 <h3>Bad</h3>
 
 ```vue-html
-<img src="https://vuejs.org/images/logo.png" alt="Vue Logo">
+<img src="/images/logo.png" alt="Vue Logo">
 ```
 
 ```vue-html
@@ -623,7 +623,7 @@ In JavaScript, splitting objects with multiple properties over multiple lines is
 
 ```vue-html
 <img
-  src="https://vuejs.org/images/logo.png"
+  src="/images/logo.png"
   alt="Vue Logo"
 >
 ```
