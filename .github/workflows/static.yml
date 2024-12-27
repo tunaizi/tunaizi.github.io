@@ -57,6 +57,7 @@ jobs:
         run: |
           npm run build
           cd ..
+          ls -la ./docs/.vuepress/dist
 
       - name: Configure Git
         run: |
@@ -67,5 +68,5 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.BLOG_CONFIG }}
-          publish_dir: ./docs/.vuepress/dist
+          publish_dir: ./docs/.vitepress/dist
           publish_branch: blog
