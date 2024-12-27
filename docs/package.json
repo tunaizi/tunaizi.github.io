@@ -5,12 +5,11 @@
   "scripts": {
     "dev": "vitepress",
     "build": "vitepress build",
-    "preview": "vitepress preview",
-    "preinstall": "npx only-allow pnpm"
+    "preview": "vitepress preview"
   },
   "dependencies": {
     "@vue/repl": "^1.5.0",
-    "@vue/theme": "^2.2.4",
+    "@vue/theme": "2.2.5",
     "dynamics.js": "^1.1.5",
     "gsap": "^3.9.0",
     "vitepress": "1.0.0-beta.7",

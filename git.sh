@@ -6,6 +6,23 @@ read remote_branch
 echo "Please enter the Commit information:"
 read commit_message
 
+#!/bin/bash
+
+# 检查是否提供了 remote_branch 参数
+if [ -n "$1" ]; then
+  remote_branch="$1"
+  echo "Pulling from remote branch: $remote_branch"
+  git pull origin "$remote_branch"
+else
+  echo "No remote branch provided, executing other logic..."
+  # 在这里添加其他逻辑
+  # 例如：
+  git fetch origin
+  git checkout main
+  git pull origin main
+  echo "Default logic executed."
+fi
+
 if [ -n "$remote_branch" ]; then
   echo "Pulling for remote branch name is $remote_branch 。。。。"
   git pull origin $remote_branch

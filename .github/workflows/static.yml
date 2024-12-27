@@ -23,32 +23,28 @@ jobs:
         with:
           node-version: '20'
           check-latest: true
-          cache: 'pnpm' # 启用 pnpm 缓存
+          cache: 'npm' # 启用 npm 缓存
 
-      # 使用 corepack 安装 pnpm
-      - name: Install pnpm using corepack
-        run: corepack enable && corepack prepare pnpm@latest --activate
-
-      # 缓存 pnpm node_modules
+      # 缓存 npm node_modules
       - name: Cache dependencies
         uses: actions/cache@v3
-        id: pnpm-cache
+        id: npm-cache
         with:
           path: |
-            ~/.pnpm-store
+            ~/.npm
             **/node_modules
-          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-pnpm-
+            ${{ runner.os }}-node-
 
-      # 安装依赖 pnpm
+      # 安装依赖 npm
       - name: Install dependencies
-        if: steps.pnpm-cache.outputs.cache-hit != 'true'
-        run: pnpm install
+        if: steps.npm-cache.outputs.cache-hit != 'true'
+        run: npm install
 
       # 运行构建脚本
       - name: Run Build Script
-        run: pnpm run build
+        run: npm run build
         
       - name: Configure Git
         run: |
