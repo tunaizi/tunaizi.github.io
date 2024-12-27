@@ -29,6 +29,10 @@ jobs:
       - name: Install pnpm
         run: npm install -g pnpm
 
+      # 将 pnpm 添加到 PATH
+      - name: Add pnpm to PATH
+        run: echo "$HOME/.npm-global/bin" >> $GITHUB_PATH
+
       # 缓存 pnpm node_modules
       - name: Cache dependencies
         uses: actions/cache@v3
