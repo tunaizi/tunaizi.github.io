@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import { Repl, ReplStore } from '@vue/repl'
-import { inject, watch, version, Ref, ref, computed, nextTick } from 'vue'
+import { Repl, useStore, useVueImportMap } from '@vue/repl'
+import CodeMirror from '@vue/repl/codemirror-editor'
+import { inject, watch, Ref, ref, computed, nextTick } from 'vue'
 import { data } from './tutorial.data'
 import {
   resolveSFCExample,
   resolveNoBuildExample,
   onHashChange
 } from '../examples/utils'
-import '@vue/repl/style.css'
-import PreferenceSwitch from '@theme/components/PreferenceSwitch.vue'
+import PreferenceSwitch from '.vitepress1/theme/components/PreferenceSwitch.vue'
 import {
   VTFlyout,
   VTIconChevronLeft,
@@ -16,8 +16,14 @@ import {
   VTLink
 } from '@vue/theme'
 
-const store = new ReplStore({
-  defaultVueRuntimeURL: `https://unpkg.com/vue@${version}/dist/vue.esm-browser.js`
+const { vueVersion, defaultVersion, importMap } = useVueImportMap({
+  runtimeDev: () =>
+    `https://unpkg.com/vue@${
+      vueVersion.value || defaultVersion
+    }/dist/vue.esm-browser.js`
+})
+const store = useStore({
+  builtinImportMap: importMap
 })
 
 const instruction = ref<HTMLElement>()
@@ -121,21 +127,22 @@ updateExample()
       <div class="vt-doc" v-html="currentDescription"></div>
       <div class="hint" v-if="data[currentStep]?._hint">
         <button @click="toggleResult">
-          {{ showingHint ? 'Reset' : 'Show me!' }}
+          {{ showingHint ? '重置代码' : '看答案！' }}
         </button>
       </div>
       <footer>
         <a v-if="prevStep" :href="`#${prevStep}`"
           ><VTIconChevronLeft class="vt-link-icon" style="margin: 0" />
-          Prev</a
+          上一步</a
         >
         <a class="next-step" v-if="nextStep" :href="`#${nextStep}`"
-          >Next <VTIconChevronRight class="vt-link-icon"
+          >下一步 <VTIconChevronRight class="vt-link-icon"
         /></a>
       </footer>
     </article>
     <Repl
       layout="vertical"
+      :editor="CodeMirror"
       :store="store"
       :showCompileOutput="false"
       :clearConsole="false"

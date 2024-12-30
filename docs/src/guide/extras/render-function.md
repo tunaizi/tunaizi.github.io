@@ -2,17 +2,17 @@
 outline: deep
 ---
 
-# Render Functions & JSX {#render-functions-jsx}
+# 渲染函数 & JSX {#render-functions-jsx}
 
-Vue recommends using templates to build applications in the vast majority of cases. However, there are situations where we need the full programmatic power of JavaScript. That's where we can use the **render function**.
+在绝大多数情况下，Vue 推荐使用模板语法来创建应用。然而在某些使用场景下，我们真的需要用到 JavaScript 完全的编程能力。这时**渲染函数**就派上用场了。
 
-> If you are new to the concept of virtual DOM and render functions, make sure to read the [Rendering Mechanism](/guide/extras/rendering-mechanism) chapter first.
+> 如果你还不熟悉虚拟 DOM 和渲染函数的概念的话，请确保先阅读[渲染机制](/guide/extras/rendering-mechanism)章节。
 
-## Basic Usage {#basic-usage}
+## 基本用法 {#basic-usage}
 
-### Creating Vnodes {#creating-vnodes}
+### 创建 Vnodes {#creating-vnodes}
 
-Vue provides an `h()` function for creating vnodes:
+Vue 提供了一个 `h()` 函数用于创建 vnodes：
 
 ```js
 import { h } from 'vue'
@@ -26,42 +26,42 @@ const vnode = h(
 )
 ```
 
-`h()` is short for **hyperscript** - which means "JavaScript that produces HTML (hypertext markup language)". This name is inherited from conventions shared by many virtual DOM implementations. A more descriptive name could be `createVnode()`, but a shorter name helps when you have to call this function many times in a render function.
+`h()` 是 **hyperscript** 的简称——意思是“能生成 HTML (超文本标记语言) 的 JavaScript”。这个名字来源于许多虚拟 DOM 实现默认形成的约定。一个更准确的名称应该是 `createVNode()`，但当你需要多次使用渲染函数时，一个简短的名字会更省力。
 
-The `h()` function is designed to be very flexible:
+`h()` 函数的使用方式非常的灵活：
 
 ```js
-// all arguments except the type are optional
+// 除了类型必填以外，其他的参数都是可选的
 h('div')
 h('div', { id: 'foo' })
 
-// both attributes and properties can be used in props
-// Vue automatically picks the right way to assign it
+// attribute 和 property 都能在 prop 中书写
+// Vue 会自动将它们分配到正确的位置
 h('div', { class: 'bar', innerHTML: 'hello' })
 
-// props modifiers such as `.prop` and `.attr` can be added
-// with `.` and `^` prefixes respectively
+// 像 `.prop` 和 `.attr` 这样的的属性修饰符
+// 可以分别通过 `.` 和 `^` 前缀来添加
 h('div', { '.name': 'some-name', '^width': '100' })
 
-// class and style have the same object / array
-// value support that they have in templates
+// 类与样式可以像在模板中一样
+// 用数组或对象的形式书写
 h('div', { class: [foo, { bar }], style: { color: 'red' } })
 
-// event listeners should be passed as onXxx
+// 事件监听器应以 onXxx 的形式书写
 h('div', { onClick: () => {} })
 
-// children can be a string
+// children 可以是一个字符串
 h('div', { id: 'foo' }, 'hello')
 
-// props can be omitted when there are no props
+// 没有 props 时可以省略不写
 h('div', 'hello')
 h('div', [h('span', 'hello')])
 
-// children array can contain mixed vnodes and strings
+// children 数组可以同时包含 vnodes 与字符串
 h('div', ['hello', h('span', 'hello')])
 ```
 
-The resulting vnode has the following shape:
+得到的 vnode 为如下形式：
 
 ```js
 const vnode = h('div', { id: 'foo' }, [])
@@ -72,15 +72,15 @@ vnode.children // []
 vnode.key // null
 ```
 
-:::warning Note
-The full `VNode` interface contains many other internal properties, but it is strongly recommended to avoid relying on any properties other than the ones listed here. This avoids unintended breakage in case the internal properties are changed.
+::: warning 注意事项
+完整的 `VNode` 接口包含其他内部属性，但是强烈建议避免使用这些没有在这里列举出的属性。这样能够避免因内部属性变更而导致的不兼容性问题。
 :::
 
-### Declaring Render Functions {#declaring-render-functions}
+### 声明渲染函数 {#declaring-render-function}
 
 <div class="composition-api">
 
-When using templates with Composition API, the return value of the `setup()` hook is used to expose data to the template. When using render functions, however, we can directly return the render function instead:
+当组合式 API 与模板一起使用时，`setup()` 钩子的返回值是用于暴露数据给模板。然而当我们使用渲染函数时，可以直接把渲染函数返回：
 
 ```js
 import { ref, h } from 'vue'
@@ -92,15 +92,15 @@ export default {
   setup(props) {
     const count = ref(1)
 
-    // return the render function
+    // 返回渲染函数
     return () => h('div', props.msg + count.value)
   }
 }
 ```
 
-The render function is declared inside `setup()` so it naturally has access to the props and any reactive state declared in the same scope.
+在 `setup()` 内部声明的渲染函数天生能够访问在同一范围内声明的 props 和许多响应式状态。
 
-In addition to returning a single vnode, you can also return strings or arrays:
+除了返回一个 vnode，你还可以返回字符串或数组：
 
 ```js
 export default {
@@ -115,7 +115,7 @@ import { h } from 'vue'
 
 export default {
   setup() {
-    // use an array to return multiple root nodes
+    // 使用数组返回多个根节点
     return () => [
       h('div'),
       h('div'),
@@ -125,14 +125,14 @@ export default {
 }
 ```
 
-:::tip
-Make sure to return a function instead of directly returning values! The `setup()` function is called only once per component, while the returned render function will be called multiple times.
+::: tip
+请确保返回的是一个函数而不是一个值！`setup()` 函数在每个组件中只会被调用一次，而返回的渲染函数将会被调用多次。
 :::
 
 </div>
 <div class="options-api">
 
-We can declare render functions using the `render` option:
+我们可以使用 `render` 选项来声明渲染函数：
 
 ```js
 import { h } from 'vue'
@@ -149,9 +149,9 @@ export default {
 }
 ```
 
-The `render()` function has access to the component instance via `this`.
+`render()` 函数可以访问同一个 `this` 组件实例。
 
-In addition to returning a single vnode, you can also return strings or arrays:
+除了返回一个单独的 vnode 之外，你还可以返回字符串或是数组：
 
 ```js
 export default {
@@ -166,7 +166,7 @@ import { h } from 'vue'
 
 export default {
   render() {
-    // use an array to return multiple root nodes
+    // 用数组来返回多个根节点
     return [
       h('div'),
       h('div'),
@@ -178,7 +178,7 @@ export default {
 
 </div>
 
-If a render function component doesn't need any instance state, they can also be declared directly as a function for brevity:
+如果一个渲染函数组件不需要任何实例状态，为了简洁起见，它们也可以直接被声明为一个函数：
 
 ```js
 function Hello() {
@@ -186,24 +186,24 @@ function Hello() {
 }
 ```
 
-That's right, this is a valid Vue component! See [Functional Components](#functional-components) for more details on this syntax.
+没错，这就是一个合法的 Vue 组件！参阅[函数式组件](#functional-components)来了解更多语法细节。
 
-### Vnodes Must Be Unique {#vnodes-must-be-unique}
+### Vnodes 必须唯一 {#vnodes-must-be-unique}
 
-All vnodes in the component tree must be unique. That means the following render function is invalid:
+组件树中的 vnodes 必须是唯一的。下面是错误示范：
 
 ```js
 function render() {
   const p = h('p', 'hi')
   return h('div', [
-    // Yikes - duplicate vnodes!
+    // 啊哦，重复的 vnodes 是无效的
     p,
     p
   ])
 }
 ```
 
-If you really want to duplicate the same element/component many times, you can do so with a factory function. For example, the following render function is a perfectly valid way of rendering 20 identical paragraphs:
+如果你真的非常想在页面上渲染多个重复的元素或者组件，你可以使用一个工厂函数来做这件事。比如下面的这个渲染函数就可以完美渲染出 20 个相同的段落：
 
 ```js
 function render() {
@@ -218,44 +218,54 @@ function render() {
 
 ## JSX / TSX {#jsx-tsx}
 
-[JSX](https://facebook.github.io/jsx/) is an XML-like extension to JavaScript that allows us to write code like this:
+[JSX](https://facebook.github.io/jsx/) 是 JavaScript 的一个类似 XML 的扩展，有了它，我们可以用以下的方式来书写代码：
 
 ```jsx
 const vnode = <div>hello</div>
 ```
 
-Inside JSX expressions, use curly braces to embed dynamic values:
+在 JSX 表达式中，使用大括号来嵌入动态值：
 
 ```jsx
 const vnode = <div id={dynamicId}>hello, {userName}</div>
 ```
 
-`create-vue` and Vue CLI both have options for scaffolding projects with pre-configured JSX support. If you are configuring JSX manually, please refer to the documentation of [`@vue/babel-plugin-jsx`](https://github.com/vuejs/jsx-next) for details.
+`create-vue` 和 Vue CLI 都有预置的 JSX 语法支持。如果你想手动配置 JSX，请参阅 [`@vue/babel-plugin-jsx`](https://github.com/vuejs/jsx-next) 文档获取更多细节。
 
-Although first introduced by React, JSX actually has no defined runtime semantics and can be compiled into various different outputs. If you have worked with JSX before, do note that **Vue JSX transform is different from React's JSX transform**, so you can't use React's JSX transform in Vue applications. Some notable differences from React JSX include:
+虽然最早是由 React 引入，但实际上 JSX 语法并没有定义运行时语义，并且能被编译成各种不同的输出形式。如果你之前使用过 JSX 语法，那么请注意 **Vue 的 JSX 转换方式与 React 中 JSX 的转换方式不同**，因此你不能在 Vue 应用中使用 React 的 JSX 转换。与 React JSX 语法的一些明显区别包括：
 
-- You can use HTML attributes such as `class` and `for` as props - no need to use `className` or `htmlFor`.
-- Passing children to components (i.e. slots) [works differently](#passing-slots).
+- 可以使用 HTML attributes 比如 `class` 和 `for` 作为 props - 不需要使用 `className` 或 `htmlFor`。
+- 传递子元素给组件 (比如 slots) 的[方式不同](#passing-slots)。
 
-Vue's type definition also provides type inference for TSX usage. When using TSX, make sure to specify `"jsx": "preserve"` in `tsconfig.json` so that TypeScript leaves the JSX syntax intact for Vue JSX transform to process.
+Vue 的类型定义也提供了 TSX 语法的类型推导支持。当使用 TSX 语法时，确保在 `tsconfig.json` 中配置了 `"jsx": "preserve"`，这样的 TypeScript 就能保证 Vue JSX 语法转换过程中的完整性。
 
-### JSX Type Inference {#jsx-type-inference}
+### JSX 类型推断 {#jsx-type-inference}
 
-Similar to the transform, Vue's JSX also needs different type definitions. Currently, Vue's types automatically registers Vue's JSX types globally. This means TSX will work out of the box when Vue's type is available.
+与转换类似，Vue 的 JSX 也需要不同的类型定义。
 
-The global JSX types may cause conflict with used together with other libraries that also needs JSX type inference, in particular React. Starting in 3.3, Vue supports specifying JSX namespace via TypeScript's [jsxImportSource](https://www.typescriptlang.org/tsconfig#jsxImportSource) option. We plan to remove the default global JSX namespace registration in 3.4.
+从 Vue 3.4 开始，Vue 不再隐式注册全局 `JSX` 命名空间。要指示 TypeScript 使用 Vue 的 JSX 类型定义，请确保在你的 `tsconfig.json` 中包含以下内容：
 
-For TSX users, it is suggested to set [jsxImportSource](https://www.typescriptlang.org/tsconfig#jsxImportSource) to `'vue'` in `tsconfig.json` after upgrading to 3.3, or opt-in per file with `/* @jsxImportSource vue */`. This will allow you to opt-in to the new behavior now and upgrade seamlessly when 3.4 releases.
+```json
+{
+  "compilerOptions": {
+    "jsx": "preserve",
+    "jsxImportSource": "vue"
+    // ...
+  }
+}
+```
 
-If there is code that depends on the presence of the global `JSX` namespace,  you can retain the exact pre-3.4 global behavior by explicitly referencing `vue/jsx`, which registers the global `JSX` namespace.
+你也可以通过在文件的顶部加入 `/* @jsxImportSource vue */` 注释来选择性地开启。
 
-## Render Function Recipes {#render-function-recipes}
+如果仍有代码依赖于全局存在的 `JSX` 命名空间，你可以在项目中通过显式导入或引用 `vue/jsx` 来保留 3.4 之前的全局行为，它注册了全局 `JSX` 命名空间。
 
-Below we will provide some common recipes for implementing template features as their equivalent render functions / JSX.
+## 渲染函数案例 {#render-function-recipes}
+
+下面我们提供了几个常见的用等价的渲染函数 / JSX 语法，实现模板功能的案例：
 
 ### `v-if` {#v-if}
 
-Template:
+模板：
 
 ```vue-html
 <div>
@@ -264,7 +274,7 @@ Template:
 </div>
 ```
 
-Equivalent render function / JSX:
+等价于使用如下渲染函数 / JSX 语法：
 
 <div class="composition-api">
 
@@ -291,7 +301,7 @@ h('div', [this.ok ? h('div', 'yes') : h('span', 'no')])
 
 ### `v-for` {#v-for}
 
-Template:
+模板：
 
 ```vue-html
 <ul>
@@ -301,7 +311,7 @@ Template:
 </ul>
 ```
 
-Equivalent render function / JSX:
+等价于使用如下渲染函数 / JSX 语法：
 
 <div class="composition-api">
 
@@ -347,7 +357,7 @@ h(
 
 ### `v-on` {#v-on}
 
-Props with names that start with `on` followed by an uppercase letter are treated as event listeners. For example, `onClick` is the equivalent of `@click` in templates.
+以 `on` 开头，并跟着大写字母的 props 会被当作事件监听器。比如，`onClick` 与模板中的 `@click` 等价。
 
 ```js
 h(
@@ -357,7 +367,7 @@ h(
       /* ... */
     }
   },
-  'click me'
+  'Click Me'
 )
 ```
 
@@ -367,26 +377,26 @@ h(
     /* ... */
   }}
 >
-  click me
+  Click Me
 </button>
 ```
 
-#### Event Modifiers {#event-modifiers}
+### 事件修饰符 {#event-modifiers}
 
-For the `.passive`, `.capture`, and `.once` event modifiers, they can be concatenated after the event name using camelCase.
+对于 `.passive`、`.capture` 和 `.once` 事件修饰符，可以使用驼峰写法将他们拼接在事件名后面：
 
-For example:
+实例：
 
 ```js
 h('input', {
   onClickCapture() {
-    /* listener in capture mode */
+    /* 捕捉模式中的监听器 */
   },
   onKeyupOnce() {
-    /* triggers only once */
+    /* 只触发一次 */
   },
   onMouseoverOnceCapture() {
-    /* once + capture */
+    /* 单次 + 捕捉 */
   }
 })
 ```
@@ -399,7 +409,7 @@ h('input', {
 />
 ```
 
-For other event and key modifiers, the [`withModifiers`](/api/render-function#withmodifiers) helper can be used:
+对于事件和按键修饰符，可以使用 [`withModifiers`](/api/render-function#withmodifiers) 函数：
 
 ```js
 import { withModifiers } from 'vue'
@@ -413,9 +423,9 @@ h('div', {
 <div onClick={withModifiers(() => {}, ['self'])} />
 ```
 
-### Components {#components}
+### 组件 {#components}
 
-To create a vnode for a component, the first argument passed to `h()` should be the component definition. This means when using render functions, it is unnecessary to register components - you can just use the imported components directly:
+在给组件创建 vnode 时，传递给 `h()` 函数的第一个参数应当是组件的定义。这意味着使用渲染函数时不再需要注册组件了 —— 可以直接使用导入的组件：
 
 ```js
 import Foo from './Foo.vue'
@@ -437,16 +447,16 @@ function render() {
 }
 ```
 
-As we can see, `h` can work with components imported from any file format as long as it's a valid Vue component.
+不管是什么类型的文件，只要从中导入的是有效的 Vue 组件，`h` 就能正常运作。
 
-Dynamic components are straightforward with render functions:
+动态组件在渲染函数中也可直接使用：
 
 ```js
 import Foo from './Foo.vue'
 import Bar from './Bar.jsx'
 
 function render() {
-  return ok.value ? h(Foo) : h(Bar)
+    return ok.value ? h(Foo) : h(Bar)
 }
 ```
 
@@ -456,24 +466,24 @@ function render() {
 }
 ```
 
-If a component is registered by name and cannot be imported directly (for example, globally registered by a library), it can be programmatically resolved by using the [`resolveComponent()`](/api/render-function#resolvecomponent) helper.
+如果一个组件是用名字注册的，不能直接导入 (例如，由一个库全局注册)，可以使用 [`resolveComponent()`](/api/render-function#resolvecomponent) 来解决这个问题。
 
-### Rendering Slots {#rendering-slots}
+### 渲染插槽 {#rendering-slots}
 
 <div class="composition-api">
 
-In render functions, slots can be accessed from the `setup()` context. Each slot on the `slots` object is a **function that returns an array of vnodes**:
+在渲染函数中，插槽可以通过 `setup()` 的上下文来访问。每个 `slots` 对象中的插槽都是一个**返回 vnodes 数组的函数**：
 
 ```js
 export default {
   props: ['message'],
   setup(props, { slots }) {
     return () => [
-      // default slot:
+      // 默认插槽：
       // <div><slot /></div>
       h('div', slots.default()),
 
-      // named slot:
+      // 具名插槽：
       // <div><slot name="footer" :text="message" /></div>
       h(
         'div',
@@ -486,20 +496,20 @@ export default {
 }
 ```
 
-JSX equivalent:
+等价 JSX 语法：
 
 ```jsx
-// default
+// 默认插槽
 <div>{slots.default()}</div>
 
-// named
+// 具名插槽
 <div>{slots.footer({ text: props.message })}</div>
 ```
 
 </div>
 <div class="options-api">
 
-In render functions, slots can be accessed from [`this.$slots`](/api/component-instance#slots):
+在渲染函数中，可以通过 [this.$slots](/api/component-instance#slots) 来访问插槽：
 
 ```js
 export default {
@@ -521,7 +531,7 @@ export default {
 }
 ```
 
-JSX equivalent:
+等价 JSX 语法：
 
 ```jsx
 // <div><slot /></div>
@@ -533,31 +543,31 @@ JSX equivalent:
 
 </div>
 
-### Passing Slots {#passing-slots}
+### 传递插槽 {#passing-slots}
 
-Passing children to components works a bit differently from passing children to elements. Instead of an array, we need to pass either a slot function, or an object of slot functions. Slot functions can return anything a normal render function can return - which will always be normalized to arrays of vnodes when accessed in the child component.
+向组件传递子元素的方式与向元素传递子元素的方式有些许不同。我们需要传递一个插槽函数或者是一个包含插槽函数的对象而非是数组，插槽函数的返回值同一个正常的渲染函数的返回值一样——并且在子组件中被访问时总是会被转化为一个 vnodes 数组。
 
 ```js
-// single default slot
+// 单个默认插槽
 h(MyComponent, () => 'hello')
 
-// named slots
-// notice the `null` is required to avoid
-// the slots object being treated as props
+// 具名插槽
+// 注意 `null` 是必需的
+// 以避免 slot 对象被当成 prop 处理
 h(MyComponent, null, {
-  default: () => 'default slot',
-  foo: () => h('div', 'foo'),
-  bar: () => [h('span', 'one'), h('span', 'two')]
+    default: () => 'default slot',
+    foo: () => h('div', 'foo'),
+    bar: () => [h('span', 'one'), h('span', 'two')]
 })
 ```
 
-JSX equivalent:
+等价 JSX 语法：
 
 ```jsx
-// default
+// 默认插槽
 <MyComponent>{() => 'hello'}</MyComponent>
 
-// named
+// 具名插槽
 <MyComponent>{{
   default: () => 'default slot',
   foo: () => <div>foo</div>,
@@ -565,11 +575,46 @@ JSX equivalent:
 }}</MyComponent>
 ```
 
-Passing slots as functions allows them to be invoked lazily by the child component. This leads to the slot's dependencies being tracked by the child instead of the parent, which results in more accurate and efficient updates.
+插槽以函数的形式传递使得它们可以被子组件懒调用。这能确保它被注册为子组件的依赖关系，而不是父组件。这使得更新更加准确及有效。
 
-### Built-in Components {#built-in-components}
+### 作用域插槽 {#scoped-slots}
 
-[Built-in components](/api/built-in-components) such as `<KeepAlive>`, `<Transition>`, `<TransitionGroup>`, `<Teleport>` and `<Suspense>` must be imported for use in render functions:
+为了在父组件中渲染作用域插槽，需要给子组件传递一个插槽。注意该插槽现在拥有一个 `text` 参数。该插槽将在子组件中被调用，同时子组件中的数据将向上传递给父组件。
+
+```js
+// 父组件
+export default {
+  setup() {
+    return () => h(MyComp, null, {
+      default: ({ text }) => h('p', text)
+    })
+  }
+}
+```
+
+记得传递 `null` 以避免插槽被误认为 prop：
+
+```js
+// 子组件
+export default {
+  setup(props, { slots }) {
+    const text = ref('hi')
+    return () => h('div', null, slots.default({ text: text.value }))
+  }
+}
+```
+
+等同于 JSX：
+
+```jsx
+<MyComponent>{{
+  default: ({ text }) => <p>{ text }</p>  
+}}</MyComponent>
+```
+
+### 内置组件 {#built-in-components}
+
+诸如 `<KeepAlive>`、`<Transition>`、`<TransitionGroup>`、`<Teleport>` 和 `<Suspense>` 等[内置组件](/api/built-in-components)在渲染函数中必须导入才能使用：
 
 <div class="composition-api">
 
@@ -600,7 +645,7 @@ export default {
 
 ### `v-model` {#v-model}
 
-The `v-model` directive is expanded to `modelValue` and `onUpdate:modelValue` props during template compilation—we will have to provide these props ourselves:
+`v-model` 指令扩展为 `modelValue` 和 `onUpdate:modelValue` 在模板编译过程中，我们必须自己提供这些 props：
 
 <div class="composition-api">
 
@@ -636,14 +681,14 @@ export default {
 
 </div>
 
-### Custom Directives {#custom-directives}
+### 自定义指令 {#custom-directives}
 
-Custom directives can be applied to a vnode using [`withDirectives`](/api/render-function#withdirectives):
+可以使用 [`withDirectives`](/api/render-function#withdirectives) 将自定义指令应用于 vnode：
 
 ```js
 import { h, withDirectives } from 'vue'
 
-// a custom directive
+// 自定义指令
 const pin = {
   mounted() { /* ... */ },
   updated() { /* ... */ }
@@ -655,13 +700,13 @@ const vnode = withDirectives(h('div'), [
 ])
 ```
 
-If the directive is registered by name and cannot be imported directly, it can be resolved using the [`resolveDirective`](/api/render-function#resolvedirective) helper.
+当一个指令是以名称注册并且不能被直接导入时，可以使用 [`resolveDirective`](/api/render-function#resolvedirective) 函数来解决这个问题。
 
-### Template Refs {#template-refs}
+### 模板引用 {#template-refs}
 
 <div class="composition-api">
 
-With the Composition API, template refs are created by passing the `ref()` itself as a prop to the vnode:
+在组合式 API 中，模板引用通过将 `ref()` 本身作为一个属性传递给 vnode 来创建：
 
 ```js
 import { h, ref } from 'vue'
@@ -679,7 +724,7 @@ export default {
 </div>
 <div class="options-api">
 
-With the Options API, template refs are created by passing the ref name as a string in the vnode props:
+在选项式 API 中，模板引用通过在 vnode 参数中传递字符串类型的引用名称来创建：
 
 ```js
 export default {
@@ -692,15 +737,15 @@ export default {
 
 </div>
 
-## Functional Components {#functional-components}
+## 函数式组件 {#functional-components}
 
-Functional components are an alternative form of component that don't have any state of their own. They act like pure functions: props in, vnodes out. They are rendered without creating a component instance (i.e. no `this`), and without the usual component lifecycle hooks.
+函数式组件是一种定义自身没有任何状态的组件的方式。它们很像纯函数：接收 props，返回 vnodes。函数式组件在渲染过程中不会创建组件实例 (也就是说，没有 `this`)，也不会触发常规的组件生命周期钩子。
 
-To create a functional component we use a plain function, rather than an options object. The function is effectively the `render` function for the component.
+我们用一个普通的函数而不是一个选项对象来创建函数式组件。该函数实际上就是该组件的渲染函数。
 
 <div class="composition-api">
 
-The signature of a functional component is the same as the `setup()` hook:
+函数式组件的签名与 `setup()` 钩子相同：
 
 ```js
 function MyComponent(props, { slots, emit, attrs }) {
@@ -711,7 +756,7 @@ function MyComponent(props, { slots, emit, attrs }) {
 </div>
 <div class="options-api">
 
-As there is no `this` reference for a functional component, Vue will pass in the `props` as the first argument:
+而因为函数式组件里没有 `this` 引用，Vue 会把 `props` 当作第一个参数传入：
 
 ```js
 function MyComponent(props, context) {
@@ -719,32 +764,32 @@ function MyComponent(props, context) {
 }
 ```
 
-The second argument, `context`, contains three properties: `attrs`, `emit`, and `slots`. These are equivalent to the instance properties [`$attrs`](/api/component-instance#attrs), [`$emit`](/api/component-instance#emit), and [`$slots`](/api/component-instance#slots) respectively.
+第二个参数 `context` 包含三个属性：`attrs`、`emit` 和 `slots`。它们分别相当于组件实例的 [`$attrs`](/api/component-instance#attrs)、[`$emit`](/api/component-instance#emit) 和 [`$slots`](/api/component-instance#slots) 这几个属性。
 
 </div>
 
-Most of the usual configuration options for components are not available for functional components. However, it is possible to define [`props`](/api/options-state#props) and [`emits`](/api/options-state#emits) by adding them as properties:
+大多数常规组件的配置选项在函数式组件中都不可用，除了 [`props`](/api/options-state#props) 和 [`emits`](/api/options-state#emits)。我们可以给函数式组件添加对应的属性来声明它们：
 
 ```js
 MyComponent.props = ['value']
 MyComponent.emits = ['click']
 ```
 
-If the `props` option is not specified, then the `props` object passed to the function will contain all attributes, the same as `attrs`. The prop names will not be normalized to camelCase unless the `props` option is specified.
+如果这个 `props` 选项没有被定义，那么被传入函数的 `props` 对象就会像 `attrs` 一样会包含所有 attribute。除非指定了 `props` 选项，否则每个 prop 的名字将不会基于驼峰命名法被一般化处理。
 
-For functional components with explicit `props`, [attribute fallthrough](/guide/components/attrs) works much the same as with normal components. However, for functional components that don't explicitly specify their `props`, only the `class`, `style`, and `onXxx` event listeners will be inherited from the `attrs` by default. In either case, `inheritAttrs` can be set to `false` to disable attribute inheritance:
+对于有明确 `props` 的函数式组件，[attribute 透传](/guide/components/attrs)的原理与普通组件基本相同。然而，对于没有明确指定 `props` 的函数式组件，只有 `class`、`style` 和 `onXxx` 事件监听器将默认从 `attrs` 中继承。在这两种情况下，可以将 `inheritAttrs` 设置为 `false` 来禁用属性继承：
 
 ```js
 MyComponent.inheritAttrs = false
 ```
 
-Functional components can be registered and consumed just like normal components. If you pass a function as the first argument to `h()`, it will be treated as a functional component.
+函数式组件可以像普通组件一样被注册和使用。如果你将一个函数作为第一个参数传入 `h`，它将会被当作一个函数式组件来对待。
 
-### Typing Functional Components<sup class="vt-badge ts" /> {#typing-functional-components}
+### 为函数式组件标注类型<sup class="vt-badge ts" /> {#typing-functional-components}
 
-Functional Components can be typed based on whether they are named or anonymous. Volar also supports type checking properly typed functional components when consuming them in SFC templates.
+函数式组件可以根据它们是否有命名来标注类型。在单文件组件模板中，[Vue - Official 扩展](https://github.com/vuejs/language-tools)还支持对正确类型化的函数式组件进行类型检查。
 
-**Named Functional Component**
+**具名函数式组件**
 
 ```tsx
 import type { SetupContext } from 'vue'
@@ -779,7 +824,7 @@ FComponent.emits = {
 }
 ```
 
-**Anonymous Functional Component**
+**匿名函数式组件**
 
 ```tsx
 import type { FunctionalComponent } from 'vue'

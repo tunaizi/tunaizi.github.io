@@ -21,7 +21,7 @@ function dismiss() {
 </script>
 
 <template>
-  <div class="banner 9900" v-if="open">
+  <div class="banner" v-if="open">
     <a target="_blank"></a>
     <button @click="dismiss">
       <VTIconPlus class="close" />

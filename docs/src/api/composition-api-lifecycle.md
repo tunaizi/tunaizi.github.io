@@ -1,34 +1,34 @@
-# Composition API: Lifecycle Hooks {#composition-api-lifecycle-hooks}
+# 组合式 API：生命周期钩子 {#composition-api-lifecycle-hooks}
 
-:::info Usage Note
-All APIs listed on this page must be called synchronously during the `setup()` phase of a component. See [Guide - Lifecycle Hooks](/guide/essentials/lifecycle) for more details.
+:::info 使用方式注意
+所有罗列在本页的 API 都应该在组件的 `setup()` 阶段被同步调用。相关细节请看[指南 - 生命周期钩子](/guide/essentials/lifecycle)。
 :::
 
 ## onMounted() {#onmounted}
 
-Registers a callback to be called after the component has been mounted.
+注册一个回调函数，在组件挂载完成后执行。
 
-- **Type**
+- **类型**
 
   ```ts
   function onMounted(callback: () => void): void
   ```
 
-- **Details**
+- **详细信息**
 
-  A component is considered mounted after:
+  组件在以下情况下被视为已挂载：
 
-  - All of its synchronous child components have been mounted (does not include async components or components inside `<Suspense>` trees).
+  - 其所有同步子组件都已经被挂载 (不包含异步组件或 `<Suspense>` 树内的组件)。
 
-  - Its own DOM tree has been created and inserted into the parent container. Note it only guarantees that the component's DOM tree is in-document if the application's root container is also in-document.
+  - 其自身的 DOM 树已经创建完成并插入了父容器中。注意仅当根容器在文档中时，才可以保证组件 DOM 树也在文档中。
 
-  This hook is typically used for performing side effects that need access to the component's rendered DOM, or for limiting DOM-related code to the client in a [server-rendered application](/guide/scaling-up/ssr).
+  这个钩子通常用于执行需要访问组件所渲染的 DOM 树相关的副作用，或是在[服务端渲染应用](/guide/scaling-up/ssr)中用于确保 DOM 相关代码仅在客户端执行。
 
-  **This hook is not called during server-side rendering.**
+  **这个钩子在服务器端渲染期间不会被调用。**
 
-- **Example**
+- **示例**
 
-  Accessing an element via template ref:
+  通过模板引用访问一个元素：
 
   ```vue
   <script setup>
@@ -48,29 +48,29 @@ Registers a callback to be called after the component has been mounted.
 
 ## onUpdated() {#onupdated}
 
-Registers a callback to be called after the component has updated its DOM tree due to a reactive state change.
+注册一个回调函数，在组件因为响应式状态变更而更新其 DOM 树之后调用。
 
-- **Type**
+- **类型**
 
   ```ts
   function onUpdated(callback: () => void): void
   ```
 
-- **Details**
+- **详细信息**
 
-  A parent component's updated hook is called after that of its child components.
+  父组件的更新钩子将在其子组件的更新钩子之后调用。
 
-  This hook is called after any DOM update of the component, which can be caused by different state changes, because multiple state changes can be batched into a single render cycle for performance reasons. If you need to access the updated DOM after a specific state change, use [nextTick()](/api/general#nexttick) instead.
+  这个钩子会在组件的任意 DOM 更新后被调用，这些更新可能是由不同的状态变更导致的，因为多个状态变更可以在同一个渲染周期中批量执行 (考虑到性能因素)。如果你需要在某个特定的状态更改后访问更新后的 DOM，请使用 [nextTick()](/api/general#nexttick) 作为替代。
 
-  **This hook is not called during server-side rendering.**
+  **这个钩子在服务器端渲染期间不会被调用。**
 
   :::warning
-  Do not mutate component state in the updated hook - this will likely lead to an infinite update loop!
+  不要在 updated 钩子中更改组件的状态，这可能会导致无限的更新循环！
   :::
 
-- **Example**
+- **示例**
 
-  Accessing updated DOM:
+  访问更新后的 DOM
 
   ```vue
   <script setup>
@@ -79,7 +79,7 @@ Registers a callback to be called after the component has updated its DOM tree d
   const count = ref(0)
 
   onUpdated(() => {
-    // text content should be the same as current `count.value`
+    // 文本内容应该与当前的 `count.value` 一致
     console.log(document.getElementById('count').textContent)
   })
   </script>
@@ -91,27 +91,27 @@ Registers a callback to be called after the component has updated its DOM tree d
 
 ## onUnmounted() {#onunmounted}
 
-Registers a callback to be called after the component has been unmounted.
+注册一个回调函数，在组件实例被卸载之后调用。
 
-- **Type**
+- **类型**
 
   ```ts
   function onUnmounted(callback: () => void): void
   ```
 
-- **Details**
+- **详细信息**
 
-  A component is considered unmounted after:
+  一个组件在以下情况下被视为已卸载：
 
-  - All of its child components have been unmounted.
+  - 其所有子组件都已经被卸载。
 
-  - All of its associated reactive effects (render effect and computed / watchers created during `setup()`) have been stopped.
+  - 所有相关的响应式作用 (渲染作用以及 `setup()` 时创建的计算属性和侦听器) 都已经停止。
 
-  Use this hook to clean up manually created side effects such as timers, DOM event listeners or server connections.
+  可以在这个钩子中手动清理一些副作用，例如计时器、DOM 事件监听器或者与服务器的连接。
 
-  **This hook is not called during server-side rendering.**
+  **这个钩子在服务器端渲染期间不会被调用。**
 
-- **Example**
+- **示例**
 
   ```vue
   <script setup>
@@ -130,57 +130,57 @@ Registers a callback to be called after the component has been unmounted.
 
 ## onBeforeMount() {#onbeforemount}
 
-Registers a hook to be called right before the component is to be mounted.
+注册一个钩子，在组件被挂载之前被调用。
 
-- **Type**
+- **类型**
 
   ```ts
   function onBeforeMount(callback: () => void): void
   ```
 
-- **Details**
+- **详细信息**
 
-  When this hook is called, the component has finished setting up its reactive state, but no DOM nodes have been created yet. It is about to execute its DOM render effect for the first time.
+  当这个钩子被调用时，组件已经完成了其响应式状态的设置，但还没有创建 DOM 节点。它即将首次执行 DOM 渲染过程。
 
-  **This hook is not called during server-side rendering.**
+  **这个钩子在服务器端渲染期间不会被调用。**
 
 ## onBeforeUpdate() {#onbeforeupdate}
 
-Registers a hook to be called right before the component is about to update its DOM tree due to a reactive state change.
+注册一个钩子，在组件即将因为响应式状态变更而更新其 DOM 树之前调用。
 
-- **Type**
+- **类型**
 
   ```ts
   function onBeforeUpdate(callback: () => void): void
   ```
 
-- **Details**
+- **详细信息**
 
-  This hook can be used to access the DOM state before Vue updates the DOM. It is also safe to modify component state inside this hook.
+  这个钩子可以用来在 Vue 更新 DOM 之前访问 DOM 状态。在这个钩子中更改状态也是安全的。
 
-  **This hook is not called during server-side rendering.**
+  **这个钩子在服务器端渲染期间不会被调用。**
 
 ## onBeforeUnmount() {#onbeforeunmount}
 
-Registers a hook to be called right before a component instance is to be unmounted.
+注册一个钩子，在组件实例被卸载之前调用。
 
-- **Type**
+- **类型**
 
   ```ts
   function onBeforeUnmount(callback: () => void): void
   ```
 
-- **Details**
+- **详细信息**
 
-  When this hook is called, the component instance is still fully functional.
+  当这个钩子被调用时，组件实例依然还保有全部的功能。
 
-  **This hook is not called during server-side rendering.**
+  **这个钩子在服务器端渲染期间不会被调用。**
 
 ## onErrorCaptured() {#onerrorcaptured}
 
-Registers a hook to be called when an error propagating from a descendant component has been captured.
+注册一个钩子，在捕获了后代组件传递的错误时调用。
 
-- **Type**
+- **类型**
 
   ```ts
   function onErrorCaptured(callback: ErrorCapturedHook): void
@@ -192,41 +192,45 @@ Registers a hook to be called when an error propagating from a descendant compon
   ) => boolean | void
   ```
 
-- **Details**
+- **详细信息**
 
-  Errors can be captured from the following sources:
+  错误可以从以下几个来源中捕获：
 
-  - Component renders
-  - Event handlers
-  - Lifecycle hooks
-  - `setup()` function
-  - Watchers
-  - Custom directive hooks
-  - Transition hooks
+  - 组件渲染
+  - 事件处理器
+  - 生命周期钩子
+  - `setup()` 函数
+  - 侦听器
+  - 自定义指令钩子
+  - 过渡钩子
 
-  The hook receives three arguments: the error, the component instance that triggered the error, and an information string specifying the error source type.
+  这个钩子带有三个实参：错误对象、触发该错误的组件实例，以及一个说明错误来源类型的信息字符串。
 
-  You can modify component state in `errorCaptured()` to display an error state to the user. However, it is important that the error state should not render the original content that caused the error; otherwise the component will be thrown into an infinite render loop.
+  :::tip
+  在生产环境中，第三个参数 (`info`) 是一个缩短的代码，而不是含有完整信息的字符串。错误代码和字符串的映射可以参阅[生产环境错误代码参考](/error-reference/#runtime-errors)。
+  :::
 
-  The hook can return `false` to stop the error from propagating further. See error propagation details below.
+  你可以在 `errorCaptured()` 中更改组件状态来为用户显示一个错误状态。注意不要让错误状态再次渲染导致本次错误的内容，否则组件会陷入无限循环。
 
-  **Error Propagation Rules**
+  这个钩子可以通过返回 `false` 来阻止错误继续向上传递。请看下方的传递细节介绍。
 
-  - By default, all errors are still sent to the application-level [`app.config.errorHandler`](/api/application#app-config-errorhandler) if it is defined, so that these errors can still be reported to an analytics service in a single place.
+  **错误传递规则**
 
-  - If multiple `errorCaptured` hooks exist on a component's inheritance chain or parent chain, all of them will be invoked on the same error, in the order of bottom to top. This is similar to the bubbling mechanism of native DOM events.
+  - 默认情况下，所有的错误都会被发送到应用级的 [`app.config.errorHandler`](/api/application#app-config-errorhandler) (前提是这个函数已经定义)，这样这些错误都能在一个统一的地方报告给分析服务。
 
-  - If the `errorCaptured` hook itself throws an error, both this error and the original captured error are sent to `app.config.errorHandler`.
+  - 如果组件的继承链或组件链上存在多个 `errorCaptured` 钩子，对于同一个错误，这些钩子会被按从底至上的顺序一一调用。这个过程被称为“向上传递”，类似于原生 DOM 事件的冒泡机制。
 
-  - An `errorCaptured` hook can return `false` to prevent the error from propagating further. This is essentially saying "this error has been handled and should be ignored." It will prevent any additional `errorCaptured` hooks or `app.config.errorHandler` from being invoked for this error.
+  - 如果 `errorCaptured` 钩子本身抛出了一个错误，那么这个错误和原来捕获到的错误都将被发送到 `app.config.errorHandler`。
+
+  - `errorCaptured` 钩子可以通过返回 `false` 来阻止错误继续向上传递。即表示“这个错误已经被处理了，应当被忽略”，它将阻止其他的 `errorCaptured` 钩子或 `app.config.errorHandler` 因这个错误而被调用。
 
 ## onRenderTracked() <sup class="vt-badge dev-only" /> {#onrendertracked}
 
-Registers a debug hook to be called when a reactive dependency has been tracked by the component's render effect.
+注册一个调试钩子，当组件渲染过程中追踪到响应式依赖时调用。
 
-**This hook is development-mode-only and not called during server-side rendering.**
+**这个钩子仅在开发模式下可用，且在服务器端渲染期间不会被调用。**
 
-- **Type**
+- **类型**
 
   ```ts
   function onRenderTracked(callback: DebuggerHook): void
@@ -241,15 +245,15 @@ Registers a debug hook to be called when a reactive dependency has been tracked 
   }
   ```
 
-- **See also** [Reactivity in Depth](/guide/extras/reactivity-in-depth)
+- **参考**[深入响应式系统](/guide/extras/reactivity-in-depth)
 
 ## onRenderTriggered() <sup class="vt-badge dev-only" /> {#onrendertriggered}
 
-Registers a debug hook to be called when a reactive dependency triggers the component's render effect to be re-run.
+注册一个调试钩子，当响应式依赖的变更触发了组件渲染时调用。
 
-**This hook is development-mode-only and not called during server-side rendering.**
+**这个钩子仅在开发模式下可用，且在服务器端渲染期间不会被调用。**
 
-- **Type**
+- **类型**
 
   ```ts
   function onRenderTriggered(callback: DebuggerHook): void
@@ -267,53 +271,53 @@ Registers a debug hook to be called when a reactive dependency triggers the comp
   }
   ```
 
-- **See also** [Reactivity in Depth](/guide/extras/reactivity-in-depth)
+- **参考**[深入响应式系统](/guide/extras/reactivity-in-depth)
 
 ## onActivated() {#onactivated}
 
-Registers a callback to be called after the component instance is inserted into the DOM as part of a tree cached by [`<KeepAlive>`](/api/built-in-components#keepalive).
+注册一个回调函数，若组件实例是 [`<KeepAlive>`](/api/built-in-components#keepalive) 缓存树的一部分，当组件被插入到 DOM 中时调用。
 
-**This hook is not called during server-side rendering.**
+**这个钩子在服务器端渲染期间不会被调用。**
 
-- **Type**
+- **类型**
 
   ```ts
   function onActivated(callback: () => void): void
   ```
 
-- **See also** [Guide - Lifecycle of Cached Instance](/guide/built-ins/keep-alive#lifecycle-of-cached-instance)
+- **参考**[指南 - 缓存实例的生命周期](/guide/built-ins/keep-alive#lifecycle-of-cached-instance)
 
 ## onDeactivated() {#ondeactivated}
 
-Registers a callback to be called after the component instance is removed from the DOM as part of a tree cached by [`<KeepAlive>`](/api/built-in-components#keepalive).
+注册一个回调函数，若组件实例是 [`<KeepAlive>`](/api/built-in-components#keepalive) 缓存树的一部分，当组件从 DOM 中被移除时调用。
 
-**This hook is not called during server-side rendering.**
+**这个钩子在服务器端渲染期间不会被调用。**
 
-- **Type**
+- **类型**
 
   ```ts
   function onDeactivated(callback: () => void): void
   ```
 
-- **See also** [Guide - Lifecycle of Cached Instance](/guide/built-ins/keep-alive#lifecycle-of-cached-instance)
+- **参考**[指南 - 缓存实例的生命周期](/guide/built-ins/keep-alive#lifecycle-of-cached-instance)
 
 ## onServerPrefetch() <sup class="vt-badge" data-text="SSR only" /> {#onserverprefetch}
 
-Registers an async function to be resolved before the component instance is to be rendered on the server.
+注册一个异步函数，在组件实例在服务器上被渲染之前调用。
 
-- **Type**
+- **类型**
 
   ```ts
   function onServerPrefetch(callback: () => Promise<any>): void
   ```
 
-- **Details**
+- **详细信息**
 
-  If the callback returns a Promise, the server renderer will wait until the Promise is resolved before rendering the component.
+  如果这个钩子返回了一个 Promise，服务端渲染会在渲染该组件前等待该 Promise 完成。
 
-  This hook is only called during server-side rendering can be used to perform server-only data fetching.
+  这个钩子仅会在服务端渲染中执行，可以用于执行一些仅存在于服务端的数据抓取过程。
 
-- **Example**
+- **示例**
 
   ```vue
   <script setup>
@@ -322,20 +326,20 @@ Registers an async function to be resolved before the component instance is to b
   const data = ref(null)
 
   onServerPrefetch(async () => {
-    // component is rendered as part of the initial request
-    // pre-fetch data on server as it is faster than on the client
+    // 组件作为初始请求的一部分被渲染
+    // 在服务器上预抓取数据，因为它比在客户端上更快。
     data.value = await fetchOnServer(/* ... */)
   })
 
   onMounted(async () => {
     if (!data.value) {
-      // if data is null on mount, it means the component
-      // is dynamically rendered on the client. Perform a
-      // client-side fetch instead.
+      // 如果数据在挂载时为空值，这意味着该组件
+      // 是在客户端动态渲染的。将转而执行
+      // 另一个客户端侧的抓取请求
       data.value = await fetchOnClient(/* ... */)
     }
   })
   </script>
   ```
 
-- **See also** [Server-Side Rendering](/guide/scaling-up/ssr)
+- **参考**[服务端渲染](/guide/scaling-up/ssr)

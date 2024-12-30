@@ -1,60 +1,60 @@
-# Composition API: <br>Dependency Injection {#composition-api-dependency-injection}
+# 组合式 API：依赖注入 {#composition-api-dependency-injection}
 
 ## provide() {#provide}
 
-Provides a value that can be injected by descendant components.
+提供一个值，可以被后代组件注入。
 
-- **Type**
+- **类型**
 
   ```ts
   function provide<T>(key: InjectionKey<T> | string, value: T): void
   ```
 
-- **Details**
+- **详细信息**
 
-  `provide()` takes two arguments: the key, which can be a string or a symbol, and the value to be injected.
+  `provide()` 接受两个参数：第一个参数是要注入的 key，可以是一个字符串或者一个 symbol，第二个参数是要注入的值。
 
-  When using TypeScript, the key can be a symbol casted as `InjectionKey` - a Vue provided utility type that extends `Symbol`, which can be used to sync the value type between `provide()` and `inject()`.
+  当使用 TypeScript 时，key 可以是一个被类型断言为 `InjectionKey` 的 symbol。`InjectionKey` 是一个 Vue 提供的工具类型，继承自 `Symbol`，可以用来同步 `provide()` 和 `inject()` 之间值的类型。
 
-  Similar to lifecycle hook registration APIs, `provide()` must be called synchronously during a component's `setup()` phase.
+  与注册生命周期钩子的 API 类似，`provide()` 必须在组件的 `setup()` 阶段同步调用。
 
-- **Example**
+- **示例**
 
   ```vue
   <script setup>
   import { ref, provide } from 'vue'
-  import { fooSymbol } from './injectionSymbols'
+  import { countSymbol } from './injectionSymbols'
 
-  // provide static value
-  provide('foo', 'bar')
+  // 提供静态值
+  provide('path', '/project/')
 
-  // provide reactive value
+  // 提供响应式的值
   const count = ref(0)
   provide('count', count)
 
-  // provide with Symbol keys
-  provide(fooSymbol, count)
+  // 提供时将 Symbol 作为 key
+  provide(countSymbol, count)
   </script>
   ```
 
-- **See also**
-  - [Guide - Provide / Inject](/guide/components/provide-inject)
-  - [Guide - Typing Provide / Inject](/guide/typescript/composition-api#typing-provide-inject) <sup class="vt-badge ts" />
+- **参考**
+  - [指南 - 依赖注入](/guide/components/provide-inject)
+  - [指南 - 为 provide/inject 标注类型](/guide/typescript/composition-api#typing-provide-inject) <sup class="vt-badge ts" />
 
 ## inject() {#inject}
 
-Injects a value provided by an ancestor component or the application (via `app.provide()`).
+注入一个由祖先组件或整个应用 (通过 `app.provide()`) 提供的值。
 
-- **Type**
+- **类型**
 
   ```ts
-  // without default value
+  // 没有默认值
   function inject<T>(key: InjectionKey<T> | string): T | undefined
 
-  // with default value
+  // 带有默认值
   function inject<T>(key: InjectionKey<T> | string, defaultValue: T): T
 
-  // with factory
+  // 使用工厂函数
   function inject<T>(
     key: InjectionKey<T> | string,
     defaultValue: () => T,
@@ -62,47 +62,59 @@ Injects a value provided by an ancestor component or the application (via `app.p
   ): T
   ```
 
-- **Details**
+- **详细信息**
 
-  The first argument is the injection key. Vue will walk up the parent chain to locate a provided value with a matching key. If multiple components in the parent chain provides the same key, the one closest to the injecting component will "shadow" those higher up the chain. If no value with matching key was found, `inject()` returns `undefined` unless a default value is provided.
+  第一个参数是注入的 key。Vue 会遍历父组件链，通过匹配 key 来确定所提供的值。如果父组件链上多个组件对同一个 key 提供了值，那么离得更近的组件将会“覆盖”链上更远的组件所提供的值。如果没有能通过 key 匹配到值，`inject()` 将返回 `undefined`，除非提供了一个默认值。
 
-  The second argument is optional and is the default value to be used when no matching value was found.
+  第二个参数是可选的，即在没有匹配到 key 时使用的默认值。
 
-  The second argument can also be a factory function that returns values that are expensive to create. In this case, `true` must be passed as the third argument to indicate that the function should be used as a factory instead of the value itself.
+  第二个参数也可以是一个工厂函数，用来返回某些创建起来比较复杂的值。在这种情况下，你必须将 `true` 作为第三个参数传入，表明这个函数将作为工厂函数使用，而非值本身。
 
-  Similar to lifecycle hook registration APIs, `inject()` must be called synchronously during a component's `setup()` phase.
+  与注册生命周期钩子的 API 类似，`inject()` 必须在组件的 `setup()` 阶段同步调用。
 
-  When using TypeScript, the key can be of type of `InjectionKey` - a Vue-provided utility type that extends `Symbol`, which can be used to sync the value type between `provide()` and `inject()`.
+  当使用 TypeScript 时，key 可以是一个类型为 `InjectionKey` 的 symbol。`InjectionKey` 是一个 Vue 提供的工具类型，继承自 `Symbol`，可以用来同步 `provide()` 和 `inject()` 之间值的类型。
 
-- **Example**
+- **示例**
 
-  Assuming a parent component has provided values as shown in the previous `provide()` example:
+  假设有一个父组件已经提供了一些值，如前面 `provide()` 的例子中所示：
 
   ```vue
   <script setup>
   import { inject } from 'vue'
-  import { fooSymbol } from './injectionSymbols'
+  import { countSymbol } from './injectionSymbols'
 
-  // inject static value without default
-  const foo = inject('foo')
+  // 注入不含默认值的静态值
+  const path = inject('path')
 
-  // inject reactive value
+  // 注入响应式的值
   const count = inject('count')
 
-  // inject with Symbol keys
-  const foo2 = inject(fooSymbol)
+  // 通过 Symbol 类型的 key 注入
+  const count2 = inject(countSymbol)
 
-  // inject with default value
-  const bar = inject('foo', 'default value')
+  // 注入一个值，若为空则使用提供的默认值
+  const bar = inject('path', '/default-path')
 
-  // inject with function default value
+  // 注入一个值，若为空则使用提供的函数类型的默认值
   const fn = inject('function', () => {})
 
-  // inject with default value factory
+  // 注入一个值，若为空则使用提供的工厂函数
   const baz = inject('factory', () => new ExpensiveObject(), true)
   </script>
   ```
+  
+- **参考**
+  - [指南 - 依赖注入](/guide/components/provide-inject)
+  - [指南 - 为 provide / inject 标注类型](/guide/typescript/composition-api#typing-provide-inject) <sup class="vt-badge ts" />
 
-- **See also**
-  - [Guide - Provide / Inject](/guide/components/provide-inject)
-  - [Guide - Typing Provide / Inject](/guide/typescript/composition-api#typing-provide-inject) <sup class="vt-badge ts" />
+## hasInjectionContext() {#has-injection-context}
+
+- 仅在 3.3+ 中支持
+
+如果 [inject()](#inject) 可以在错误的地方 (例如 `setup()` 之外) 被调用而不触发警告，则返回 `true`。此方法适用于希望在内部使用 `inject()` 而不向用户发出警告的库。
+
+- **类型**
+
+  ```ts
+  function hasInjectionContext(): boolean
+  ```

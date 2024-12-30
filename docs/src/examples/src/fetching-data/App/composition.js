@@ -1,16 +1,16 @@
 import { ref, watchEffect } from 'vue'
 
 const API_URL = `https://api.github.com/repos/vuejs/core/commits?per_page=3&sha=`
-const branches = ['main', 'v2-compat']
+const branches = ['main', 'minor']
 
 export default {
   setup() {
     const currentBranch = ref(branches[0])
-    const commits = ref(null)
+    const commits = ref([])
 
     watchEffect(async () => {
-      // this effect will run immediately and then
-      // re-run whenever currentBranch.value changes
+      // 该 effect 会立即运行，
+      // 并且在 currentBranch.value 改变时重新运行
       const url = `${API_URL}${currentBranch.value}`
       commits.value = await (await fetch(url)).json()
     })

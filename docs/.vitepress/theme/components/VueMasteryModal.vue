@@ -36,7 +36,10 @@ watch(
     Why Vue
   </a>
   <Teleport v-if="showWhyVue" to="body">
-    <div @click="showWhyVue = false" class="vuemastery-modal-mask">
+    <div
+      @click="showWhyVue = false"
+      class="vuemastery-modal-mask"
+    >
       <div class="vuemastery-modal-wrapper">
         <div class="vuemastery-modal-container">
           <div class="vuemastery-modal-content">
@@ -70,8 +73,7 @@ watch(
                 title="Vue.js Courses on Vue Mastery"
               >
                 Vue Mastery.</a
-              >
-              Watch Vue Mastery’s free
+              > Watch Vue Mastery’s free
               <a
                 href="https://www.vuemastery.com/courses/intro-to-vue-3/intro-to-vue3"
                 target="_blank"

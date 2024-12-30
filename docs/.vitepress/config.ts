@@ -4,29 +4,26 @@ import { defineConfigWithTheme } from 'vitepress'
 import type { Config as ThemeConfig } from '@vue/theme'
 import baseConfig from '@vue/theme/config'
 import { headerPlugin } from './headerMdPlugin'
-const isDev = process.env.NODE_ENV === 'development'
-// if (!isDev) {
-//   process.exit(1)
-// }
 // import { textAdPlugin } from './textAdMdPlugin'
 
 const nav: ThemeConfig['nav'] = [
   {
-    text: 'Docs',
+    text: '文档',
     activeMatch: `^/(guide|style-guide|cookbook|examples)/`,
     items: [
-      { text: 'Guide', link: '/guide/introduction' },
-      { text: 'Tutorial', link: '/tutorial/' },
-      { text: 'Examples', link: '/examples/' },
-      { text: 'Quick Start', link: '/guide/quick-start' },
-      // { text: 'Style Guide', link: '/style-guide/' },
-      { text: 'Glossary', link: '/glossary/' },
+      { text: '深度指南', link: '/guide/introduction' },
+      { text: '互动教程', link: '/tutorial/' },
+      { text: '示例', link: '/examples/' },
+      { text: '快速上手', link: '/guide/quick-start' },
+      // { text: '风格指南', link: '/style-guide/' },
+      { text: '术语表', link: '/glossary/' },
+      { text: '错误码参照表', link: '/error-reference/' },
       {
-        text: 'Vue 2 Docs',
-        link: 'https://v2.vuejs.org'
+        text: 'Vue 2 文档',
+        link: 'https://v2.cn.vuejs.org'
       },
       {
-        text: 'Migration from Vue 2',
+        text: '从 Vue 2 迁移',
         link: 'https://v3-migration.vuejs.org/'
       }
     ]
@@ -37,36 +34,38 @@ const nav: ThemeConfig['nav'] = [
     link: '/api/'
   },
   {
-    text: 'Playground',
+    text: '演练场',
     link: 'https://play.vuejs.org'
   },
   {
-    text: 'Ecosystem',
+    text: '生态系统',
     activeMatch: `^/ecosystem/`,
     items: [
       {
-        text: 'Resources',
+        text: '资源',
         items: [
-          { text: 'Partners', link: '/partners/' },
-          { text: 'Themes', link: '/ecosystem/themes' },
+          { text: '合作伙伴', link: '/partners/' },
+          { text: '开发者', link: '/developers/' },
+          { text: '主题', link: '/ecosystem/themes' },
+          { text: 'UI 组件', link: 'https://ui-libs.vercel.app/' },
           {
-            text: 'Certification',
-            link: 'https://certification.vuejs.org/?ref=vuejs-nav'
+            text: '证书',
+            link: 'https://certificates.dev/vuejs/?ref=vuejs-nav'
           },
-          { text: 'Jobs', link: 'https://vuejobs.com/?ref=vuejs' },
-          { text: 'T-Shirt Shop', link: 'https://vue.threadless.com/' }
+          { text: '找工作', link: 'https://vuejobs.com/?ref=vuejs' },
+          { text: 'T-Shirt 商店', link: 'https://vue.threadless.com/' }
         ]
       },
       {
-        text: 'Official Libraries',
+        text: '官方库',
         items: [
-          { text: 'Vue Router', link: 'https://router.vuejs.org/' },
-          { text: 'Pinia', link: 'https://pinia.vuejs.org/' },
-          { text: 'Tooling Guide', link: '/guide/scaling-up/tooling.html' }
+          { text: 'Vue Router', link: 'https://router.vuejs.org/zh/' },
+          { text: 'Pinia', link: 'https://pinia.vuejs.org/zh/' },
+          { text: '工具链指南', link: '/guide/scaling-up/tooling.html' }
         ]
       },
       {
-        text: 'Video Courses',
+        text: '视频课程',
         items: [
           {
             text: 'Vue Mastery',
@@ -79,157 +78,163 @@ const nav: ThemeConfig['nav'] = [
         ]
       },
       {
-        text: 'Help',
+        text: '帮助',
         items: [
           {
-            text: 'Discord Chat',
+            text: 'Discord 聊天室',
             link: 'https://discord.com/invite/HBherRA'
           },
           {
-            text: 'GitHub Discussions',
+            text: 'GitHub 论坛',
             link: 'https://github.com/vuejs/core/discussions'
           },
           { text: 'DEV Community', link: 'https://dev.to/t/vue' }
         ]
       },
       {
-        text: 'News',
+        text: '动态',
         items: [
-          { text: 'Blog', link: 'https://blog.vuejs.org/' },
+          { text: '博客', link: 'https://blog.vuejs.org/' },
           { text: 'Twitter', link: 'https://twitter.com/vuejs' },
-          { text: 'Events', link: 'https://events.vuejs.org/' },
-          { text: 'Newsletters', link: '/ecosystem/newsletters' }
+          { text: '活动', link: 'https://events.vuejs.org/' },
+          { text: '新闻简报', link: '/ecosystem/newsletters' }
         ]
       }
     ]
   },
   {
-    text: 'About',
+    text: '关于',
     activeMatch: `^/about/`,
     items: [
-      { text: 'FAQ', link: '/about/faq' },
-      { text: 'Team', link: '/about/team' },
-      { text: 'Releases', link: '/about/releases' },
+      { text: '常见问题', link: '/about/faq' },
+      { text: '团队', link: '/about/team' },
+      { text: '版本发布', link: '/about/releases' },
       {
-        text: 'Community Guide',
+        text: '社区指南',
         link: '/about/community-guide'
       },
-      { text: 'Code of Conduct', link: '/about/coc' },
+      { text: '行为规范', link: '/about/coc' },
+      { text: '隐私政策', link: '/about/privacy' },
       {
-        text: 'The Documentary',
+        text: '纪录片',
         link: 'https://www.youtube.com/watch?v=OrxmtDw4pVI'
       }
     ]
   },
   {
-    text: 'Sponsor',
+    text: '赞助',
     link: '/sponsor/'
   },
   {
-    text: 'Partners',
-    link: '/partners/',
-    activeMatch: `^/partners/`
+    text: '专家',
+    badge: { text: '新' },
+    activeMatch: `^/(partners|developers)/`,
+    items: [
+      { text: '合作伙伴', link: '/partners/' },
+      //@ts-ignore
+      { text: '开发者', link: '/developers/', badge: { text: '新' } }
+    ]
   }
 ]
 
 export const sidebar: ThemeConfig['sidebar'] = {
   '/guide/': [
     {
-      text: 'Getting Started',
+      text: '开始',
       items: [
-        { text: 'Introduction', link: '/guide/introduction' },
+        { text: '简介', link: '/guide/introduction' },
         {
-          text: 'Quick Start',
+          text: '快速上手',
           link: '/guide/quick-start'
         }
       ]
     },
     {
-      text: 'Essentials',
+      text: '基础',
       items: [
         {
-          text: 'Creating an Application',
+          text: '创建一个应用',
           link: '/guide/essentials/application'
         },
         {
-          text: 'Template Syntax',
+          text: '模板语法',
           link: '/guide/essentials/template-syntax'
         },
         {
-          text: 'Reactivity Fundamentals',
+          text: '响应式基础',
           link: '/guide/essentials/reactivity-fundamentals'
         },
         {
-          text: 'Computed Properties',
+          text: '计算属性',
           link: '/guide/essentials/computed'
         },
         {
-          text: 'Class and Style Bindings',
+          text: '类与样式绑定',
           link: '/guide/essentials/class-and-style'
         },
         {
-          text: 'Conditional Rendering',
+          text: '条件渲染',
           link: '/guide/essentials/conditional'
         },
-        { text: 'List Rendering', link: '/guide/essentials/list' },
+        { text: '列表渲染', link: '/guide/essentials/list' },
         {
-          text: 'Event Handling',
+          text: '事件处理',
           link: '/guide/essentials/event-handling'
         },
-        { text: 'Form Input Bindings', link: '/guide/essentials/forms' },
+        { text: '表单输入绑定', link: '/guide/essentials/forms' },
         {
-          text: 'Lifecycle Hooks',
+          text: '生命周期',
           link: '/guide/essentials/lifecycle'
         },
-        { text: 'Watchers', link: '/guide/essentials/watchers' },
-        { text: 'Template Refs', link: '/guide/essentials/template-refs' },
+        { text: '侦听器', link: '/guide/essentials/watchers' },
+        { text: '模板引用', link: '/guide/essentials/template-refs' },
         {
-          text: 'Components Basics',
+          text: '组件基础',
           link: '/guide/essentials/component-basics'
         }
       ]
     },
     {
-      text: 'Components In-Depth',
+      text: '深入组件',
       items: [
         {
-          text: 'Registration',
+          text: '注册',
           link: '/guide/components/registration'
         },
         { text: 'Props', link: '/guide/components/props' },
-        { text: 'Events', link: '/guide/components/events' },
-        { text: 'Component v-model', link: '/guide/components/v-model' },
+        { text: '事件', link: '/guide/components/events' },
+        { text: '组件 v-model', link: '/guide/components/v-model' },
         {
-          text: 'Fallthrough Attributes',
+          text: '透传 Attributes',
           link: '/guide/components/attrs'
         },
-        { text: 'Slots', link: '/guide/components/slots' },
+        { text: '插槽', link: '/guide/components/slots' },
         {
-          text: 'Provide / inject',
+          text: '依赖注入',
           link: '/guide/components/provide-inject'
         },
         {
-          text: 'Async Components',
+          text: '异步组件',
           link: '/guide/components/async'
         }
       ]
     },
     {
-      text: 'Reusability',
+      text: '逻辑复用',
       items: [
         {
-          text: 'Composables',
+          text: '组合式函数',
           link: '/guide/reusability/composables'
         },
         {
-          text: 'Custom Directives',
+          text: '自定义指令',
           link: '/guide/reusability/custom-directives'
         },
-        { text: 'Plugins', link: '/guide/reusability/plugins' }
+        { text: '插件', link: '/guide/reusability/plugins' }
       ]
     },
     {
-      text: 'Built-in Components',
+      text: '内置组件',
       items: [
         { text: 'Transition', link: '/guide/built-ins/transition' },
         {
@@ -242,39 +247,39 @@ export const sidebar: ThemeConfig['sidebar'] = {
       ]
     },
     {
-      text: 'Scaling Up',
+      text: '应用规模化',
       items: [
-        { text: 'Single-File Components', link: '/guide/scaling-up/sfc' },
-        { text: 'Tooling', link: '/guide/scaling-up/tooling' },
-        { text: 'Routing', link: '/guide/scaling-up/routing' },
+        { text: '单文件组件', link: '/guide/scaling-up/sfc' },
+        { text: '工具链', link: '/guide/scaling-up/tooling' },
+        { text: '路由', link: '/guide/scaling-up/routing' },
         {
-          text: 'State Management',
+          text: '状态管理',
           link: '/guide/scaling-up/state-management'
         },
-        { text: 'Testing', link: '/guide/scaling-up/testing' },
+        { text: '测试', link: '/guide/scaling-up/testing' },
         {
-          text: 'Server-Side Rendering (SSR)',
+          text: '服务端渲染 (SSR)',
           link: '/guide/scaling-up/ssr'
         }
       ]
     },
     {
-      text: 'Best Practices',
+      text: '最佳实践',
       items: [
         {
-          text: 'Production Deployment',
+          text: '生产部署',
           link: '/guide/best-practices/production-deployment'
         },
         {
-          text: 'Performance',
+          text: '性能优化',
           link: '/guide/best-practices/performance'
         },
         {
-          text: 'Accessibility',
+          text: '无障碍访问',
           link: '/guide/best-practices/accessibility'
         },
         {
-          text: 'Security',
+          text: '安全',
           link: '/guide/best-practices/security'
         }
       ]
@@ -282,208 +287,214 @@ export const sidebar: ThemeConfig['sidebar'] = {
     {
       text: 'TypeScript',
       items: [
-        { text: 'Overview', link: '/guide/typescript/overview' },
+        { text: '总览', link: '/guide/typescript/overview' },
         {
-          text: 'TS with Composition API',
+          text: 'TS 与组合式 API',
           link: '/guide/typescript/composition-api'
         },
         {
-          text: 'TS with Options API',
+          text: 'TS 与选项式 API',
           link: '/guide/typescript/options-api'
         }
       ]
     },
     {
-      text: 'Extra Topics',
+      text: '进阶主题',
       items: [
         {
-          text: 'Ways of Using Vue',
+          text: '使用 Vue 的多种方式',
           link: '/guide/extras/ways-of-using-vue'
         },
         {
-          text: 'Composition API FAQ',
+          text: '组合式 API 常见问答',
           link: '/guide/extras/composition-api-faq'
         },
         {
-          text: 'Reactivity in Depth',
+          text: '深入响应式系统',
           link: '/guide/extras/reactivity-in-depth'
         },
         {
-          text: 'Rendering Mechanism',
+          text: '渲染机制',
           link: '/guide/extras/rendering-mechanism'
         },
         {
-          text: 'Render Functions & JSX',
+          text: '渲染函数 & JSX',
           link: '/guide/extras/render-function'
         },
         {
-          text: 'Vue and Web Components',
+          text: 'Vue 与 Web Components',
           link: '/guide/extras/web-components'
         },
         {
-          text: 'Animation Techniques',
+          text: '动画技巧',
           link: '/guide/extras/animation'
-        },
-        {
-          text: 'Building a Library for Vue',
-          link: '/guide/extras/building-a-library'
-        },
-        {
-          text: 'Vue for React Devs',
-          link: '/guide/extras/vue-for-react-devs'
         }
+        // {
+        //   text: '为 Vue 构建一个库',
+        //   link: '/guide/extras/building-a-library'
+        // },
+        // {
+        //   text: 'Vue for React 开发者',
+        //   link: '/guide/extras/vue-for-react-devs'
+        // }
       ]
     }
   ],
   '/api/': [
     {
-      text: 'Global API',
+      text: '全局 API',
       items: [
-        { text: 'Application', link: '/api/application' },
+        { text: '应用实例', link: '/api/application' },
         {
-          text: 'General',
+          text: '通用',
           link: '/api/general'
         }
       ]
     },
     {
-      text: 'Composition API',
+      text: '组合式 API',
       items: [
         { text: 'setup()', link: '/api/composition-api-setup' },
         {
-          text: 'Reactivity: Core',
+          text: '响应式: 核心',
           link: '/api/reactivity-core'
         },
         {
-          text: 'Reactivity: Utilities',
+          text: '响应式: 工具',
           link: '/api/reactivity-utilities'
         },
         {
-          text: 'Reactivity: Advanced',
+          text: '响应式: 进阶',
           link: '/api/reactivity-advanced'
         },
         {
-          text: 'Lifecycle Hooks',
+          text: '生命周期钩子',
           link: '/api/composition-api-lifecycle'
         },
         {
-          text: 'Dependency Injection',
+          text: '依赖注入',
           link: '/api/composition-api-dependency-injection'
+        },
+        {
+          text: '辅助',
+          link: '/api/composition-api-helpers'
         }
       ]
     },
     {
-      text: 'Options API',
+      text: '选项式 API',
       items: [
-        { text: 'Options: State', link: '/api/options-state' },
-        { text: 'Options: Rendering', link: '/api/options-rendering' },
+        { text: '状态选项', link: '/api/options-state' },
+        { text: '渲染选项', link: '/api/options-rendering' },
         {
-          text: 'Options: Lifecycle',
+          text: '生命周期选项',
           link: '/api/options-lifecycle'
         },
         {
-          text: 'Options: Composition',
+          text: '组合选项',
           link: '/api/options-composition'
         },
-        { text: 'Options: Misc', link: '/api/options-misc' },
+        { text: '其他杂项', link: '/api/options-misc' },
         {
-          text: 'Component Instance',
+          text: '组件实例',
           link: '/api/component-instance'
         }
       ]
     },
     {
-      text: 'Built-ins',
+      text: '内置内容',
       items: [
-        { text: 'Directives', link: '/api/built-in-directives' },
-        { text: 'Components', link: '/api/built-in-components' },
+        { text: '指令', link: '/api/built-in-directives' },
+        { text: '组件', link: '/api/built-in-components' },
         {
-          text: 'Special Elements',
+          text: '特殊元素',
           link: '/api/built-in-special-elements'
         },
         {
-          text: 'Special Attributes',
+          text: '特殊 Attributes',
           link: '/api/built-in-special-attributes'
         }
       ]
     },
     {
-      text: 'Single-File Component',
+      text: '单文件组件',
       items: [
-        { text: 'Syntax Specification', link: '/api/sfc-spec' },
+        { text: '语法定义', link: '/api/sfc-spec' },
         { text: '<script setup>', link: '/api/sfc-script-setup' },
-        { text: 'CSS Features', link: '/api/sfc-css-features' }
+        { text: 'CSS 功能', link: '/api/sfc-css-features' }
       ]
     },
     {
-      text: 'Advanced APIs',
+      text: '进阶 API',
       items: [
-        { text: 'Render Function', link: '/api/render-function' },
-        { text: 'Server-Side Rendering', link: '/api/ssr' },
-        { text: 'TypeScript Utility Types', link: '/api/utility-types' },
-        { text: 'Custom Renderer', link: '/api/custom-renderer' }
+        { text: '自定义元素', link: '/api/custom-elements' },
+        { text: '渲染函数', link: '/api/render-function' },
+        { text: '服务端渲染', link: '/api/ssr' },
+        { text: 'TypeScript 工具类型', link: '/api/utility-types' },
+        { text: '自定义渲染', link: '/api/custom-renderer' },
+        { text: '编译时标志', link: '/api/compile-time-flags' }
       ]
     }
   ],
   '/examples/': [
     {
-      text: 'Basic',
+      text: '基础',
       items: [
         {
-          text: 'Hello World',
+          text: '你好，世界',
           link: '/examples/#hello-world'
         },
         {
-          text: 'Handling User Input',
+          text: '处理用户输入',
           link: '/examples/#handling-input'
         },
         {
-          text: 'Attribute Bindings',
+          text: 'Attribute 绑定',
           link: '/examples/#attribute-bindings'
         },
         {
-          text: 'Conditionals and Loops',
+          text: '条件与循环',
           link: '/examples/#conditionals-and-loops'
         },
         {
-          text: 'Form Bindings',
+          text: '表单绑定',
           link: '/examples/#form-bindings'
         },
         {
-          text: 'Simple Component',
+          text: '简单组件',
           link: '/examples/#simple-component'
         }
       ]
     },
     {
-      text: 'Practical',
+      text: '实战',
       items: [
         {
-          text: 'Markdown Editor',
+          text: 'Markdown 编辑器',
           link: '/examples/#markdown'
         },
         {
-          text: 'Fetching Data',
+          text: '获取数据',
           link: '/examples/#fetching-data'
         },
         {
-          text: 'Grid with Sort and Filter',
+          text: '带有排序和过滤器的网格',
           link: '/examples/#grid'
         },
         {
-          text: 'Tree View',
+          text: '树状视图',
           link: '/examples/#tree'
         },
         {
-          text: 'SVG Graph',
+          text: 'SVG 图像',
           link: '/examples/#svg'
         },
         {
-          text: 'Modal with Transitions',
+          text: '带过渡动效的模态框',
           link: '/examples/#modal'
         },
         {
-          text: 'List with Transitions',
+          text: '带过渡动效的列表',
           link: '/examples/#list-transition'
         },
         {
@@ -497,19 +508,19 @@ export const sidebar: ThemeConfig['sidebar'] = {
       text: '7 GUIs',
       items: [
         {
-          text: 'Counter',
+          text: '计数器',
           link: '/examples/#counter'
         },
         {
-          text: 'Temperature Converter',
+          text: '温度转换器',
           link: '/examples/#temperature-converter'
         },
         {
-          text: 'Flight Booker',
+          text: '机票预订',
           link: '/examples/#flight-booker'
         },
         {
-          text: 'Timer',
+          text: '计时器',
           link: '/examples/#timer'
         },
         {
@@ -517,11 +528,11 @@ export const sidebar: ThemeConfig['sidebar'] = {
           link: '/examples/#crud'
         },
         {
-          text: 'Circle Drawer',
+          text: '画圆',
           link: '/examples/#circle-drawer'
         },
         {
-          text: 'Cells',
+          text: '单元格',
           link: '/examples/#cells'
         }
       ]
@@ -556,30 +567,72 @@ export const sidebar: ThemeConfig['sidebar'] = {
   ]
 }
 
-// Placeholder of the i18n config for @vuejs-translations.
-// const i18n: ThemeConfig['i18n'] = {
-// }
+const i18n: ThemeConfig['i18n'] = {
+  search: '搜索',
+  menu: '菜单',
+  toc: '本页目录',
+  returnToTop: '返回顶部',
+  appearance: '外观',
+  previous: '前一篇',
+  next: '下一篇',
+  pageNotFound: '页面未找到',
+  deadLink: {
+    before: '你打开了一个不存在的链接：',
+    after: '。'
+  },
+  deadLinkReport: {
+    before: '不介意的话请提交到',
+    link: '这里',
+    after: '，我们会跟进修复。'
+  },
+  footerLicense: {
+    before: '',
+    after: ''
+  },
+  ariaAnnouncer: {
+    before: '',
+    after: '已经加载完毕'
+  },
+  ariaDarkMode: '切换深色模式',
+  ariaSkipToContent: '直接跳到内容',
+  ariaToC: '当前页面的目录',
+  ariaMainNav: '主导航',
+  ariaMobileNav: '移动版导航',
+  ariaSidebarNav: '侧边栏导航'
+}
 
 export default defineConfigWithTheme<ThemeConfig>({
   extends: baseConfig,
-  base: isDev ? '/' : '/blog',
-  lang: 'en-US',
-  title: 'blog',
-  description: "This is tunaizi's personal technology blog",
+
+  sitemap: {
+    hostname: 'https://cn.vuejs.org'
+  },
+
+  lang: 'zh-CN',
+  title: 'BLOG',
+  description: 'this tun',
   srcDir: 'src',
   srcExclude: ['tutorial/**/description.md'],
 
   head: [
     ['meta', { name: 'theme-color', content: '#3c8772' }],
-    ['meta', { name: 'twitter:site', content: '@vuejs' }],
-    ['meta', { name: 'twitter:card', content: 'summary' }],
+    ['meta', { property: 'og:url', content: 'https://vuejs.org/' }],
+    ['meta', { property: 'og:type', content: 'website' }],
+    ['meta', { property: 'og:title', content: 'Vue.js' }],
     [
       'meta',
       {
-        name: 'twitter:image',
-        content: '/images/logo.png'
+        property: 'og:description',
+        content: 'Vue.js - 渐进式的 JavaScript 框架'
       }
     ],
+    // [
+    //   'meta',
+    //   {
+    //     property: 'og:image',
+    //     content: 'https://vuejs.org/images/logo.png'
+    //   }
+    // ],
     [
       'link',
       {
@@ -587,6 +640,8 @@ export default defineConfigWithTheme<ThemeConfig>({
         href: '/images/logo.png'
       }
     ],
+    ['meta', { name: 'twitter:site', content: '@vuejs' }],
+    ['meta', { name: 'twitter:card', content: 'summary' }],
     [
       'link',
       {
@@ -604,9 +659,17 @@ export default defineConfigWithTheme<ThemeConfig>({
     ],
     [
       'script',
+      {},
+      fs.readFileSync(
+        path.resolve(__dirname, './inlined-scripts/uwu.js'),
+        'utf-8'
+      )
+    ],
+    [
+      'script',
       {
         src: 'https://cdn.usefathom.com/script.js',
-        'data-site': 'XNOLWPLB',
+        'data-site': 'ZPMMDSYA',
         'data-spa': 'auto',
         defer: ''
       }
@@ -623,92 +686,151 @@ export default defineConfigWithTheme<ThemeConfig>({
   themeConfig: {
     nav,
     sidebar,
-    // Placeholder of the i18n config for @vuejs-translations.
-    // i18n,
+    i18n,
 
-    // localeLinks: [
-    //   {
-    //     link: 'https://cn.vuejs.org',
-    //     text: '简体中文',
-    //     repo: 'https://github.com/vuejs-translations/docs-zh-cn'
-    //   },
-    //   {
-    //     link: 'https://ja.vuejs.org',
-    //     text: '日本語',
-    //     repo: 'https://github.com/vuejs-translations/docs-ja'
-    //   },
-    //   {
-    //     link: 'https://ua.vuejs.org',
-    //     text: 'Українська',
-    //     repo: 'https://github.com/vuejs-translations/docs-uk'
-    //   },
-    //   {
-    //     link: 'https://fr.vuejs.org',
-    //     text: 'Français',
-    //     repo: 'https://github.com/vuejs-translations/docs-fr'
-    //   },
-    //   {
-    //     link: 'https://ko.vuejs.org',
-    //     text: '한국어',
-    //     repo: 'https://github.com/vuejs-translations/docs-ko'
-    //   },
-    //   {
-    //     link: 'https://pt.vuejs.org',
-    //     text: 'Português',
-    //     repo: 'https://github.com/vuejs-translations/docs-pt'
-    //   },
-    //   {
-    //     link: 'https://bn.vuejs.org',
-    //     text: 'বাংলা',
-    //     repo: 'https://github.com/vuejs-translations/docs-bn'
-    //   },
-    //   {
-    //     link: 'https://it.vuejs.org',
-    //     text: 'Italiano',
-    //     repo: 'https://github.com/vuejs-translations/docs-it'
-    //   },
-    //   {
-    //     link: '/translations/',
-    //     text: 'Help Us Translate!',
-    //     isTranslationsDesc: true
-    //   }
-    // ],
+    localeLinks: [
+      {
+        link: 'https://vuejs.org',
+        text: 'English',
+        repo: 'https://github.com/vuejs/docs'
+      },
+      {
+        link: 'https://ja.vuejs.org',
+        text: '日本語',
+        repo: 'https://github.com/vuejs-translations/docs-ja'
+      },
+      {
+        link: 'https://ua.vuejs.org',
+        text: 'Українська',
+        repo: 'https://github.com/vuejs-translations/docs-uk'
+      },
+      {
+        link: 'https://fr.vuejs.org',
+        text: 'Français',
+        repo: 'https://github.com/vuejs-translations/docs-fr'
+      },
+      {
+        link: 'https://ko.vuejs.org',
+        text: '한국어',
+        repo: 'https://github.com/vuejs-translations/docs-ko'
+      },
+      {
+        link: 'https://pt.vuejs.org',
+        text: 'Português',
+        repo: 'https://github.com/vuejs-translations/docs-pt'
+      },
+      {
+        link: 'https://bn.vuejs.org',
+        text: 'বাংলা',
+        repo: 'https://github.com/vuejs-translations/docs-bn'
+      },
+      {
+        link: 'https://it.vuejs.org',
+        text: 'Italiano',
+        repo: 'https://github.com/vuejs-translations/docs-it'
+      },
+      {
+        link: 'https://fa.vuejs.org',
+        text: 'فارسی',
+        repo: 'https://github.com/vuejs-translations/docs-fa'
+      },
+      {
+        link: 'https://ru.vuejs.org',
+        text: 'Русский',
+        repo: 'https://github.com/translation-gang/docs-ru'
+      },
+      {
+        link: 'https://cs.vuejs.org',
+        text: 'Čeština',
+        repo: 'https://github.com/vuejs-translations/docs-cs'
+      },
+      {
+        link: 'https://zh-hk.vuejs.org',
+        text: '繁體中文',
+        repo: 'https://github.com/vuejs-translations/docs-zh-hk'
+      },
+      {
+        link: '/translations/',
+        text: '帮助我们翻译！',
+        isTranslationsDesc: true
+      }
+    ],
 
     algolia: {
-      indexName: 'vuejs',
-      appId: 'ML0LEBN7FQ',
-      apiKey: 'f49cbd92a74532cc55cfbffa5e5a7d01',
+      indexName: 'vuejs_cn2',
+      appId: 'UURH1MHAF7',
+      apiKey: 'c23eb8e7895f42daeaf2bf6f63eb4bf6',
       searchParameters: {
         facetFilters: ['version:v3']
+      },
+      placeholder: '搜索文档',
+      translations: {
+        button: {
+          buttonText: '搜索'
+        },
+        modal: {
+          searchBox: {
+            resetButtonTitle: '清除查询条件',
+            resetButtonAriaLabel: '清除查询条件',
+            cancelButtonText: '取消',
+            cancelButtonAriaLabel: '取消'
+          },
+          startScreen: {
+            recentSearchesTitle: '搜索历史',
+            noRecentSearchesText: '没有搜索历史',
+            saveRecentSearchButtonTitle: '保存到搜索历史',
+            removeRecentSearchButtonTitle: '从搜索历史中移除',
+            favoriteSearchesTitle: '收藏',
+            removeFavoriteSearchButtonTitle: '从收藏中移除'
+          },
+          errorScreen: {
+            titleText: '无法获取结果',
+            helpText: '你可能需要检查你的网络连接'
+          },
+          footer: {
+            selectText: '选择',
+            navigateText: '切换',
+            closeText: '关闭',
+            searchByText: '搜索供应商'
+          },
+          noResultsScreen: {
+            noResultsText: '无法找到相关结果',
+            suggestedQueryText: '你可以尝试查询',
+            reportMissingResultsText: '你认为这个查询应该有结果？',
+            reportMissingResultsLinkText: '向我们反馈'
+          }
+        }
       }
     },
 
-    carbonAds: {
-      code: 'CEBDT27Y',
-      placement: 'vuejsorg'
-    },
+    // carbonAds: {
+    //   code: 'CEBDT27Y',
+    //   placement: 'vuejsorg'
+    // },
 
     socialLinks: [
       { icon: 'github', link: 'https://github.com/vuejs/' },
       { icon: 'twitter', link: 'https://twitter.com/vuejs' },
-      { icon: 'discord', link: 'https://discord.com/invite/HBherRA' }
+      { icon: 'discord', link: 'https://discord.com/invite/vue' }
     ],
 
     editLink: {
-      repo: 'vuejs/docs',
-      text: 'Edit this page on GitHub'
+      repo: 'vuejs-translations/docs-zh-cn',
+      text: '在 GitHub 上编辑此页'
     },
 
     footer: {
       license: {
-        text: 'MIT License',
-        link: 'https://opensource.org/licenses/MIT'
+        text: '版权声明',
+        link: 'https://github.com/vuejs-translations/docs-zh-cn#%E7%89%88%E6%9D%83%E5%A3%B0%E6%98%8E'
       },
-      copyright: `Copyright © 2014-${new Date().getFullYear()} Evan You`
+      copyright:
+        '本中文文档采用 知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议  (CC BY-NC-SA 4.0) 进行许可。'
     }
   },
 
   markdown: {
+    theme: 'github-dark',
     config(md) {
       //@ts-ignore
       md.use(headerPlugin)
@@ -736,11 +858,20 @@ export default defineConfigWithTheme<ThemeConfig>({
       }
     },
     build: {
-      minify: 'terser',
       chunkSizeWarningLimit: Infinity
     },
     json: {
       stringify: true
-    }
+    },
+    plugins: [
+      {
+        name: 'vite-plugin-vitepress-start',
+        config(config, env) {
+          const isDev = env.mode === 'development'
+          config.base = isDev ? '/' : '/blog'
+          return config
+        }
+      }
+    ]
   }
 })

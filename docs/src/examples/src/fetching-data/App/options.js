@@ -2,18 +2,18 @@ const API_URL = `https://api.github.com/repos/vuejs/core/commits?per_page=3&sha=
 
 export default {
   data: () => ({
-    branches: ['main', 'v2-compat'],
+    branches: ['main', 'minor'],
     currentBranch: 'main',
-    commits: null
+    commits: []
   }),
 
   created() {
-    // fetch on init
+    // 在初始化的时候进行获取
     this.fetchData()
   },
 
   watch: {
-    // re-fetch whenever currentBranch changes
+    // 当 currentBranch 改变时重新获取
     currentBranch: 'fetchData'
   },
 

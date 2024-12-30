@@ -1,32 +1,32 @@
-# Application API {#application-api}
+# 应用实例 API {#application-api}
 
 ## createApp() {#createapp}
 
-Creates an application instance.
+创建一个应用实例。
 
-- **Type**
+- **类型**
 
   ```ts
   function createApp(rootComponent: Component, rootProps?: object): App
   ```
 
-- **Details**
+- **详细信息**
 
-  The first argument is the root component. The second optional argument is the props to be passed to the root component.
+  第一个参数是根组件。第二个参数可选，它是要传递给根组件的 props。
 
-- **Example**
+- **示例**
 
-  With inline root component:
+  可以直接内联根组件：
 
   ```js
   import { createApp } from 'vue'
 
   const app = createApp({
-    /* root component options */
+    /* 根组件选项 */
   })
   ```
 
-  With imported component:
+  也可以使用从别处导入的组件：
 
   ```js
   import { createApp } from 'vue'
@@ -35,17 +35,17 @@ Creates an application instance.
   const app = createApp(App)
   ```
 
-- **See also** [Guide - Creating a Vue Application](/guide/essentials/application)
+- **参考**[指南 - 创建一个 Vue 应用实例](/guide/essentials/application)
 
 ## createSSRApp() {#createssrapp}
 
-Creates an application instance in [SSR Hydration](/guide/scaling-up/ssr#client-hydration) mode. Usage is exactly the same as `createApp()`.
+以 [SSR 激活](/guide/scaling-up/ssr#client-hydration)模式创建一个应用实例。用法与 `createApp()` 完全相同。
 
 ## app.mount() {#app-mount}
 
-Mounts the application instance in a container element.
+将应用实例挂载在一个容器元素中。
 
-- **Type**
+- **类型**
 
   ```ts
   interface App {
@@ -53,17 +53,17 @@ Mounts the application instance in a container element.
   }
   ```
 
-- **Details**
+- **详细信息**
 
-  The argument can either be an actual DOM element or a CSS selector (the first matched element will be used). Returns the root component instance.
+  参数可以是一个实际的 DOM 元素或一个 CSS 选择器 (使用第一个匹配到的元素)。返回根组件的实例。
 
-  If the component has a template or a render function defined, it will replace any existing DOM nodes inside the container. Otherwise, if the runtime compiler is available, the `innerHTML` of the container will be used as the template.
+  如果该组件有模板或定义了渲染函数，它将替换容器内所有现存的 DOM 节点。否则在运行时编译器可用的情况下，容器元素的 `innerHTML` 将被用作模板。
 
-  In SSR hydration mode, it will hydrate the existing DOM nodes inside the container. If there are [mismatches](/guide/scaling-up/ssr#hydration-mismatch), the existing DOM nodes will be morphed to match the expected output.
+  在 SSR 激活模式下，它将激活容器内现有的 DOM 节点。如果出现了[激活不匹配](/guide/scaling-up/ssr#hydration-mismatch)，那么现有的 DOM 节点将会被修改以匹配客户端的实际渲染结果。
 
-  For each app instance, `mount()` can only be called once.
+  对于每个应用实例，`mount()` 仅能调用一次。
 
-- **Example**
+- **示例**
 
   ```js
   import { createApp } from 'vue'
@@ -72,7 +72,7 @@ Mounts the application instance in a container element.
   app.mount('#app')
   ```
 
-  Can also mount to an actual DOM element:
+  也可以挂载到一个实际的 DOM 元素。
 
   ```js
   app.mount(document.body.firstChild)
@@ -80,9 +80,9 @@ Mounts the application instance in a container element.
 
 ## app.unmount() {#app-unmount}
 
-Unmounts a mounted application instance, triggering the unmount lifecycle hooks for all components in the application's component tree.
+卸载一个已挂载的应用实例。卸载一个应用会触发该应用组件树内所有组件的卸载生命周期钩子。
 
-- **Type**
+- **类型**
 
   ```ts
   interface App {
@@ -90,11 +90,23 @@ Unmounts a mounted application instance, triggering the unmount lifecycle hooks 
   }
   ```
 
+## app.onUnmount() <sup class="vt-badge" data-text="3.5+" /> {#app-onunmount}
+
+注册一个回调函数，在应用卸载时调用。
+
+- **类型**
+
+  ```ts
+  interface App {
+    onUnmount(callback: () => any): void
+  }
+  ```
+
 ## app.component() {#app-component}
 
-Registers a global component if passing both a name string and a component definition, or retrieves an already registered one if only the name is passed.
+如果同时传递一个组件名字符串及其定义，则注册一个全局组件；如果只传递一个名字，则会返回用该名字注册的组件 (如果存在的话)。
 
-- **Type**
+- **类型**
 
   ```ts
   interface App {
@@ -103,29 +115,29 @@ Registers a global component if passing both a name string and a component defin
   }
   ```
 
-- **Example**
+- **示例**
 
   ```js
   import { createApp } from 'vue'
 
   const app = createApp({})
 
-  // register an options object
+  // 注册一个选项对象
   app.component('my-component', {
     /* ... */
   })
 
-  // retrieve a registered component
+  // 得到一个已注册的组件
   const MyComponent = app.component('my-component')
   ```
 
-- **See also** [Component Registration](/guide/components/registration)
+- **参考**[组件注册](/guide/components/registration)
 
 ## app.directive() {#app-directive}
 
-Registers a global custom directive if passing both a name string and a directive definition, or retrieves an already registered one if only the name is passed.
+如果同时传递一个名字和一个指令定义，则注册一个全局指令；如果只传递一个名字，则会返回用该名字注册的指令 (如果存在的话)。
 
-- **Type**
+- **类型**
 
   ```ts
   interface App {
@@ -134,7 +146,7 @@ Registers a global custom directive if passing both a name string and a directiv
   }
   ```
 
-- **Example**
+- **示例**
 
   ```js
   import { createApp } from 'vue'
@@ -143,27 +155,27 @@ Registers a global custom directive if passing both a name string and a directiv
     /* ... */
   })
 
-  // register (object directive)
+  // 注册（对象形式的指令）
   app.directive('my-directive', {
-    /* custom directive hooks */
+    /* 自定义指令钩子 */
   })
 
-  // register (function directive shorthand)
+  // 注册（函数形式的指令）
   app.directive('my-directive', () => {
     /* ... */
   })
 
-  // retrieve a registered directive
+  // 得到一个已注册的指令
   const myDirective = app.directive('my-directive')
   ```
 
-- **See also** [Custom Directives](/guide/reusability/custom-directives)
+- **参考**[自定义指令](/guide/reusability/custom-directives)
 
 ## app.use() {#app-use}
 
-Installs a [plugin](/guide/reusability/plugins).
+安装一个[插件](/guide/reusability/plugins)。
 
-- **Type**
+- **类型**
 
   ```ts
   interface App {
@@ -171,15 +183,15 @@ Installs a [plugin](/guide/reusability/plugins).
   }
   ```
 
-- **Details**
+- **详细信息**
 
-  Expects the plugin as the first argument, and optional plugin options as the second argument.
+  第一个参数应是插件本身，可选的第二个参数是要传递给插件的选项。
 
-  The plugin can either be an object with an `install()` method, or just a function that will be used as the `install()` method. The options (second argument of `app.use()`) will be passed along to the plugin's `install()` method.
+  插件可以是一个带 `install()` 方法的对象，亦或直接是一个将被用作 `install()` 方法的函数。插件选项 (`app.use()` 的第二个参数) 将会传递给插件的 `install()` 方法。
 
-  When `app.use()` is called on the same plugin multiple times, the plugin will be installed only once.
+  若 `app.use()` 对同一个插件多次调用，该插件只会被安装一次。
 
-- **Example**
+- **示例**
 
   ```js
   import { createApp } from 'vue'
@@ -192,19 +204,19 @@ Installs a [plugin](/guide/reusability/plugins).
   app.use(MyPlugin)
   ```
 
-- **See also** [Plugins](/guide/reusability/plugins)
+- **参考**[插件](/guide/reusability/plugins)
 
 ## app.mixin() {#app-mixin}
 
-Applies a global mixin (scoped to the application). A global mixin applies its included options to every component instance in the application.
+应用一个全局 mixin (适用于该应用的范围)。一个全局的 mixin 会作用于应用中的每个组件实例。
 
-:::warning Not Recommended
-Mixins are supported in Vue 3 mainly for backwards compatibility, due to their widespread use in ecosystem libraries. Use of mixins, especially global mixins, should be avoided in application code.
+:::warning 不推荐
+Mixins 在 Vue 3 支持主要是为了向后兼容，因为生态中有许多库使用到。在新的应用中应尽量避免使用 mixin，特别是全局 mixin。
 
-For logic reuse, prefer [Composables](/guide/reusability/composables) instead.
+若要进行逻辑复用，推荐用[组合式函数](/guide/reusability/composables)来替代。
 :::
 
-- **Type**
+- **类型**
 
   ```ts
   interface App {
@@ -214,9 +226,9 @@ For logic reuse, prefer [Composables](/guide/reusability/composables) instead.
 
 ## app.provide() {#app-provide}
 
-Provide a value that can be injected in all descendant components within the application.
+提供一个值，可以在应用中的所有后代组件中注入使用。
 
-- **Type**
+- **类型**
 
   ```ts
   interface App {
@@ -224,11 +236,11 @@ Provide a value that can be injected in all descendant components within the app
   }
   ```
 
-- **Details**
+- **详细信息**
 
-  Expects the injection key as the first argument, and the provided value as the second. Returns the application instance itself.
+  第一个参数应当是注入的 key，第二个参数则是提供的值。返回应用实例本身。
 
-- **Example**
+- **示例**
 
   ```js
   import { createApp } from 'vue'
@@ -238,7 +250,7 @@ Provide a value that can be injected in all descendant components within the app
   app.provide('message', 'hello')
   ```
 
-  Inside a component in the application:
+  在应用的某个组件中：
 
   <div class="composition-api">
 
@@ -266,16 +278,18 @@ Provide a value that can be injected in all descendant components within the app
 
   </div>
 
-- **See also**
-  - [Provide / Inject](/guide/components/provide-inject)
-  - [App-level Provide](/guide/components/provide-inject#app-level-provide)
+- **参考**
+  - [依赖注入](/guide/components/provide-inject)
+  - [应用层 Provide](/guide/components/provide-inject#app-level-provide)
   - [app.runWithContext()](#app-runwithcontext)
 
-## app.runWithContext()<sup class="vt-badge" data-text="3.3+" /> {#app-runwithcontext}
+## app.runWithContext() {#app-runwithcontext}
 
-Execute a callback with the current app as injection context.
+- 仅在 3.3+ 中支持
 
-- **Type**
+使用当前应用作为注入上下文执行回调函数。
+
+- **类型**
 
   ```ts
   interface App {
@@ -283,11 +297,11 @@ Execute a callback with the current app as injection context.
   }
   ```
 
-- **Details**
+- **详情**
 
-  Expects a callback function and runs the callback immediately. During the synchronous call of the callback,  `inject()` calls are able to look up injections from the values provided by the current app, even when there is no current active component instance. The return value of the callback will also be returned.
+  需要一个回调函数并立即运行该回调。在回调同步调用期间，即使没有当前活动的组件实例，`inject()` 调用也可以从当前应用提供的值中查找注入。回调的返回值也将被返回。
 
-- **Example**
+- **示例**
 
   ```js
   import { inject } from 'vue'
@@ -303,9 +317,9 @@ Execute a callback with the current app as injection context.
 
 ## app.version {#app-version}
 
-Provides the version of Vue that the application was created with. This is useful inside [plugins](/guide/reusability/plugins), where you might need conditional logic based on different Vue versions.
+提供当前应用所使用的 Vue 版本号。这在[插件](/guide/reusability/plugins)中很有用，因为可能需要根据不同的 Vue 版本执行不同的逻辑。
 
-- **Type**
+- **类型**
 
   ```ts
   interface App {
@@ -313,9 +327,9 @@ Provides the version of Vue that the application was created with. This is usefu
   }
   ```
 
-- **Example**
+- **示例**
 
-  Performing a version check inside a plugin:
+  在一个插件中对版本作判断：
 
   ```js
   export default {
@@ -328,11 +342,11 @@ Provides the version of Vue that the application was created with. This is usefu
   }
   ```
 
-- **See also** [Global API - version](/api/general#version)
+- **参考**[全局 API - version](/api/general#version)
 
 ## app.config {#app-config}
 
-Every application instance exposes a `config` object that contains the configuration settings for that application. You can modify its properties (documented below) before mounting your application.
+每个应用实例都会暴露一个 `config` 对象，其中包含了对这个应用的配置设定。你可以在挂载应用前更改这些属性 (下面列举了每个属性的对应文档)。
 
 ```js
 import { createApp } from 'vue'
@@ -344,49 +358,53 @@ console.log(app.config)
 
 ## app.config.errorHandler {#app-config-errorhandler}
 
-Assign a global handler for uncaught errors propagating from within the application.
+用于为应用内抛出的未捕获错误指定一个全局处理函数。
 
-- **Type**
+- **类型**
 
   ```ts
   interface AppConfig {
     errorHandler?: (
       err: unknown,
       instance: ComponentPublicInstance | null,
-      // `info` is a Vue-specific error info,
-      // e.g. which lifecycle hook the error was thrown in
+      // `info` 是一个 Vue 特定的错误信息
+      // 例如：错误是在哪个生命周期的钩子上抛出的
       info: string
     ) => void
   }
   ```
 
-- **Details**
+- **详细信息**
 
-  The error handler receives three arguments: the error, the component instance that triggered the error, and an information string specifying the error source type.
+  错误处理器接收三个参数：错误对象、触发该错误的组件实例和一个指出错误来源类型信息的字符串。
 
-  It can capture errors from the following sources:
+  它可以从下面这些来源中捕获错误：
 
-  - Component renders
-  - Event handlers
-  - Lifecycle hooks
-  - `setup()` function
-  - Watchers
-  - Custom directive hooks
-  - Transition hooks
+  - 组件渲染器
+  - 事件处理器
+  - 生命周期钩子
+  - `setup()` 函数
+  - 侦听器
+  - 自定义指令钩子
+  - 过渡 (Transition) 钩子
 
-- **Example**
+  :::tip
+  在生产环境中，第三个参数 (`info`) 是一个缩短的代码，而不是含有完整信息的字符串。错误代码和字符串的映射可以参阅[生产环境错误代码参考](/error-reference/#runtime-errors)。
+  :::
+
+- **示例**
 
   ```js
   app.config.errorHandler = (err, instance, info) => {
-    // handle error, e.g. report to a service
+    // 处理错误，例如：报告给一个服务
   }
   ```
 
 ## app.config.warnHandler {#app-config-warnhandler}
 
-Assign a custom handler for runtime warnings from Vue.
+用于为 Vue 的运行时警告指定一个自定义处理函数。
 
-- **Type**
+- **类型**
 
   ```ts
   interface AppConfig {
@@ -398,86 +416,86 @@ Assign a custom handler for runtime warnings from Vue.
   }
   ```
 
-- **Details**
+- **详细信息**
 
-  The warning handler receives the warning message as the first argument, the source component instance as the second argument, and a component trace string as the third.
+  警告处理器将接受警告信息作为其第一个参数，来源组件实例为第二个参数，以及组件追踪字符串作为第三个参数。
 
-  It can be used to filter out specific warnings to reduce console verbosity. All Vue warnings should be addressed during development, so this is only recommended during debug sessions to focus on specific warnings among many, and should be removed once the debugging is done.
+  这可以用于过滤筛选特定的警告信息，降低控制台输出的冗余。所有的 Vue 警告都需要在开发阶段得到解决，因此仅建议在调试期间选取部分特定警告，并且应该在调试完成之后立刻移除。
 
   :::tip
-  Warnings only work during development, so this config is ignored in production mode.
+  警告仅会在开发阶段显示，因此在生产环境中，这条配置将被忽略。
   :::
 
-- **Example**
+- **示例**
 
   ```js
   app.config.warnHandler = (msg, instance, trace) => {
-    // `trace` is the component hierarchy trace
+    // `trace` 是组件层级结构的追踪
   }
   ```
 
 ## app.config.performance {#app-config-performance}
 
-Set this to `true` to enable component init, compile, render and patch performance tracing in the browser devtool performance/timeline panel. Only works in development mode and in browsers that support the [performance.mark](https://developer.mozilla.org/en-US/docs/Web/API/Performance/mark) API.
+设置此项为 `true` 可以在浏览器开发工具的“性能/时间线”页中启用对组件初始化、编译、渲染和修补的性能表现追踪。仅在开发模式和支持 [performance.mark](https://developer.mozilla.org/en-US/docs/Web/API/Performance/mark) API 的浏览器中工作。
 
-- **Type:** `boolean`
+- **类型**：`boolean`
 
-- **See also** [Guide - Performance](/guide/best-practices/performance)
+- **参考**[指南 - 性能](/guide/best-practices/performance)
 
 ## app.config.compilerOptions {#app-config-compileroptions}
 
-Configure runtime compiler options. Values set on this object will be passed to the in-browser template compiler and affect every component in the configured app. Note you can also override these options on a per-component basis using the [`compilerOptions` option](/api/options-rendering#compileroptions).
+配置运行时编译器的选项。设置在此对象上的值将会在浏览器内进行模板编译时使用，并会影响到所配置应用的所有组件。另外你也可以通过 [`compilerOptions` 选项](/api/options-rendering#compileroptions)在每个组件的基础上覆盖这些选项。
 
-::: warning Important
-This config option is only respected when using the full build (i.e. the standalone `vue.js` that can compile templates in the browser). If you are using the runtime-only build with a build setup, compiler options must be passed to `@vue/compiler-dom` via build tool configurations instead.
+::: warning 重要
+此配置项仅在完整构建版本，即可以在浏览器中编译模板的 `vue.js` 文件中可用。如果你用的是带构建的项目配置，且使用的是仅含运行时的 Vue 文件版本，那么编译器选项必须通过构建工具的相关配置传递给 `@vue/compiler-dom`。
 
-- For `vue-loader`: [pass via the `compilerOptions` loader option](https://vue-loader.vuejs.org/options.html#compileroptions). Also see [how to configure it in `vue-cli`](https://cli.vuejs.org/guide/webpack.html#modifying-options-of-a-loader).
+- `vue-loader`：[通过 `compilerOptions` loader 的选项传递](https://vue-loader.vuejs.org/zh/options.html#compileroptions)。并请阅读[如何在 `vue-cli` 中配置它](https://cli.vuejs.org/zh/guide/webpack.html#%E4%BF%AE%E6%94%B9-loader-%E9%80%89%E9%A1%B9)。
 
-- For `vite`: [pass via `@vitejs/plugin-vue` options](https://github.com/vitejs/vite-plugin-vue/tree/main/packages/plugin-vue#options).
-  :::
+- `vite`：[通过 `@vitejs/plugin-vue` 的选项传递](https://github.com/vitejs/vite-plugin-vue/tree/main/packages/plugin-vue#options)。
+:::
 
 ### app.config.compilerOptions.isCustomElement {#app-config-compileroptions-iscustomelement}
 
-Specifies a check method to recognize native custom elements.
+用于指定一个检查方法来识别原生自定义元素。
 
-- **Type:** `(tag: string) => boolean`
+- **类型** `(tag: string) => boolean`
 
-- **Details**
+- **详细信息**
 
-  Should return `true` if the tag should be treated as a native custom element. For a matched tag, Vue will render it as a native element instead of attempting to resolve it as a Vue component.
+  如果该标签需要当作原生自定义元素则应返回 `true`。对匹配到的标签，Vue 会将其渲染为原生元素而非将其视为一个 Vue 组件来解析。
 
-  Native HTML and SVG tags don't need to be matched in this function - Vue's parser recognizes them automatically.
+  原生 HTML 和 SVG 标签不需要在此函数中进行匹配，Vue 的解析器会自动识别它们。
 
-- **Example**
+- **示例**
 
   ```js
-  // treat all tags starting with 'ion-' as custom elements
+  // 将所有标签前缀为 `ion-` 的标签视为自定义元素
   app.config.compilerOptions.isCustomElement = (tag) => {
     return tag.startsWith('ion-')
   }
   ```
 
-- **See also** [Vue and Web Components](/guide/extras/web-components)
+- **参考** [Vue 与 Web Components](/guide/extras/web-components)
 
 ### app.config.compilerOptions.whitespace {#app-config-compileroptions-whitespace}
 
-Adjusts template whitespace handling behavior.
+用于调整模板中空格的处理行为。
 
-- **Type:** `'condense' | 'preserve'`
+- **类型** `'condense' | 'preserve'`
 
-- **Default:** `'condense'`
+- **默认** `'condense'`
 
-- **Details**
+- **详细信息**
 
-  Vue removes / condenses whitespace characters in templates to produce more efficient compiled output. The default strategy is "condense", with the following behavior:
+  Vue 移除/缩短了模板中的空格以求更高效的模板输出。默认的策略是“缩短”，表现行为如下：
 
-  1. Leading / ending whitespace characters inside an element are condensed into a single space.
-  2. Whitespace characters between elements that contain newlines are removed.
-  3. Consecutive whitespace characters in text nodes are condensed into a single space.
+  1. 元素中开头和结尾的空格字符将被缩短为一个空格。
+  2. 包含换行的元素之间的空白字符会被删除。
+  3. 文本节点中连续的空白字符被缩短成一个空格。
 
-  Setting this option to `'preserve'` will disable (2) and (3).
+  设置该选项为 `'preserve'` 则会禁用 (2) 和 (3) 两项。
 
-- **Example**
+- **示例**
 
   ```js
   app.config.compilerOptions.whitespace = 'preserve'
@@ -485,36 +503,36 @@ Adjusts template whitespace handling behavior.
 
 ### app.config.compilerOptions.delimiters {#app-config-compileroptions-delimiters}
 
-Adjusts the delimiters used for text interpolation within the template.
+用于调整模板内文本插值的分隔符。
 
-- **Type:** `[string, string]`
+- **类型** `[string, string]`
 
-- **Default:** `{{ "['\u007b\u007b', '\u007d\u007d']" }}`
+- **默认** `{{ "['\u007b\u007b', '\u007d\u007d']" }}`
 
-- **Details**
+- **详细信息**
 
-  This is typically used to avoid conflicting with server-side frameworks that also use mustache syntax.
+  此项通常是为了避免与同样使用 mustache 语法的服务器端框架发生冲突。
 
-- **Example**
+- **示例**
 
   ```js
-  // Delimiters changed to ES6 template string style
+  // 分隔符改为ES6模板字符串样式
   app.config.compilerOptions.delimiters = ['${', '}']
   ```
 
 ### app.config.compilerOptions.comments {#app-config-compileroptions-comments}
 
-Adjusts treatment of HTML comments in templates.
+用于调整是否移除模板中的 HTML 注释。
 
-- **Type:** `boolean`
+- **类型** `boolean`
 
-- **Default:** `false`
+- **默认** `false`
 
-- **Details**
+- **详细信息**
 
-  By default, Vue will remove the comments in production. Setting this option to `true` will force Vue to preserve comments even in production. Comments are always preserved during development. This option is typically used when Vue is used with other libraries that rely on HTML comments.
+  默认情况下，Vue 会在生产环境移除所有注释，设置该项为 `true` 会强制 Vue 在生产环境也保留注释。在开发过程中，注释是始终被保留的。这个选项通常在 Vue 与其他依赖 HTML 注释的库一起使用时使用。
 
-- **Example**
+- **示例**
 
   ```js
   app.config.compilerOptions.comments = true
@@ -522,9 +540,9 @@ Adjusts treatment of HTML comments in templates.
 
 ## app.config.globalProperties {#app-config-globalproperties}
 
-An object that can be used to register global properties that can be accessed on any component instance inside the application.
+一个用于注册能够被应用内所有组件实例访问到的全局属性的对象。
 
-- **Type**
+- **类型**
 
   ```ts
   interface AppConfig {
@@ -532,19 +550,19 @@ An object that can be used to register global properties that can be accessed on
   }
   ```
 
-- **Details**
+- **详细信息**
 
-  This is a replacement of Vue 2's `Vue.prototype` which is no longer present in Vue 3. As with anything global, this should be used sparingly.
+  这是对 Vue 2 中 `Vue.prototype` 使用方式的一种替代，此写法在 Vue 3 已经不存在了。与任何全局的东西一样，应该谨慎使用。
 
-  If a global property conflicts with a component’s own property, the component's own property will have higher priority.
+  如果全局属性与组件自己的属性冲突，组件自己的属性将具有更高的优先级。
 
-- **Usage**
+- **用法**
 
   ```js
   app.config.globalProperties.msg = 'hello'
   ```
 
-  This makes `msg` available inside any component template in the application, and also on `this` of any component instance:
+  这使得 `msg` 在应用的任意组件模板上都可用，并且也可以通过任意组件实例的 `this` 访问到：
 
   ```js
   export default {
@@ -554,13 +572,13 @@ An object that can be used to register global properties that can be accessed on
   }
   ```
 
-- **See also** [Guide - Augmenting Global Properties](/guide/typescript/options-api#augmenting-global-properties) <sup class="vt-badge ts" />
+- **参考**[指南 - 扩展全局属性](/guide/typescript/options-api#augmenting-global-properties) <sup class="vt-badge ts" />
 
 ## app.config.optionMergeStrategies {#app-config-optionmergestrategies}
 
-An object for defining merging strategies for custom component options.
+一个用于定义自定义组件选项的合并策略的对象。
 
-- **Type**
+- **类型**
 
   ```ts
   interface AppConfig {
@@ -570,39 +588,77 @@ An object for defining merging strategies for custom component options.
   type OptionMergeFunction = (to: unknown, from: unknown) => any
   ```
 
-- **Details**
+- **详细信息**
 
-  Some plugins / libraries add support for custom component options (by injecting global mixins). These options may require special merging logic when the same option needs to be "merged" from multiple sources (e.g. mixins or component inheritance).
+  一些插件或库对自定义组件选项添加了支持 (通过注入全局 mixin)。这些选项在有多个不同来源时可能需要特殊的合并策略 (例如 mixin 或组件继承)。
 
-  A merge strategy function can be registered for a custom option by assigning it on the `app.config.optionMergeStrategies` object using the option's name as the key.
+  可以在 `app.config.optionMergeStrategies` 对象上以选项的名称作为 key，可以为一个自定义选项注册分配一个合并策略函数。
 
-  The merge strategy function receives the value of that option defined on the parent and child instances as the first and second arguments, respectively.
+  合并策略函数分别接受在父实例和子实例上定义的该选项的值作为第一和第二个参数。
 
-- **Example**
+- **示例**
 
   ```js
   const app = createApp({
-    // option from self
+    // 自身的选项
     msg: 'Vue',
-    // option from a mixin
+    // 来自 mixin 的选项
     mixins: [
       {
         msg: 'Hello '
       }
     ],
     mounted() {
-      // merged options exposed on this.$options
+      // 在 this.$options 上暴露被合并的选项
       console.log(this.$options.msg)
     }
   })
 
-  // define a custom merge strategy for `msg`
+  // 为 `msg` 定义一个合并策略函数
   app.config.optionMergeStrategies.msg = (parent, child) => {
     return (parent || '') + (child || '')
   }
 
   app.mount('#app')
-  // logs 'Hello Vue'
+  // 打印 'Hello Vue'
   ```
 
-- **See also** [Component Instance - `$options`](/api/component-instance#options)
+- **参考**[组件实例 - `$options`](/api/component-instance#options)
+
+## app.config.idPrefix <sup class="vt-badge" data-text="3.5+" /> {#app-config-idprefix}
+
+配置此应用中通过 [useId()](/api/composition-api-helpers.html#useid) 生成的所有 ID 的前缀。
+
+- **类型** `string`
+
+- **默认值** `undefined`
+
+- **示例**
+
+  ```js
+  app.config.idPrefix = 'my-app'
+  ```
+
+  ```js
+  // 在组件中：
+  const id1 = useId() // 'my-app:0'
+  const id2 = useId() // 'my-app:1'
+  ```
+
+## app.config.throwUnhandledErrorInProduction <sup class="vt-badge" data-text="3.5+" /> {#app-config-throwunhandlederrorinproduction}
+
+强制在生产模式下抛出未处理的错误。
+
+- **类型** `boolean`
+
+- **默认值** `false`
+
+- **详情**
+
+  默认情况下，在 Vue 应用中抛出但未显式处理的错误在开发和生产模式下有不同的行为：
+
+  - 在开发模式下，错误会被抛出并可能导致应用崩溃。这是为了使错误更加突出，以便在开发过程中被注意到并修复。
+
+  - 在生产模式下，错误只会被记录到控制台以尽量减少对最终用户的影响。然而，这可能会导致只在生产中发生的错误无法被错误监控服务捕获。
+
+  通过将 `app.config.throwUnhandledErrorInProduction` 设置为 `true`，即使在生产模式下也会抛出未处理的错误。

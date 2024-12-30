@@ -67,7 +67,7 @@ function resolveList(data: SponsorData) {
   <div
     ref="container"
     class="sponsor-container"
-    :class="[tier.startsWith('plat') ? 'platinum' : tier, placement]"
+    :class="[tier === 'platinum_china' ? 'special' : tier, placement]"
   >
     <template v-if="data && visible">
       <a
@@ -93,7 +93,14 @@ function resolveList(data: SponsorData) {
       href="/sponsor/"
       class="sponsor-item action"
       @click="track(true)"
-      >Become a Sponsor</a
+      >成为赞助商</a
+    >
+    <a
+      v-if="tier === 'special' && data && !data[tier]?.length"
+      href="/sponsor/#tier-benefits"
+      class="sponsor-item action"
+      @click="track(true)"
+      >Inquire about Special Sponsorship</a
     >
   </div>
 </template>
@@ -129,6 +136,9 @@ function resolveList(data: SponsorData) {
 .sponsor-item.action {
   font-size: 11px;
   color: var(--vt-c-text-3);
+}
+.sponsor-container.page .sponsor-item.action {
+ font-size: 16px;
 }
 .sponsor-item img {
   max-width: calc(var(--max-width) - 30px);
@@ -174,7 +184,7 @@ function resolveList(data: SponsorData) {
 }
 .aside .special .sponsor-item {
   width: 100%;
-  height: 60px;
+  height: 70px;
 }
 .aside .special .sponsor-item img {
   max-width: 120px;

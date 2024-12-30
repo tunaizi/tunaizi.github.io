@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
 import SiteMap from './SiteMap.vue'
-// import NewsLetter from './NewsLetter.vue'
+import NewsLetter from './NewsLetter.vue'
 import { load, data, base } from './sponsors'
 import SponsorsGroup from './SponsorsGroup.vue'
-import VueMasteryModal from './VueMasteryModal.vue'
+// NOTE: hide the home video
+// https://github.com/vuejs-translations/docs-zh-cn/issues/177
+// import VueMasteryModal from './VueMasteryModal.vue'
 
-onMounted(async () => {
-  await load()
-})
+onMounted(load)
 </script>
 
 <template>
@@ -20,13 +20,13 @@ onMounted(async () => {
       Is tunaizi's personal technology blog
     </h1>
     <p class="description">
-      <!-- An approachable, performant and versatile framework for building web
-      user interfaces. -->
+      易学易用，性能出色，适用场景丰富的 Web 前端框架。
     </p>
     <p class="actions">
+      <!-- NOTE: hide the home video -->
       <!-- <VueMasteryModal /> -->
       <a class="get-started" href="/guide/introduction.html">
-        Get Started
+        快速上手
         <svg
           class="icon"
           xmlns="http://www.w3.org/2000/svg"
@@ -39,68 +39,86 @@ onMounted(async () => {
           />
         </svg>
       </a>
-      <a class="setup" href="/guide/quick-start.html">Install</a>
+      <a class="setup" href="/guide/quick-start.html">安装</a>
+      <a class="security" href="https://v2.cn.vuejs.org/eol/" target="_blank">
+        获取针对 Vue 2 的安全更新
+        <svg
+          class="icon"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 512 512"
+        >
+          <path
+            d="M320 0c-17.7 0-32 14.3-32 32s14.3 32 32 32h82.7L201.4 265.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L448 109.3V192c0 17.7 14.3 32 32 32s32-14.3 32-32V32c0-17.7-14.3-32-32-32H320zM80 32C35.8 32 0 67.8 0 112V432c0 44.2 35.8 80 80 80H400c44.2 0 80-35.8 80-80V320c0-17.7-14.3-32-32-32s-32 14.3-32 32V432c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16H192c17.7 0 32-14.3 32-32s-14.3-32-32-32H80z"
+          />
+        </svg>
+      </a>
     </p>
   </section>
-  <!--
-  <section id="special-sponsor">
-    <span class="lead">Special Sponsor</span>
-    <template v-if="data && data.special">
-      <template v-for="{ url, img, name, description } of data.special">
-        <a :href="url" target="_blank" rel="sponsored noopener">
-          <picture v-if="img.endsWith('png')">
-            <source
-              type="image/avif"
-              :srcset="`${base}/images/${img.replace(/\.png$/, '.avif')}`"
+
+  <section v-if="data && data.platinum_china" id="special-sponsor">
+    <template >
+      <h3>中国区铂金赞助</h3>
+      <div id="special-sponsor-container">
+        <template v-for="{ url, img, name, height, description } of data.platinum_china"
+        >
+          <a class="logo" :href="url" target="_blank" rel="sponsored noopener">
+            <picture v-if="img.endsWith('png')">
+              <source
+                type="image/avif"
+                :srcset="`${base}/images/${img.replace(/\.png$/,'.avif')}`"
+              />
+              <img :src="`${base}/images/${img}`" :alt="name" :style="{ height: height || '50px' }" />
+            </picture>
+            <img
+              width="168"
+              height="42"
+              v-else
+              :src="`${base}/images/${img}`"
+              :alt="name"
             />
-            <img :src="`${base}/images/${img}`" :alt="name" />
-          </picture>
-          <img
-            width="168"
-            height="42"
-            v-else
-            :src="`${base}/images/${img}`"
-            :alt="name"
-          />
-        </a>
-        <span>{{ description }}</span>
-      </template>
+          </a>
+          <span>{{ description }}</span>
+        </template>
+      </div>
     </template>
-  </section> -->
+  </section>
+  <section v-else id="special-sponsor">
+    <span>
+      <a href="/sponsor/#tier-benefits">
+        中国区铂金赞助位现已空缺-立即咨询
+      </a>
+    </span>
+  </section>
 
   <section id="highlights" class="vt-box-container">
     <div class="vt-box">
-      <h2>Approachable</h2>
+      <h2>易学易用</h2>
       <p>
-        Builds on top of standard HTML, CSS and JavaScript with intuitive
-        API and world-class documentation.
+        基于标准 HTML、CSS 和 JavaScript 构建，提供容易上手的 API
+        和一流的文档。
       </p>
     </div>
     <div class="vt-box">
-      <h2>Performant</h2>
-      <p>
-        Truly reactive, compiler-optimized rendering system that rarely
-        requires manual optimization.
-      </p>
+      <h2>性能出色</h2>
+      <p>经过编译器优化、完全响应式的渲染系统，几乎不需要手动优化。</p>
     </div>
     <div class="vt-box">
-      <h2>Versatile</h2>
+      <h2>灵活多变</h2>
       <p>
-        A rich, incrementally adoptable ecosystem that scales between a
-        library and a full-featured framework.
+        丰富的、可渐进式集成的生态系统，可以根据应用规模在库和框架间切换自如。
       </p>
     </div>
   </section>
-  <!--
+
   <section id="sponsors">
     <h2>Platinum Sponsors</h2>
     <SponsorsGroup tier="platinum" placement="landing" />
     <h2>Gold Sponsors</h2>
     <SponsorsGroup tier="gold" placement="landing" />
-  </section> -->
+  </section>
 
   <!-- <SiteMap /> -->
-  <!-- <NewsLetter /> -->
+  <NewsLetter />
 </template>
 
 <style scoped>
@@ -124,12 +142,7 @@ section {
 
 html:not(.dark) .accent,
 .dark .tagline {
-  background: -webkit-linear-gradient(
-    315deg,
-    #fd600c 35%,
-    #e53c96,
-    rgb(233, 143, 197)
-  );
+  background: -webkit-linear-gradient(315deg, #42d392 25%, #647eff);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -154,7 +167,30 @@ html:not(.dark) .accent,
   transition: background-color 0.5s, color 0.5s;
 }
 
-.actions .get-started {
+.actions .security {
+  background: linear-gradient(var(--vt-c-bg-mute), var(--vt-c-bg-mute)) padding-box,
+    linear-gradient(45deg, #42d392, #647eff) border-box;
+  border: 2px solid transparent;
+}
+
+.actions .security:hover {
+  background: linear-gradient(var(--vt-c-gray-light-4), var(--vt-c-gray-light-4)) padding-box,
+    linear-gradient(45deg, #42d392, #647eff) border-box;
+}
+
+.dark .actions .security:hover {
+  background: linear-gradient(var(--vt-c-gray-dark-3), var(--vt-c-gray-dark-3)) padding-box,
+    linear-gradient(45deg, #42d392, #647eff) border-box;
+}
+
+.actions .security .icon {
+  width: 12px;
+  height: 12px;
+  margin-left: 4px;
+}
+
+.actions .get-started,
+.actions .setup {
   margin-right: 18px;
 }
 
@@ -176,20 +212,53 @@ html:not(.dark) .accent,
 }
 
 .actions .get-started,
-.actions .setup {
+.actions .setup,
+.actions .security {
   color: var(--vt-c-text-code);
 }
 
 .actions .get-started:hover,
-.actions .setup:hover {
+.actions .setup:hover,
+.actions .security:hover {
   background-color: var(--vt-c-gray-light-4);
   transition-duration: 0.2s;
 }
 
 .dark .actions .get-started:hover,
-.dark .actions .setup:hover {
+.dark .actions .setup:hover,
+.dark .actions .security:hover {
   background-color: var(--vt-c-gray-dark-3);
 }
+
+/* NOTE: via #vuemastery-action in VueMasteryModal.vue */
+
+.actions .get-started {
+  font-size: 16px;
+  display: inline-block;
+  border-radius: 8px;
+  transition: background-color 0.5s, color 0.5s;
+  position: relative;
+  font-weight: 600;
+  background-color: var(--vt-c-green);
+  color: #fff;
+  margin-right: 18px;
+  padding: 8px 1em;
+}
+
+.dark .actions .get-started {
+  color: var(--vt-c-indigo);
+}
+
+.actions .get-started:hover {
+  background-color: var(--vt-c-green-dark);
+  transition-duration: 0.2s;
+}
+
+.dark .actions .get-started:hover {
+  background-color: var(--vt-c-green-light);
+}
+
+/* end NOTE */
 
 #special-sponsor {
   border-top: 1px solid var(--vt-c-divider-light);
@@ -197,6 +266,25 @@ html:not(.dark) .accent,
   padding: 12px 24px;
   display: flex;
   align-items: center;
+}
+
+#special-sponsor h3 {
+  text-align: center;
+  font-size: 13px;
+  font-weight: 500;
+  padding-bottom: 10px;
+}
+
+#special-sponsor-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#special-sponsor .logo {
+  display: flex;
+  justify-content: center;
+  padding: 0 20px;
 }
 
 #special-sponsor span {
@@ -210,6 +298,7 @@ html:not(.dark) .accent,
 #special-sponsor span:first-child {
   text-align: right;
 }
+
 
 #special-sponsor a {
   display: flex;
@@ -276,10 +365,13 @@ html:not(.dark) .accent,
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 794px) {
   .tagline {
     font-size: 48px;
     letter-spacing: -0.5px;
+  }
+  .actions .security {
+    margin-top: 18px;
   }
 }
 
@@ -293,6 +385,7 @@ html:not(.dark) .accent,
   }
   #special-sponsor {
     flex-direction: column;
+    height: auto;
   }
   #special-sponsor img {
     height: 36px;
@@ -310,11 +403,33 @@ html:not(.dark) .accent,
   .actions a {
     margin: 18px 0;
   }
+  .actions .security {
+    margin-top: 0;
+  }
 }
 
 @media (max-width: 370px) {
   .tagline {
     font-size: 36px;
+  }
+}
+
+#uwu {
+  display: none;
+}
+
+.uwu #uwu {
+  display: block;
+  width: 100%;
+  max-width: 720px;
+  margin: -120px auto -20px;
+  aspect-ratio: 192 / 108;
+  content: url(/logo-uwu.png);
+}
+
+@media (max-width: 576px) {
+  .uwu #uwu {
+    margin: -60px auto -10px;
   }
 }
 </style>

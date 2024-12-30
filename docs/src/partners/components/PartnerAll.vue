@@ -21,11 +21,11 @@ function includes(a: string, b: string) {
 </script>
 
 <template>
-  <PartnerHero title="Browser All Partners" />
+  <PartnerHero title="浏览所有合作伙伴" />
   <div class="container">
     <VTIconSearch class="icon" />
     <input
-      placeholder="Search partners by name or region"
+      placeholder="通过名称或地区搜索合作伙伴"
       v-model="query"
     />
     <PartnerList :filter="filter" />
@@ -40,12 +40,14 @@ input {
   border-bottom: 1px solid var(--vt-c-divider-light);
   margin-bottom: 2em;
 }
+
 .container {
   max-width: 960px;
   margin: 1em auto 2em;
   padding: 0 28px;
   position: relative;
 }
+
 .icon {
   width: 18px;
   height: 18px;

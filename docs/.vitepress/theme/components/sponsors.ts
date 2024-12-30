@@ -14,6 +14,7 @@ export interface Sponsor {
   name: string
   description?: string
   priority?: boolean
+  height?: string
 }
 
 export interface SponsorData {

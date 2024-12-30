@@ -87,7 +87,7 @@ These components lay the foundation for consistent styling and behavior in your 
 - other base components, and
 - 3rd-party UI components.
 
-But they'll **never** contain global state (e.g. from a [Pinia](https://pinia.vuejs.org/) store).
+But they'll **never** contain global state (e.g. from a [Pinia](https://pinia.vuejs.org/zh/) store).
 
 Their names often include the name of an element they wrap (e.g. `BaseButton`, `BaseTable`), unless no element exists for their specific purpose (e.g. `BaseIcon`). If you build similar components for a more specific context, they will almost always consume these components (e.g. `BaseButton` may be used in `ButtonSubmit`).
 
@@ -152,34 +152,6 @@ components/
 |- VButton.vue
 |- VTable.vue
 |- VIcon.vue
-```
-
-</div>
-
-## Single-instance component names {#single-instance-component-names}
-
-**Components that should only ever have a single active instance should begin with the `The` prefix, to denote that there can be only one.**
-
-This does not mean the component is only used in a single page, but it will only be used once _per page_. These components never accept any props, since they are specific to your app, not their context within your app. If you find the need to add props, it's a good indication that this is actually a reusable component that is only used once per page _for now_.
-
-<div class="style-example style-example-bad">
-<h3>Bad</h3>
-
-```
-components/
-|- Heading.vue
-|- MySidebar.vue
-```
-
-</div>
-
-<div class="style-example style-example-good">
-<h3>Good</h3>
-
-```
-components/
-|- TheHeading.vue
-|- TheSidebar.vue
 ```
 
 </div>
@@ -609,7 +581,7 @@ In JavaScript, splitting objects with multiple properties over multiple lines is
 <h3>Bad</h3>
 
 ```vue-html
-<img src="/images/logo.png" alt="Vue Logo">
+<img src="https://vuejs.org/images/logo.png" alt="Vue Logo">
 ```
 
 ```vue-html
@@ -623,7 +595,7 @@ In JavaScript, splitting objects with multiple properties over multiple lines is
 
 ```vue-html
 <img
-  src="/images/logo.png"
+  src="https://vuejs.org/images/logo.png"
   alt="Vue Logo"
 >
 ```

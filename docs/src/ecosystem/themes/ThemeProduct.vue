@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { VTLink } from '@vue/theme'
 
-const props = defineProps<{
+defineProps<{
   product: Record<string, any>
 }>()
 </script>
@@ -21,7 +21,7 @@ const props = defineProps<{
 
         <div class="price">
           <p v-if="product.price > 0" class="value">${{ product.price }}</p>
-          <p v-else class="free">FREE</p>
+          <p v-else class="free">免费</p>
         </div>
       </div>
     </article>

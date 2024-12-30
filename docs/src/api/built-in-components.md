@@ -2,12 +2,12 @@
 pageClass: api
 ---
 
-# Built-in Components {#built-in-components}
+# 内置组件 {#built-in-components}
 
-:::info Registration and Usage
-Built-in components can be used directly in templates without needing to be registered. They are also tree-shakeable: they are only included in the build when they are used.
+:::info 组件注册和使用
+内置组件无需注册便可以直接在模板中使用。它们也支持 tree-shake：仅在使用时才会包含在构建中。
 
-When using them in [render functions](/guide/extras/render-function), they need to be imported explicitly. For example:
+在[渲染函数](/guide/extras/render-function)中使用它们时，需要显式导入。例如：
 
 ```js
 import { h, Transition } from 'vue'
@@ -21,50 +21,50 @@ h(Transition, {
 
 ## `<Transition>` {#transition}
 
-Provides animated transition effects to a **single** element or component.
+为**单个**元素或组件提供动画过渡效果。
 
 - **Props**
 
   ```ts
   interface TransitionProps {
     /**
-     * Used to automatically generate transition CSS class names.
-     * e.g. `name: 'fade'` will auto expand to `.fade-enter`,
-     * `.fade-enter-active`, etc.
+     * 用于自动生成过渡 CSS class 名。
+     * 例如 `name: 'fade'` 将自动扩展为 `.fade-enter`、
+     * `.fade-enter-active` 等。
      */
     name?: string
     /**
-     * Whether to apply CSS transition classes.
-     * Default: true
+     * 是否应用 CSS 过渡 class。
+     * 默认：true
      */
     css?: boolean
     /**
-     * Specifies the type of transition events to wait for to
-     * determine transition end timing.
-     * Default behavior is auto detecting the type that has
-     * longer duration.
+     * 指定要等待的过渡事件类型
+     * 来确定过渡结束的时间。
+     * 默认情况下会自动检测
+     * 持续时间较长的类型。
      */
     type?: 'transition' | 'animation'
     /**
-     * Specifies explicit durations of the transition.
-     * Default behavior is wait for the first `transitionend`
-     * or `animationend` event on the root transition element.
+     * 显式指定过渡的持续时间。
+     * 默认情况下是等待过渡效果的根元素的第一个 `transitionend`
+     * 或`animationend`事件。
      */
     duration?: number | { enter: number; leave: number }
     /**
-     * Controls the timing sequence of leaving/entering transitions.
-     * Default behavior is simultaneous.
+     * 控制离开/进入过渡的时序。
+     * 默认情况下是同时的。
      */
     mode?: 'in-out' | 'out-in' | 'default'
     /**
-     * Whether to apply transition on initial render.
-     * Default: false
+     * 是否对初始渲染使用过渡。
+     * 默认：false
      */
     appear?: boolean
 
     /**
-     * Props for customizing transition classes.
-     * Use kebab-case in templates, e.g. enter-from-class="xxx"
+     * 用于自定义过渡 class 的 prop。
+     * 在模板中使用短横线命名，例如：enter-from-class="xxx"
      */
     enterFromClass?: string
     enterActiveClass?: string
@@ -78,7 +78,7 @@ Provides animated transition effects to a **single** element or component.
   }
   ```
 
-- **Events**
+- **事件**
 
   - `@before-enter`
   - `@before-leave`
@@ -92,9 +92,9 @@ Provides animated transition effects to a **single** element or component.
   - `@leave-cancelled` (`v-show` only)
   - `@appear-cancelled`
 
-- **Example**
+- **示例**
 
-  Simple element:
+  简单元素：
 
   ```vue-html
   <Transition>
@@ -102,7 +102,7 @@ Provides animated transition effects to a **single** element or component.
   </Transition>
   ```
 
-  Forcing a transition by changing the `key` attribute:
+  通过改变 `key` 属性来强制过度执行：
 
   ```vue-html
   <Transition>
@@ -110,7 +110,7 @@ Provides animated transition effects to a **single** element or component.
   </Transition>
   ```
 
-  Dynamic component, with transition mode + animate on appear:
+  动态组件，初始渲染时带有过渡模式 + 动画出现：
 
   ```vue-html
   <Transition name="fade" mode="out-in" appear>
@@ -118,7 +118,7 @@ Provides animated transition effects to a **single** element or component.
   </Transition>
   ```
 
-  Listening to transition events:
+  监听过渡事件：
 
   ```vue-html
   <Transition @after-enter="onTransitionComplete">
@@ -126,43 +126,43 @@ Provides animated transition effects to a **single** element or component.
   </Transition>
   ```
 
-- **See also** [`<Transition>` Guide](/guide/built-ins/transition)
+- **参考**[指南 - `<Transition>`](/guide/built-ins/transition)
 
 ## `<TransitionGroup>` {#transitiongroup}
 
-Provides transition effects for **multiple** elements or components in a list.
+为列表中的**多个**元素或组件提供过渡效果。
 
 - **Props**
 
-  `<TransitionGroup>` accepts the same props as `<Transition>` except `mode`, plus two additional props:
+  `<TransitionGroup>` 拥有与 `<Transition>` 除了 `mode` 以外所有的 props，并增加了两个额外的 props：
 
   ```ts
   interface TransitionGroupProps extends Omit<TransitionProps, 'mode'> {
     /**
-     * If not defined, renders as a fragment.
+     * 如果未定义，则渲染为片段 (fragment)。
      */
     tag?: string
     /**
-     * For customizing the CSS class applied during move transitions.
-     * Use kebab-case in templates, e.g. move-class="xxx"
+     * 用于自定义过渡期间被应用的 CSS class。
+     * 在模板中使用 kebab-case，例如 move-class="xxx"
      */
     moveClass?: string
   }
   ```
 
-- **Events**
+- **事件**
 
-  `<TransitionGroup>` emits the same events as `<Transition>`.
+  `<TransitionGroup>` 抛出与 `<Transition>` 相同的事件。
 
-- **Details**
+- **详细信息**
 
-  By default, `<TransitionGroup>` doesn't render a wrapper DOM element, but one can be defined via the `tag` prop.
+  默认情况下，`<TransitionGroup>` 不会渲染一个容器 DOM 元素，但是可以通过 `tag` prop 启用。
 
-  Note that every child in a `<transition-group>` must be [**uniquely keyed**](/guide/essentials/list#maintaining-state-with-key) for the animations to work properly.
+  注意，每个 `<transition-group>` 的子节点必须有[**独立的 key**](/guide/essentials/list#maintaining-state-with-key)，动画才能正常工作。
 
-  `<TransitionGroup>` supports moving transitions via CSS transform. When a child's position on screen has changed after an update, it will get applied a moving CSS class (auto generated from the `name` attribute or configured with the `move-class` prop). If the CSS `transform` property is "transition-able" when the moving class is applied, the element will be smoothly animated to its destination using the [FLIP technique](https://aerotwist.com/blog/flip-your-animations/).
+  `<TransitionGroup>` 支持通过 CSS transform 控制移动效果。当一个子节点在屏幕上的位置在更新之后发生变化时，它会被添加一个使其位移的 CSS class (基于 `name` attribute 推导，或使用 `move-class` prop 显式配置)。如果使其位移的 class 被添加时 CSS 的 `transform` 属性是“可过渡的”，那么该元素会基于 [FLIP 技巧](https://aerotwist.com/blog/flip-your-animations/)平滑地到达动画终点。
 
-- **Example**
+- **示例**
 
   ```vue-html
   <TransitionGroup tag="ul" name="slide">
@@ -172,28 +172,28 @@ Provides transition effects for **multiple** elements or components in a list.
   </TransitionGroup>
   ```
 
-- **See also** [Guide - TransitionGroup](/guide/built-ins/transition-group)
+- **参考**[指南 - TransitionGroup](/guide/built-ins/transition-group)
 
 ## `<KeepAlive>` {#keepalive}
 
-Caches dynamically toggled components wrapped inside.
+缓存包裹在其中的动态切换组件。
 
 - **Props**
 
   ```ts
   interface KeepAliveProps {
     /**
-     * If specified, only components with names matched by
-     * `include` will be cached.
+     * 如果指定，则只有与 `include` 名称
+     * 匹配的组件才会被缓存。
      */
     include?: MatchPattern
     /**
-     * Any component with a name matched by `exclude` will
-     * not be cached.
+     * 任何名称与 `exclude`
+     * 匹配的组件都不会被缓存。
      */
     exclude?: MatchPattern
     /**
-     * The maximum number of component instances to cache.
+     * 最多可以缓存多少组件实例。
      */
     max?: number | string
   }
@@ -201,17 +201,17 @@ Caches dynamically toggled components wrapped inside.
   type MatchPattern = string | RegExp | (string | RegExp)[]
   ```
 
-- **Details**
+- **详细信息**
 
-  When wrapped around a dynamic component, `<KeepAlive>` caches the inactive component instances without destroying them.
+  `<KeepAlive>` 包裹动态组件时，会缓存不活跃的组件实例，而不是销毁它们。
 
-  There can only be one active component instance as the direct child of `<KeepAlive>` at any time.
+  任何时候都只能有一个活跃组件实例作为 `<KeepAlive>` 的直接子节点。
 
-  When a component is toggled inside `<KeepAlive>`, its `activated` and `deactivated` lifecycle hooks will be invoked accordingly, providing an alternative to `mounted` and `unmounted`, which are not called. This applies to the direct child of `<KeepAlive>` as well as to all of its descendants.
+  当一个组件在 `<KeepAlive>` 中被切换时，它的 `activated` 和 `deactivated` 生命周期钩子将被调用，用来替代 `mounted` 和 `unmounted`。这适用于 `<KeepAlive>` 的直接子节点及其所有子孙节点。
 
-- **Example**
+- **示例**
 
-  Basic usage:
+  基本用法：
 
   ```vue-html
   <KeepAlive>
@@ -219,7 +219,7 @@ Caches dynamically toggled components wrapped inside.
   </KeepAlive>
   ```
 
-  When used with `v-if` / `v-else` branches, there must be only one component rendered at a time:
+  与 `v-if` / `v-else` 分支一起使用时，同一时间只能有一个组件被渲染：
 
   ```vue-html
   <KeepAlive>
@@ -228,7 +228,7 @@ Caches dynamically toggled components wrapped inside.
   </KeepAlive>
   ```
 
-  Used together with `<Transition>`:
+  与 `<Transition>` 一起使用：
 
   ```vue-html
   <Transition>
@@ -238,26 +238,26 @@ Caches dynamically toggled components wrapped inside.
   </Transition>
   ```
 
-  Using `include` / `exclude`:
+  使用 `include` / `exclude`：
 
   ```vue-html
-  <!-- comma-delimited string -->
+  <!-- 用逗号分隔的字符串 -->
   <KeepAlive include="a,b">
     <component :is="view"></component>
   </KeepAlive>
 
-  <!-- regex (use `v-bind`) -->
+  <!-- 正则表达式 (使用 `v-bind`) -->
   <KeepAlive :include="/a|b/">
     <component :is="view"></component>
   </KeepAlive>
 
-  <!-- Array (use `v-bind`) -->
+  <!-- 数组 (使用 `v-bind`) -->
   <KeepAlive :include="['a', 'b']">
     <component :is="view"></component>
   </KeepAlive>
   ```
 
-  Usage with `max`:
+  使用 `max`：
 
   ```vue-html
   <KeepAlive :max="10">
@@ -265,33 +265,39 @@ Caches dynamically toggled components wrapped inside.
   </KeepAlive>
   ```
 
-- **See also** [Guide - KeepAlive](/guide/built-ins/keep-alive)
+- **参考**[指南 - KeepAlive](/guide/built-ins/keep-alive)
 
 ## `<Teleport>` {#teleport}
 
-Renders its slot content to another part of the DOM.
+将其插槽内容渲染到 DOM 中的另一个位置。
 
 - **Props**
 
   ```ts
   interface TeleportProps {
     /**
-     * Required. Specify target container.
-     * Can either be a selector or an actual element.
+     * 必填项。指定目标容器。
+     * 可以是选择器或实际元素。
      */
     to: string | HTMLElement
     /**
-     * When `true`, the content will remain in its original
-     * location instead of moved into the target container.
-     * Can be changed dynamically.
+     * 当值为 `true` 时，内容将保留在其原始位置
+     * 而不是移动到目标容器中。
+     * 可以动态更改。
      */
     disabled?: boolean
+    /**
+     * 当值为 `true` 时，Teleport 将推迟
+     * 直到应用的其他部分挂载后
+     * 再解析其目标。(3.5+)
+     */
+    defer?: boolean
   }
   ```
 
-- **Example**
+- **示例**
 
-  Specifying target container:
+  指定目标容器：
 
   ```vue-html
   <Teleport to="#some-id" />
@@ -299,7 +305,7 @@ Renders its slot content to another part of the DOM.
   <Teleport to="[data-teleport]" />
   ```
 
-  Conditionally disabling:
+  有条件地禁用：
 
   ```vue-html
   <Teleport to="#popup" :disabled="displayVideoInline">
@@ -307,30 +313,42 @@ Renders its slot content to another part of the DOM.
   </Teleport>
   ```
 
-- **See also** [Guide - Teleport](/guide/built-ins/teleport)
+  延迟目标解析 <sup class="vt-badge" data-text="3.5+" />：
+
+  ```vue-html
+  <Teleport defer to="#late-div">...</Teleport>
+
+  <!-- 稍后出现于模板中的某处 -->
+  <div id="late-div"></div>
+  ```
+
+- **参考**[指南 - Teleport](/guide/built-ins/teleport)
 
 ## `<Suspense>` <sup class="vt-badge experimental" /> {#suspense}
 
-Used for orchestrating nested async dependencies in a component tree.
+用于协调对组件树中嵌套的异步依赖的处理。
 
 - **Props**
 
   ```ts
   interface SuspenseProps {
     timeout?: string | number
+    suspensible?: boolean
   }
   ```
 
-- **Events**
+- **事件**
 
   - `@resolve`
   - `@pending`
   - `@fallback`
 
-- **Details**
+- **详细信息**
 
-  `<Suspense>` accepts two slots: the `#default` slot and the `#fallback` slot. It will display the content of the fallback slot while rendering the default slot in memory.
+  `<Suspense>` 接受两个插槽：`#default` 和 `#fallback`。它将在内存中渲染默认插槽的同时展示后备插槽内容。
 
-  If it encounters async dependencies ([Async Components](/guide/components/async) and components with [`async setup()`](/guide/built-ins/suspense#async-setup)) while rendering the default slot, it will wait until all of them are resolved before displaying the default slot.
+  如果在渲染时遇到异步依赖项 ([异步组件](/guide/components/async)和具有 [`async setup()`](/guide/built-ins/suspense#async-setup) 的组件)，它将等到所有异步依赖项解析完成时再显示默认插槽。
 
-- **See also** [Guide - Suspense](/guide/built-ins/suspense)
+  通过将 Suspense 设置为 `suspensible`，所有的异步依赖将由父级 Suspense 处理。请参阅[实现细节](https://github.com/vuejs/core/pull/6736)
+
+- **参考**[指南 - Suspense](/guide/built-ins/suspense)
