@@ -42,9 +42,9 @@ This is a details block.
 :::
 
 <!-- Do -->
-## [Getting Started](./getting-started)
-[Getting Started](../guide/getting-started)
+<!-- ## [Getting Started](./getting-started) -->
+<!-- [Getting Started](../guide/getting-started) -->
 
 <!-- Don't -->
-### [Getting Started](./getting-started.md)
-### [Getting Started](./getting-started.html)
+<!-- ### [Getting Started](./getting-started.md) -->
+<!-- ### [Getting Started](./getting-started.html) -->

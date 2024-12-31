@@ -4,7 +4,7 @@
     - 在BFC中，每个元素左外边与包含块的左边相接触，即时存在浮动也是如此。除非这个元素也创建了新的BFC。可以理解为BFC有自己的结界。
     - BFC的结界特性用途： 去margin重叠或清除float带来的影响，也就是说触发BFC的时候，就不需要清除浮动操作。BFC最重要的用途是实现更健壮、更智能的自适应布局。
     - 触发BFC的常见情况：
-      - <html>根元素
+      - //html根元素
       - float的值不为none;
       - overflow的值为auto,scroll或hidden
       - display的值为table-cell,table-caption或inline-block;

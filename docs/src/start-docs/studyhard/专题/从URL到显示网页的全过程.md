@@ -28,7 +28,7 @@
 -   检查请求缓存，查看浏览器是否有缓存
 -   DNS 查询
     -   浏览器缓存 -> 操作系统缓存（hosts 文件） -> 路由器缓存 -> DNS 服务器缓存 -> 根域名服务器缓存
-    -   dns-prefetch 优化,在 html 标签中加入<link rel="dns-prefetch" href="//domain.com"> 进行域名预解析
+    -   dns-prefetch 优化,在 html 标签中加入<link rel="dns-prefetch" href="//domain.com"/> 进行域名预解析
     -   通过 DNS 解析得到域名对应的 IP 地址
 -   应用层：发送 HTTP 请求，携带 http 报文（请求报头和主体）
 -   传输层：TCP 传输报文。向服务端发起 TCP 连接，建立连接前会进行 TCP 三次握手。
@@ -69,7 +69,7 @@
 
 -   CSS 的加载不会影响 DOM 树的解析，会阻塞 render 树的渲染。css 的加载会阻塞 JS 的语句执行。
 -   JS 的加载和执行会阻塞 DOM 树的解析和渲染。因为 JS 可能会动态操作 DOM。可以通过异步的方式加载脚本。 defer 是延迟执行，而 async 是异步执行。
--   原则： CSS 资源放在 JS 资源前，一般放在 head，JS 资源放在 HTML 最底部，也就是</body>之前
+-   原则： CSS 资源放在 JS 资源前，一般放在 head，JS 资源放在 HTML 最底部，也就是 <body></body>之前
 -   在解析 DOM 的同时，当遇到外部资源时会放到下载队列，会由单独的异步线程下载资源。
 -   CSS 资源加载完成，会和 DOM 解析同步解析成 CSSOM 树。
 -   构建渲染树：render Tree

@@ -8,8 +8,8 @@
   - 伪类+transform
     - 使用伪类元素before或者after重做border,并将transform:scale(0.5)
   - viewport+rem
-    - devicePixelRatio为2时设置<mata name='viewport' content='width=device-width, initial-scale=0.5,maximum-scale=0.5, minimum-scale=0.5, user-scalable=no'>
-    - devicePixelRatio为3时设置<mata name='viewport' content='width=device-width, initial-scale=0.33333333,maximum-scale=0.33333333, minimum-scale=0.33333333, user-scalable=no'>
+    - devicePixelRatio为2时设置<mata name='viewport' content='width=device-width, initial-scale=0.5,maximum-scale=0.5, minimum-scale=0.5, user-scalable=no'/>
+    - devicePixelRatio为3时设置<mata name='viewport' content='width=device-width, initial-scale=0.33333333,maximum-scale=0.33333333, minimum-scale=0.33333333, user-scalable=no'/>
   - border-image or background-image
     - 使用2倍的边框为1px的图，将border-weidth设置为1px。
 

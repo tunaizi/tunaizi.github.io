@@ -10,9 +10,8 @@
   },
   "dependencies": {
     "@types/lodash": "^4.17.13",
-    "@vue/repl": "^1.5.0",
+    "@vue/repl": "^4.4.2",
     "@vue/theme": "2.2.5",
-    "codemirror-editor-vue3": "^2.8.0",
     "dynamics.js": "^1.1.5",
     "gsap": "^3.9.0",
     "lodash": "^4.17.21",

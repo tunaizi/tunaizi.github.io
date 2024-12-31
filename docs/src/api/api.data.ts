@@ -78,7 +78,7 @@ function extractHeadersFromMarkdown(src: string): APIHeader[] {
       return { text, anchor }
     })
   }
-  console.log(headers, 'headers----------\n')
+  // console.log(headers, 'headers----------\n')
 
   return headers
 }
@@ -117,7 +117,7 @@ export default {
   // 加载API数据并处理侧边栏项目
   load(): APIGroup[] {
     // 通过处理侧边栏配置生成API组数据
-    console.log('r[0].items----------------\n')
+    // console.log('r[0].items----------------\n')
     debugger;
     const r = (sidebar as MultiSidebarConfig)['/api/'].map((group) => ({
       text: group.text, // 组的文本（例如 'API'）
@@ -127,8 +127,8 @@ export default {
         headers: parsePageHeaders(item.link) // 从项目的markdown链接解析标题
       }))
     }))
-    console.log(r)
-    console.log('r[0].items----------------\n')
+    // console.log(r)
+    // console.log('r[0].items----------------\n')
 
     return r
   }

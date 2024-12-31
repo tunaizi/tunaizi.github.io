@@ -39,12 +39,12 @@ This is a details block.
 :::
 
 <!-- Do -->
-## [Getting Started](./getting-started)
-[Getting Started](../guide/getting-started)
+<!-- ## [Getting Started](./getting-started)
+[Getting Started](../guide/getting-started) -->
 
 <!-- Don't -->
-### [Getting Started](./getting-started.md)
-### [Getting Started](./getting-started.html)
+<!-- ### [Getting Started](./getting-started.md)
+### [Getting Started](./getting-started.html) -->
 
 ### Title <Badge type="info" text="default" />
 ### Title <Badge type="tip" text="^1.9.0" />
