@@ -5,9 +5,12 @@
   "scripts": {
     "dev": "vitepress",
     "build": "vitepress build --base=/blog/",
-    "preview": "vitepress preview"
+    "preview": "vitepress preview",
+    "d": "rm -rf .vitepress/cache & vitepress dev  "
   },
   "dependencies": {
+    "@iminu/vitepress-plugin-auto-sidebar": "^1.0.3",
+    "glob": "^9.3.5",
     "@types/lodash": "^4.17.13",
     "@vue/repl": "^4.4.2",
     "@vue/theme": "2.2.5",

@@ -1,5 +1,5 @@
 import { UserConfig } from 'vitepress'
-
+import AutoSidebar from './autoSideBar'
 export default {
   define: {
     __VUE_OPTIONS_API__: false
@@ -34,6 +34,11 @@ export default {
         config.base = isDev ? '/' : '/blog'
         return config
       }
-    }
+    },
+    AutoSidebar({
+      root: '/src/',
+      docs: '/src/start-docs/',
+      wrireToJson: '.vitepress/navigation/start-docs.json'
+    })
   ]
 } as UserConfig['vite']

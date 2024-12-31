@@ -1,0 +1,293 @@
+{
+  "/start-docs/index.md/": [],
+  "/start-docs/create-blog.md/": [],
+  "/start-docs/studyhard/": [
+    {
+      "text": "Stay hungry，Stay foolish",
+      "items": [],
+      "link": "/start-docs/studyhard/README.md"
+    },
+    {
+      "text": "数据结构与算法",
+      "items": [
+        {
+          "text": "链表",
+          "items": [],
+          "link": "/start-docs/studyhard/数据结构与算法/链表.md"
+        },
+        {
+          "text": "递归和分治",
+          "items": [],
+          "link": "/start-docs/studyhard/数据结构与算法/递归和分治.md"
+        },
+        {
+          "text": "# DFS 深度优先遍历和BFS 广度优先遍历",
+          "items": [],
+          "link": "/start-docs/studyhard/数据结构与算法/深度、广度优先遍历.md"
+        },
+        {
+          "text": "树&二叉树&二叉搜索树",
+          "items": [],
+          "link": "/start-docs/studyhard/数据结构与算法/树.md"
+        },
+        {
+          "text": "# 数组与链表",
+          "items": [],
+          "link": "/start-docs/studyhard/数据结构与算法/数组.md"
+        },
+        {
+          "text": "排序算法汇总",
+          "items": [],
+          "link": "/start-docs/studyhard/数据结构与算法/排序.md"
+        },
+        {
+          "text": "数据结构与算法",
+          "items": [],
+          "link": "/start-docs/studyhard/数据结构与算法/堆栈和队列.md"
+        },
+        {
+          "text": "哈希表 map&set",
+          "items": [],
+          "link": "/start-docs/studyhard/数据结构与算法/哈希表.md"
+        },
+        {
+          "text": "# 贪心算法（“只看眼前，目光短浅”）Greedy",
+          "items": [],
+          "link": "/start-docs/studyhard/数据结构与算法/动态规划和贪心算法.md"
+        },
+        {
+          "text": "# 快读入口",
+          "items": [],
+          "link": "/start-docs/studyhard/数据结构与算法/blog.md"
+        }
+      ],
+      "collapsed": false
+    },
+    {
+      "text": "前端基础体系",
+      "items": [
+        {
+          "text": "前端基础知识体系",
+          "items": [],
+          "link": "/start-docs/studyhard/前端基础体系/blog.md"
+        }
+      ],
+      "collapsed": false
+    },
+    {
+      "text": "z面试真题",
+      "items": [
+        {
+          "text": "JS 常用逻辑题",
+          "items": [],
+          "link": "/start-docs/studyhard/z面试真题/常考篇.md"
+        },
+        {
+          "text": "JS 常用方法原理实现",
+          "items": [],
+          "link": "/start-docs/studyhard/z面试真题/原理篇.md"
+        },
+        {
+          "text": "# 全部面试题",
+          "items": [],
+          "link": "/start-docs/studyhard/z面试真题/questions.md"
+        }
+      ],
+      "collapsed": false
+    },
+    {
+      "text": "webpack",
+      "items": [
+        {
+          "text": "webpack",
+          "items": [],
+          "link": "/start-docs/studyhard/webpack/blog.md"
+        }
+      ],
+      "collapsed": false
+    },
+    {
+      "text": "css",
+      "items": [
+        {
+          "text": "CSS常见问题",
+          "items": [],
+          "link": "/start-docs/studyhard/css/blog.md"
+        }
+      ],
+      "collapsed": false
+    },
+    {
+      "text": "cli",
+      "items": [
+        {
+          "text": "学习制作项目CLI轨迹",
+          "items": [],
+          "link": "/start-docs/studyhard/cli/blog.md"
+        }
+      ],
+      "collapsed": false
+    },
+    {
+      "text": "1专题",
+      "items": [
+        {
+          "text": "前端长列表渲染优化",
+          "items": [],
+          "link": "/start-docs/studyhard/1专题/长列表渲染优化.md"
+        },
+        {
+          "text": "# 请求场景题目",
+          "items": [],
+          "link": "/start-docs/studyhard/1专题/请求并行串行问题及复用.md"
+        },
+        {
+          "text": "# 常用设计模式",
+          "items": [],
+          "link": "/start-docs/studyhard/1专题/设计模式.md"
+        },
+        {
+          "text": "观察者模式和发布订阅模式",
+          "items": [],
+          "link": "/start-docs/studyhard/1专题/观察者模式及发布订阅者模式.md"
+        },
+        {
+          "text": "# 防抖",
+          "items": [],
+          "link": "/start-docs/studyhard/1专题/节流-防抖.md"
+        },
+        {
+          "text": "纯函数",
+          "items": [],
+          "link": "/start-docs/studyhard/1专题/纯函数与副作用函数.md"
+        },
+        {
+          "text": "# es6中箭头函数与普通函数的区别",
+          "items": [],
+          "link": "/start-docs/studyhard/1专题/箭头函数与普通函数.md"
+        },
+        {
+          "text": "模块化",
+          "items": [],
+          "link": "/start-docs/studyhard/1专题/模块化及打包模式.md"
+        },
+        {
+          "text": "检测是不是数组的方式",
+          "items": [],
+          "link": "/start-docs/studyhard/1专题/检测数组类型的几种方式.md"
+        },
+        {
+          "text": "# 柯里化 currying",
+          "items": [],
+          "link": "/start-docs/studyhard/1专题/柯里化.md"
+        },
+        {
+          "text": "# 单例模式",
+          "items": [],
+          "link": "/start-docs/studyhard/1专题/单例模式和工厂模式.md"
+        },
+        {
+          "text": "常见的 Web 攻击",
+          "items": [],
+          "link": "/start-docs/studyhard/1专题/前端网络安全.md"
+        },
+        {
+          "text": "从一个 url 到页面展示的全流程",
+          "items": [],
+          "link": "/start-docs/studyhard/1专题/从URL到显示网页的全过程.md"
+        },
+        {
+          "text": "Vuex / Redux",
+          "items": [],
+          "link": "/start-docs/studyhard/1专题/vuex或redux.md"
+        },
+        {
+          "text": "hashchange 和 h5 history popstate",
+          "items": [],
+          "link": "/start-docs/studyhard/1专题/vue-router或react-router.md"
+        },
+        {
+          "text": "# setTimeout",
+          "items": [],
+          "link": "/start-docs/studyhard/1专题/setTimeout.md"
+        },
+        {
+          "text": "# JS与Native通信",
+          "items": [],
+          "link": "/start-docs/studyhard/1专题/js与native通信.md"
+        },
+        {
+          "text": "class与构造函数",
+          "items": [],
+          "link": "/start-docs/studyhard/1专题/class与函数.md"
+        },
+        {
+          "text": "# bind & call & apply",
+          "items": [],
+          "link": "/start-docs/studyhard/1专题/bind&call&apply.md"
+        },
+        {
+          "text": "Promise/A+",
+          "items": [],
+          "link": "/start-docs/studyhard/1专题/Promise原理及实现.md"
+        },
+        {
+          "text": "NPM包管理机制",
+          "items": [],
+          "link": "/start-docs/studyhard/1专题/NPM包管理.md"
+        },
+        {
+          "text": "JS引擎的两种查找方式",
+          "items": [],
+          "link": "/start-docs/studyhard/1专题/LHS和RHS.md"
+        },
+        {
+          "text": "继承的几种类型",
+          "items": [],
+          "link": "/start-docs/studyhard/1专题/JS继承.md"
+        },
+        {
+          "text": "this指向",
+          "items": [],
+          "link": "/start-docs/studyhard/1专题/JS的this关键字.md"
+        },
+        {
+          "text": "Object",
+          "items": [],
+          "link": "/start-docs/studyhard/1专题/JS对象拷贝及深拷贝.md"
+        },
+        {
+          "text": "# 垃圾回收",
+          "items": [],
+          "link": "/start-docs/studyhard/1专题/JS垃圾回收机制.md"
+        },
+        {
+          "text": "管理作用域",
+          "items": [],
+          "link": "/start-docs/studyhard/1专题/JS作用域.md"
+        },
+        {
+          "text": "# JS 中 new 关键字干了什么事",
+          "items": [],
+          "link": "/start-docs/studyhard/1专题/JS中的new干了什么.md"
+        },
+        {
+          "text": "TCP/IP",
+          "items": [],
+          "link": "/start-docs/studyhard/1专题/HTTP(s)及缓存机制.md"
+        },
+        {
+          "text": "# event bus",
+          "items": [],
+          "link": "/start-docs/studyhard/1专题/EventBus.md"
+        },
+        {
+          "text": "# 怎么画1px像素线，逻辑像素,物理像素的概念",
+          "items": [],
+          "link": "/start-docs/studyhard/1专题/1PX.md"
+        }
+      ],
+      "collapsed": false
+    }
+  ]
+}

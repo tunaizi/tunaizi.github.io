@@ -2,10 +2,12 @@
 // in .vue components or .md pages:
 // named import "data" is the resolved static data
 // can also import types for type consistency
-import { data as apiIndex, APIGroup } from './api.data'
+import { data as apiIndex, APIGroup } from './start-docs.data'
 import { ref, computed, onMounted } from 'vue'
-import { withBase } from 'vitepress'
+import { withBase, useData, resolveUserConfig } from 'vitepress'
+console.log(useData(), 'apiIndex')
 console.log(apiIndex, 'apiIndex')
+// console.log(resolveUserConfig('', 'serve', ''), 'apiIndex')
 
 const search = ref()
 const query = ref('')
@@ -42,7 +44,11 @@ const filtered = computed(() => {
             ({ text, anchor }) => matches(text) || matches(anchor)
           )
           return matchedHeaders.length
-            ? { text: item.text, link: item.link, headers: matchedHeaders }
+            ? {
+                text: item.text,
+                link: item.link.replace('.md', ''),
+                headers: matchedHeaders
+              }
             : null
         })
         .filter((i) => i)
@@ -58,7 +64,7 @@ const filtered = computed(() => {
 <template>
   <div id="api-index">
     <div class="header">
-      <h1>API 参考</h1>
+      <h1>全部文档</h1>
       <div class="api-filter">
         <label for="api-filter">过滤</label>
         <input

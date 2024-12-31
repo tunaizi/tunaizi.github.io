@@ -69,7 +69,7 @@
 
 -   CSS 的加载不会影响 DOM 树的解析，会阻塞 render 树的渲染。css 的加载会阻塞 JS 的语句执行。
 -   JS 的加载和执行会阻塞 DOM 树的解析和渲染。因为 JS 可能会动态操作 DOM。可以通过异步的方式加载脚本。 defer 是延迟执行，而 async 是异步执行。
--   原则： CSS 资源放在 JS 资源前，一般放在 head，JS 资源放在 HTML 最底部，也就是 <body></body>之前
+-   原则： CSS 资源放在 JS 资源前，一般放在 head，JS 资源放在 HTML 最底部，也就是 ```<body></body>```之前
 -   在解析 DOM 的同时，当遇到外部资源时会放到下载队列，会由单独的异步线程下载资源。
 -   CSS 资源加载完成，会和 DOM 解析同步解析成 CSSOM 树。
 -   构建渲染树：render Tree
