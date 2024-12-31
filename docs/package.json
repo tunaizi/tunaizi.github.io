@@ -4,9 +4,8 @@
   },
   "scripts": {
     "dev": "vitepress",
-    "build": "vitepress build",
-    "preview": "vitepress preview",
-    "debug": "vitepress dev --force --debug --minify=false"
+    "build": "vitepress build --base=/blog/",
+    "preview": "vitepress preview"
   },
   "dependencies": {
     "@types/lodash": "^4.17.13",
