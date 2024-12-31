@@ -118,7 +118,6 @@ export default {
   load(): APIGroup[] {
     // 通过处理侧边栏配置生成API组数据
     // console.log('r[0].items----------------\n')
-    debugger;
     const r = (sidebar as MultiSidebarConfig)['/api/'].map((group) => ({
       text: group.text, // 组的文本（例如 'API'）
       anchor: slugify(group.text), // 生成组标题的锚点

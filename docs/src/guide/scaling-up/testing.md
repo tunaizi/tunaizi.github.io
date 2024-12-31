@@ -7,21 +7,21 @@ import { VTCodeGroup, VTCodeGroupTab } from '@vue/theme'
   border-radius: 8px;
   padding: 12px 16px 12px 12px;
   font-size: 13px;
-  a {
-    display: flex;
-    color: var(--vt-c-text-2);
-  }
-  img {
-    background-color: #fff;
-    padding: 12px 16px;
-    border-radius: 6px;
-    margin-right: 24px;
-  }
-  .testing-partner {
-    color: var(--vt-c-text-1);
-    font-size: 15px;
-    font-weight: 600;
-  }
+}
+.lambdatest a {
+  display: flex;
+  color: var(--vt-c-text-2);
+}
+.lambdatest img {
+  background-color: #fff;
+  padding: 12px 16px;
+  border-radius: 6px;
+  margin-right: 24px;
+}
+.lambdatest .testing-partner {
+  color: var(--vt-c-text-1);
+  font-size: 15px;
+  font-weight: 600;
 }
 </style>
 
@@ -232,7 +232,7 @@ await fireEvent.click(button)
 
 - [Cypress 组件测试](https://on.cypress.io/component) 会预期其准确地渲染样式或者触发原生 DOM 事件。它可以搭配 [@testing-library/cypress](https://testing-library.com/docs/cypress-testing-library/intro) 这个库一同进行测试。
 
-Vitest 和基于浏览器的运行器之间的主要区别是速度和执行上下文。简而言之，基于浏览器的运行器，如 Cypress，可以捕捉到基于 Node 的运行器（如 Vitest）所不能捕捉的问题（比如样式问题、原生 DOM 事件、Cookies、本地存储和网络故障），但基于浏览器的运行器比 Vitest *慢几个数量级*，因为它们要执行打开浏览器，编译样式表以及其他步骤。Cypress 是一个基于浏览器的运行器，支持组件测试。请阅读 [Vitest 文档的“比较”这一章](https://vitest.dev/guide/comparisons.html#cypress) 了解 Vitest 和 Cypress 最新的比较信息。
+Vitest 和基于浏览器的运行器之间的主要区别是速度和执行上下文。简而言之，基于浏览器的运行器，如 Cypress，可以捕捉到基于 Node 的运行器（如 Vitest）所不能捕捉的问题（比如样式问题、原生 DOM 事件、Cookies、本地存储和网络故障），但基于浏览器的运行器比 Vitest _慢几个数量级_，因为它们要执行打开浏览器，编译样式表以及其他步骤。Cypress 是一个基于浏览器的运行器，支持组件测试。请阅读 [Vitest 文档的“比较”这一章](https://vitest.dev/guide/comparisons.html#cypress) 了解 Vitest 和 Cypress 最新的比较信息。
 
 ### 组件挂载库 {#mounting-libraries}
 
