@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Repl, useStore, useVueImportMap } from '@vue/repl'
-import CodeMirror from '@vue/repl/codemirror-editor'
+import CodeMirror from 'codemirror-editor-vue3'
 import { data } from './examples.data'
 import { inject, watchEffect, Ref, onMounted, ref, onUnmounted } from 'vue'
 import {

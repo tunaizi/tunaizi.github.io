@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Repl, useStore, useVueImportMap } from '@vue/repl'
-import CodeMirror from '@vue/repl/codemirror-editor'
+import CodeMirror from 'codemirror-editor-vue3'
 import { inject, watch, Ref, ref, computed, nextTick } from 'vue'
 import { data } from './tutorial.data'
 import {
@@ -8,7 +8,7 @@ import {
   resolveNoBuildExample,
   onHashChange
 } from '../examples/utils'
-import PreferenceSwitch from '.vitepress1/theme/components/PreferenceSwitch.vue'
+import PreferenceSwitch from '../../.vitepress/theme/components/PreferenceSwitch.vue'
 import {
   VTFlyout,
   VTIconChevronLeft,

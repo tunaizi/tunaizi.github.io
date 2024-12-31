@@ -34,7 +34,8 @@ defineProps<{
 }
 
 .ThemeProduct:hover .figure {
-  transform: translateY(-4px);
+  transform: translateY(-20px);
+  border: 1px solid var(--vt-c-brand);
 }
 
 .ThemeProduct:hover .name {
@@ -42,9 +43,9 @@ defineProps<{
 }
 
 .figure {
-  border-radius: 8px;
+  border-radius: 12px;
   overflow: hidden;
-  transition: transform 0.25s;
+  transition: transform 0.55s;
 }
 
 .data {

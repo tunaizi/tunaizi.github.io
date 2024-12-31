@@ -1,6 +1,8 @@
 ---
 page: true
-title: dfgdf
+title: tii
+icon: /assets/logo.png
+
 ---
 
 <script setup>

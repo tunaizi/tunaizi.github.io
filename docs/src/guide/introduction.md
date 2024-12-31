@@ -2,7 +2,7 @@
 footer: false
 ---
 
-# 简介 {#introduction}
+# HTML {#introduction}
 
 :::info 你正在阅读的是 Vue 3 的文档！
 

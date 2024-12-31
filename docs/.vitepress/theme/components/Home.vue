@@ -20,13 +20,13 @@ onMounted(load)
       Is tunaizi's personal technology blog
     </h1>
     <p class="description">
-      易学易用，性能出色，适用场景丰富的 Web 前端框架。
+      <!-- 易学易用，性能出色，适用场景丰富的 Web 前端框架。 -->
     </p>
     <p class="actions">
       <!-- NOTE: hide the home video -->
       <!-- <VueMasteryModal /> -->
-      <a class="get-started" href="/guide/introduction.html">
-        快速上手
+      <a class="get-started" href="/start-docs/">
+        全部文档
         <svg
           class="icon"
           xmlns="http://www.w3.org/2000/svg"
@@ -39,8 +39,8 @@ onMounted(load)
           />
         </svg>
       </a>
-      <a class="setup" href="/guide/quick-start.html">安装</a>
-      <a class="security" href="https://v2.cn.vuejs.org/eol/" target="_blank">
+      <!-- <a class="setup" href="/guide/quick-start.html">安装</a> -->
+      <!-- <a class="security" href="https://v2.cn.vuejs.org/eol/" target="_blank">
         获取针对 Vue 2 的安全更新
         <svg
           class="icon"
@@ -51,23 +51,45 @@ onMounted(load)
             d="M320 0c-17.7 0-32 14.3-32 32s14.3 32 32 32h82.7L201.4 265.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L448 109.3V192c0 17.7 14.3 32 32 32s32-14.3 32-32V32c0-17.7-14.3-32-32-32H320zM80 32C35.8 32 0 67.8 0 112V432c0 44.2 35.8 80 80 80H400c44.2 0 80-35.8 80-80V320c0-17.7-14.3-32-32-32s-32 14.3-32 32V432c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16H192c17.7 0 32-14.3 32-32s-14.3-32-32-32H80z"
           />
         </svg>
-      </a>
+      </a> -->
     </p>
   </section>
 
-  <section v-if="data && data.platinum_china" id="special-sponsor">
-    <template >
+  <section
+    v-if="false && data && data.platinum_china"
+    id="special-sponsor"
+  >
+    <template>
       <h3>中国区铂金赞助</h3>
       <div id="special-sponsor-container">
-        <template v-for="{ url, img, name, height, description } of data.platinum_china"
+        <template
+          v-for="{
+            url,
+            img,
+            name,
+            height,
+            description
+          } of data.platinum_china"
         >
-          <a class="logo" :href="url" target="_blank" rel="sponsored noopener">
+          <a
+            class="logo"
+            :href="url"
+            target="_blank"
+            rel="sponsored noopener"
+          >
             <picture v-if="img.endsWith('png')">
               <source
                 type="image/avif"
-                :srcset="`${base}/images/${img.replace(/\.png$/,'.avif')}`"
+                :srcset="`${base}/images/${img.replace(
+                  /\.png$/,
+                  '.avif'
+                )}`"
               />
-              <img :src="`${base}/images/${img}`" :alt="name" :style="{ height: height || '50px' }" />
+              <img
+                :src="`${base}/images/${img}`"
+                :alt="name"
+                :style="{ height: height || '50px' }"
+              />
             </picture>
             <img
               width="168"
@@ -82,15 +104,15 @@ onMounted(load)
       </div>
     </template>
   </section>
-  <section v-else id="special-sponsor">
+  <!-- <section v-else id="special-sponsor">
     <span>
       <a href="/sponsor/#tier-benefits">
         中国区铂金赞助位现已空缺-立即咨询
       </a>
     </span>
-  </section>
+  </section> -->
 
-  <section id="highlights" class="vt-box-container">
+  <!-- <section id="highlights" class="vt-box-container">
     <div class="vt-box">
       <h2>易学易用</h2>
       <p>
@@ -108,17 +130,17 @@ onMounted(load)
         丰富的、可渐进式集成的生态系统，可以根据应用规模在库和框架间切换自如。
       </p>
     </div>
-  </section>
+  </section> -->
 
-  <section id="sponsors">
+  <!-- <section id="sponsors">
     <h2>Platinum Sponsors</h2>
     <SponsorsGroup tier="platinum" placement="landing" />
     <h2>Gold Sponsors</h2>
     <SponsorsGroup tier="gold" placement="landing" />
-  </section>
+  </section> -->
 
   <!-- <SiteMap /> -->
-  <NewsLetter />
+  <!-- <NewsLetter /> -->
 </template>
 
 <style scoped>
@@ -168,18 +190,27 @@ html:not(.dark) .accent,
 }
 
 .actions .security {
-  background: linear-gradient(var(--vt-c-bg-mute), var(--vt-c-bg-mute)) padding-box,
+  background: linear-gradient(var(--vt-c-bg-mute), var(--vt-c-bg-mute))
+      padding-box,
     linear-gradient(45deg, #42d392, #647eff) border-box;
   border: 2px solid transparent;
 }
 
 .actions .security:hover {
-  background: linear-gradient(var(--vt-c-gray-light-4), var(--vt-c-gray-light-4)) padding-box,
+  background: linear-gradient(
+        var(--vt-c-gray-light-4),
+        var(--vt-c-gray-light-4)
+      )
+      padding-box,
     linear-gradient(45deg, #42d392, #647eff) border-box;
 }
 
 .dark .actions .security:hover {
-  background: linear-gradient(var(--vt-c-gray-dark-3), var(--vt-c-gray-dark-3)) padding-box,
+  background: linear-gradient(
+        var(--vt-c-gray-dark-3),
+        var(--vt-c-gray-dark-3)
+      )
+      padding-box,
     linear-gradient(45deg, #42d392, #647eff) border-box;
 }
 
@@ -298,7 +329,6 @@ html:not(.dark) .accent,
 #special-sponsor span:first-child {
   text-align: right;
 }
-
 
 #special-sponsor a {
   display: flex;

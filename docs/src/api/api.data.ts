@@ -2,15 +2,15 @@
 import fs from 'fs'
 import path from 'path'
 import type { MultiSidebarConfig } from '@vue/theme/src/vitepress/config.ts'
-import { sidebar } from '../../.vitepress1/config'
+import { sidebar } from '../../.vitepress/navigation'
 
-// Interface defining the structure of a single header in the API
+// 定义单个标题的结构接口
 interface APIHeader {
   anchor: string
   text: string
 }
 
-// Interface defining the structure of an API group with text, anchor, and items
+// 定义API组的结构接口，包含文本、锚点和项目
 export interface APIGroup {
   text: string
   anchor: string
@@ -21,41 +21,41 @@ export interface APIGroup {
   }[]
 }
 
-// Declare the resolved data type for API groups
+// 声明API组的解析数据类型
 export declare const data: APIGroup[]
 
-// Utility function to generate a slug from a string (used for anchor links)
+// 生成字符串的slug（用于锚点链接）的工具函数
 function slugify(text: string): string {
   return (
     text
-      // Replace special characters and spaces with hyphens
+      // 将特殊字符和空格替换为连字符
       .replace(/[\s~`!@#$%^&*()\-_+=[\]{}|\\;:"'<>,.?/]+/g, '-')
-      // Remove continuous separators
+      // 移除连续的分隔符
       .replace(/-{2,}/g, '-')
-      // Remove leading/trailing hyphens
+      // 移除前导和尾随的连字符
       .replace(/^-+|-+$/g, '')
-      // Ensure it doesn't start with a number (e.g. #121)
+      // 确保它不以数字开头（例如 #121）
       .replace(/^(\d)/, '_$1')
-      // Convert to lowercase
+      // 转换为小写
       .toLowerCase()
   )
 }
 
-// Utility function to parse headers from a markdown file at a given link
+// 从给定链接的markdown文件解析标题的工具函数
 function parsePageHeaders(link: string): APIHeader[] {
-  const fullPath = path.join(__dirname, '../', link) + '.md' // Resolve the full file path
-  const timestamp = fs.statSync(fullPath).mtimeMs // Get the last modified timestamp of the file
+  const fullPath = path.join(__dirname, '../', link) + '.md' // 解析完整文件路径
+  const timestamp = fs.statSync(fullPath).mtimeMs // 获取文件的最后修改时间戳
 
-  // Check if the file is cached and if its timestamp matches
+  // 检查文件是否被缓存且时间戳匹配
   const cached = headersCache.get(fullPath)
   if (cached && timestamp === cached.timestamp) {
-    return cached.headers // Return cached headers if they're up-to-date
+    return cached.headers // 如果缓存的标题是最新的，则返回缓存的标题
   }
 
-  const src = fs.readFileSync(fullPath, 'utf-8') // Read the markdown file
-  const headers = extractHeadersFromMarkdown(src) // Extract headers from the file content
+  const src = fs.readFileSync(fullPath, 'utf-8') // 读取markdown文件
+  const headers = extractHeadersFromMarkdown(src) // 从文件内容中提取标题
 
-  // Store the extracted headers along with the file's timestamp in the cache
+  // 将提取的标题及其文件的时间戳存储在缓存中
   headersCache.set(fullPath, {
     timestamp,
     headers
@@ -64,42 +64,43 @@ function parsePageHeaders(link: string): APIHeader[] {
   return headers
 }
 
-// Helper function to extract all headers (h2) from markdown content
+// 从markdown内容中提取所有标题（h2）的辅助函数
 function extractHeadersFromMarkdown(src: string): APIHeader[] {
-  const h2s = src.match(/^## [^\n]+/gm) // Match all h2 headers (## header)
-  const anchorRE = /\{#([^}]+)\}/ // Regular expression to match the anchor link in header (e.g. {#some-anchor})
+  const h2s = src.match(/^## [^\n]+/gm) // 匹配所有h2标题（## 标题）
+  const anchorRE = /\{#([^}]+)\}/ // 正则表达式匹配标题中的锚点链接（例如 {#some-anchor}）
   let headers: APIHeader[] = []
 
   if (h2s) {
-    // Process each h2 header and extract text and anchor
+    // 处理每个h2标题并提取文本和锚点
     headers = h2s.map((h) => {
-      const text = cleanHeaderText(h, anchorRE) // Clean up header text
-      const anchor = extractAnchor(h, anchorRE, text) // Extract or generate anchor
+      const text = cleanHeaderText(h, anchorRE) // 清理标题文本
+      const anchor = extractAnchor(h, anchorRE, text) // 提取或生成锚点
       return { text, anchor }
     })
   }
+  console.log(headers, 'headers----------\n')
 
   return headers
 }
 
-// Helper function to clean up header text (e.g., remove superscript, code formatting)
+// 清理标题文本的辅助函数（例如，移除上标、代码格式化）
 function cleanHeaderText(h: string, anchorRE: RegExp): string {
   return h
-    .slice(2) // Remove the "##" part of the header
-    .replace(/<sup class=.*/, '') // Remove superscript (e.g., <sup> tags)
-    .replace(/\\</g, '<') // Decode escaped characters like \<
-    .replace(/`([^`]+)`/g, '$1') // Remove inline code formatting (e.g., `code`)
-    .replace(anchorRE, '') // Remove anchor tags (e.g., {#anchor})
-    .trim() // Trim leading/trailing whitespace
+    .slice(2) // 移除标题中的 "##" 部分
+    .replace(/<sup class=.*/, '') // 移除上标（例如 <sup> 标签）
+    .replace(/\\</g, '<') // 解码转义字符如 \<
+    .replace(/`([^`]+)`/g, '$1') // 移除内联代码格式化（例如 `code`）
+    .replace(anchorRE, '') // 移除锚点标签（例如 {#anchor}）
+    .trim() // 去除前导和尾随的空白字符
 }
 
-// Helper function to extract the anchor link from a header (or generate one if missing)
+// 从标题中提取锚点链接的辅助函数（如果缺失则生成一个）
 function extractAnchor(h: string, anchorRE: RegExp, text: string): string {
-  const anchorMatch = h.match(anchorRE) // Match anchor if it exists
-  return anchorMatch?.[1] ?? slugify(text) // If no anchor, generate one using slugify
+  const anchorMatch = h.match(anchorRE) // 匹配锚点（如果存在）
+  return anchorMatch?.[1] ?? slugify(text) // 如果没有锚点，则使用slugify生成一个
 }
 
-// Cache for storing headers and their associated timestamps to avoid re-reading files
+// 缓存用于存储标题及其关联的时间戳，以避免重新读取文件
 const headersCache = new Map<
   string,
   {
@@ -108,21 +109,27 @@ const headersCache = new Map<
   }
 >()
 
-// Main export function for loading the API data
+// 主导出函数用于加载API数据
 export default {
-  // Declare files that should trigger Hot Module Replacement (HMR)
+  // 声明应触发热模块替换（HMR）的文件
   watch: './*.md',
 
-  // Load API data and process sidebar items
+  // 加载API数据并处理侧边栏项目
   load(): APIGroup[] {
-    // Generate the API group data by processing the sidebar configuration
-    return (sidebar as MultiSidebarConfig)['/api/'].map((group) => ({
-      text: group.text, // Text of the group (e.g., 'API')
-      anchor: slugify(group.text), // Generate anchor for the group title
+    // 通过处理侧边栏配置生成API组数据
+    console.log('r[0].items----------------\n')
+    debugger;
+    const r = (sidebar as MultiSidebarConfig)['/api/'].map((group) => ({
+      text: group.text, // 组的文本（例如 'API'）
+      anchor: slugify(group.text), // 生成组标题的锚点
       items: group.items.map((item) => ({
-        ...item, // Spread the original item properties
-        headers: parsePageHeaders(item.link), // Parse the headers from the item's markdown link
+        ...item, // 展开原始项目属性
+        headers: parsePageHeaders(item.link) // 从项目的markdown链接解析标题
       }))
     }))
+    console.log(r)
+    console.log('r[0].items----------------\n')
+
+    return r
   }
 }

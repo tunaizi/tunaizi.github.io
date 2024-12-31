@@ -6,7 +6,7 @@ footer: false
 import { VTCodeGroup, VTCodeGroupTab } from '@vue/theme'
 </script>
 
-# 快速上手 {#quick-start}
+# 所有文章 {#start-docs/}
 
 ## 线上尝试 Vue {#try-vue-online}
 

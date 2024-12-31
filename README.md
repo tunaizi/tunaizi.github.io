@@ -33,3 +33,6 @@ module.exports = {
     editLinks: false,
   },
 };
+
+
+//所有的表情 markdown-it-emoji lib/data/full.mjs

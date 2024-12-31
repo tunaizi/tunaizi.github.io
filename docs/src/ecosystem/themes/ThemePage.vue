@@ -13,8 +13,8 @@ import ThemeContact from './ThemeContact.vue'
 
     <ThemeList />
 
-    <ThemeContact>
-      想在这里介绍你的主题吗？ <a class="link" href="mailto:evan@vuejs.org?subject=Theme+affiliation">联系我们!</a>
-    </ThemeContact>
+    <!-- <ThemeContact> -->
+      <!-- 想在这里介绍你的主题吗？ <a class="link" href="mailto:evan@vuejs.org?subject=Theme+affiliation">联系我们!</a> -->
+    <!-- </ThemeContact> -->
   </div>
 </template>
