@@ -1,0 +1,1 @@
+import{_ as n,r as e,i as _,b as i}from"./framework.8a6edf47.js";const d={},r={class:"repl-loading"};function t(o,s){return e(),_("div",r,s[0]||(s[0]=[i("div",{class:"lds-ring"},[i("div"),i("div"),i("div"),i("div")],-1),i("div",null,"正在加载 Repl 环境...",-1)]))}const a=n(d,[["render",t]]);export{a as R};

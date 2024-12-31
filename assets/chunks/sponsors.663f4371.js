@@ -1,1 +1,0 @@
-import{t as a}from"./framework.d88b5515.js";const s=a(),o=a(!1),t="https://sponsors.vuejs.org",e=async()=>{o.value||(o.value=!0,s.value=await(await fetch(`${t}/data.json`)).json())};export{t as b,s as d,e as l};
