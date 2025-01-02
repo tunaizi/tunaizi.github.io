@@ -1,4 +1,5 @@
 # TCP/IP 
+!["四次挥手"](./四次挥手.png)
   ## 四层协议
   - 应用层 HTTP FTP Telnet
   - 传输层 TCP/UDP

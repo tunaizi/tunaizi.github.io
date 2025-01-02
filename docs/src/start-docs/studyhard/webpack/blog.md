@@ -23,14 +23,14 @@
     - 不能用箭头函数，使用this来接受参数 this.query
     - 替换js文件中所有涵盖“中化石化电子商务有限公司”字样替换成“xx”
     - uat-replace-loader
-      ```
+      ```js
         module.exports = function (source) {
           const result = source.replace("中化石化", "xx");
           this.callback(null, result);
         };
       ``` 
     - 在webpack.config.js中引入 
-      ```
+      ```js
         module: {
           rules: [{
             test: /\.js$/,
@@ -52,7 +52,7 @@
       - 指定挂载的webpack事件钩子
       - 处理webpack内部实例的特定数据
       - 功能完成后调用webpack提供的回调
-        ```
+        ```js
           // A JavaScript class.
           class MyExampleWebpackPlugin {
             // Define `apply` as its prototype method which is supplied with compiler as its argument
@@ -134,7 +134,7 @@
 
 ## webpack优化
 - 优化图片，使用url-loader优化，将小图片转成base64
-  ```
+  ```js
     module: {
       rules: [{
         test: /\.(png|svg|jpg|gif)$/,
@@ -149,7 +149,7 @@
     }
   ```
 - 分离第三方包 将第三方包分离出来（如axios,vue,react,vue-router等）
-  ```
+  ```js
   // 使用commonsChunkPlugin插件合并所有第三方包
   entry: {
     vendor: ['babel-polyfill', 'axios', 'react',...],
@@ -172,11 +172,11 @@
   ```
 - 分离css文件并压缩css文件
 - 压缩js文件
-  ```
+  ```js
     new UglifyJsPlugin()
   ```
 - 压缩Html
-  ```
+  ```js
     new HtmlWebpackPlugin({
       template: './index.html',
       minify: {
@@ -201,7 +201,7 @@
 
 ### 插件功能：自动生成README文件，标题取自插件option 
 
- ```
+ ```js
   const MY_PLUGIN_NAME = "MyReadMePlugin";  
   
   // 插件功能：自动生成README文件，标题取自插件option  

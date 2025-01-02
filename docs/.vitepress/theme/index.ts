@@ -25,7 +25,8 @@ export default Object.assign({}, VPTheme, {
       'sidebar-top': () => h(PreferenceSwitch),
       'sidebar-bottom': () => h(SecurityUpdateBtn),
       'aside-mid': () => h(SponsorsAside),
-      'aside-bottom': () => h(WwAds)
+      'aside-bottom': () => h(WwAds),
+      // 'edit-link': () => 'sdddd'
     })
   },
   enhanceApp({ app }: { app: App }) {

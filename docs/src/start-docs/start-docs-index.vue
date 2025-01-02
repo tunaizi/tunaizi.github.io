@@ -5,7 +5,6 @@
 import { data as apiIndex, APIGroup } from './start-docs.data'
 import { ref, computed, onMounted } from 'vue'
 import { withBase, useData, resolveUserConfig } from 'vitepress'
-console.log(useData(), 'apiIndex')
 console.log(apiIndex, 'apiIndex')
 // console.log(resolveUserConfig('', 'serve', ''), 'apiIndex')
 
@@ -20,7 +19,6 @@ onMounted(() => {
 const filtered = computed(() => {
   const q = normalize(query.value)
   const matches = (text: string) => normalize(text).includes(q)
-
   return apiIndex
     .map((section) => {
       // section title match

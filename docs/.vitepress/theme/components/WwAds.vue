@@ -12,13 +12,10 @@ onMounted(() => {
 <template>
   <div class="wwads-container">
     <div class="wwads-cn wwads-vertical" data-id="53">
-      sdfsdfdsf
-      sdfsdfdsf
-      sdfsdfdsf
-      sdfsdfdsf
-      sdfsdfdsf
-      sdfsdfdsf
-      sdfsdfdsf
+      wwads
+      wwads
+      wwads
+      wwads
     </div>
   </div>
 </template>

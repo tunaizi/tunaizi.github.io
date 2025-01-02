@@ -6,13 +6,20 @@
     "moduleResolution": "node",
     "esModuleInterop": true,
     "resolveJsonModule": true,
+    "forceConsistentCasingInFileNames": true,
     "allowJs": true,
     "strict": true,
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
-      "@theme/*": [".vitepress/theme/*"]
+      "@theme/*": [
+        ".vitepress/theme/*"
+      ]
     }
   },
-  "include": ["env.d.ts", "src/**/*", ".vitepress/**/*"]
+  "include": [
+    "env.d.ts",
+    "src/**/*",
+    ".vitepress/**/*"
+  ]
 }

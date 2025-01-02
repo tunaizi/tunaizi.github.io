@@ -70,8 +70,8 @@ export default defineConfigWithTheme<ThemeConfig>({
     socialLinks: [{ icon: 'github', link: 'https://github.com/tunaizi/' }],
 
     editLink: {
-      repo: 'localeLinksdffgdgdf',
-      text: '在 93534875934758934758437587'
+      repo: 'tunaizi/blog',
+      text: '在 github 上编辑本页'
     },
 
     footer: {
