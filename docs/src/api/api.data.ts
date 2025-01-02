@@ -118,14 +118,16 @@ export default {
   load(): APIGroup[] {
     // 通过处理侧边栏配置生成API组数据
     // console.log('r[0].items----------------\n')
-    const r = (sidebar as MultiSidebarConfig)['/api/'].map((group) => ({
-      text: group.text, // 组的文本（例如 'API'）
-      anchor: slugify(group.text), // 生成组标题的锚点
-      items: group.items.map((item) => ({
-        ...item, // 展开原始项目属性
-        headers: parsePageHeaders(item.link) // 从项目的markdown链接解析标题
-      }))
-    }))
+    const r = ((sidebar as MultiSidebarConfig)['/api/'] || []).map(
+      (group) => ({
+        text: group.text, // 组的文本（例如 'API'）
+        anchor: slugify(group.text), // 生成组标题的锚点
+        items: group.items.map((item) => ({
+          ...item, // 展开原始项目属性
+          headers: parsePageHeaders(item.link) // 从项目的markdown链接解析标题
+        }))
+      })
+    )
     // console.log(r)
     // console.log('r[0].items----------------\n')
 
