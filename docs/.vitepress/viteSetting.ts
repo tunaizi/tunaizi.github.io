@@ -27,14 +27,14 @@ export default {
     stringify: true
   },
   plugins: [
-    {
-      name: 'vite-plugin-vitepress-start',
-      config(config, env) {
-        const isDev = env.mode === 'development'
-        config.base = isDev ? '/' : '/blog'
-        return config
-      }
-    },
+    // {
+    //   name: 'vite-plugin-vitepress-start',
+    //   config(config, env) {
+    //     const isDev = env.mode === 'development'
+    //     config.base = isDev ? '/' : '/blog/'
+    //     return config
+    //   }
+    // },
     AutoSidebar({
       root: '/src/',
       docs: '/src/start-docs/',

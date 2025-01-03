@@ -7,7 +7,7 @@
     "dev": "vitepress",
     "build": "vitepress build",
     "preview": "vitepress preview",
-    "d": "rm -rf .vitepress/cache & vitepress dev  "
+    "d": "rm -rf .vitepress/cache & vitepress dev"
   },
   "dependencies": {
     "@types/lodash": "^4.17.13",

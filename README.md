@@ -29,7 +29,7 @@ module.exports = {
     nav: require("./config/nav"),
     sidebar: require("./config/sidebar"),
     lastUpdated: "Last Updated",
-    repo: "https://github.com/tunaizi/blog.github.io",
+    repo: "https://github.com/tunaizi.github.io",
     editLinks: false,
   },
 };
