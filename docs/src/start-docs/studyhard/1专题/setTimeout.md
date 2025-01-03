@@ -1,5 +1,6 @@
+# setTimeout
 ## setTimeout
-```
+```js
   // 利用requestAnimationFrame实现
   function settimeout(fn, delay) {
     let start = new Date().getTime()

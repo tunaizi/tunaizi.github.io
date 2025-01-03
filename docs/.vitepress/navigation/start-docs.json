@@ -3,9 +3,9 @@
   "/start-docs/create-blog.md/": [],
   "/start-docs/studyhard/": [
     {
-      "text": "推荐页导航",
+      "text": "",
       "items": [],
-      "link": "/start-docs/studyhard/README"
+      "link": "/start-docs/studyhard/aaa"
     },
     {
       "text": "数据结构与算法",
@@ -86,11 +86,6 @@
           "text": "JS 常用方法原理实现",
           "items": [],
           "link": "/start-docs/studyhard/z面试真题/原理篇"
-        },
-        {
-          "text": "# 全部面试题",
-          "items": [],
-          "link": "/start-docs/studyhard/z面试真题/questions"
         }
       ],
       "collapsed": false
@@ -207,7 +202,7 @@
           "link": "/start-docs/studyhard/1专题/vue-router或react-router"
         },
         {
-          "text": "# setTimeout",
+          "text": "setTimeout",
           "items": [],
           "link": "/start-docs/studyhard/1专题/setTimeout"
         },
