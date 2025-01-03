@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vitepress",
-    "build": "vitepress build --base=/blog/",
+    "build": "vitepress build",
     "preview": "vitepress preview",
     "d": "rm -rf .vitepress/cache & vitepress dev  "
   },
