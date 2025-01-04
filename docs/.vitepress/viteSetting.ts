@@ -3,7 +3,6 @@ import AutoSidebar from './autoSideBar'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
-// import ElementPlus from 'unplugin-element-plus/vite'
 export default {
   define: {
     __VUE_OPTIONS_API__: false
@@ -14,7 +13,8 @@ export default {
   },
   // @ts-ignore
   ssr: {
-    external: ['@vue/repl']
+    external: ['@vue/repl'],
+    noExternal: ['element-plus']
   },
   server: {
     host: true,
@@ -24,6 +24,7 @@ export default {
       allow: ['../..']
     }
   },
+
   build: {
     chunkSizeWarningLimit: Infinity
   },
