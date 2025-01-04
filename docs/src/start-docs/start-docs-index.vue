@@ -1,12 +1,7 @@
 <script setup lang="ts">
-// in .vue components or .md pages:
-// named import "data" is the resolved static data
-// can also import types for type consistency
 import { data as apiIndex, APIGroup } from './start-docs.data'
 import { ref, computed, onMounted } from 'vue'
-import { withBase, useData, resolveUserConfig } from 'vitepress'
-console.log(apiIndex, 'apiIndex')
-// console.log(resolveUserConfig('', 'serve', ''), 'apiIndex')
+import { withBase,  } from 'vitepress'
 
 const search = ref()
 const query = ref('')
@@ -19,22 +14,18 @@ onMounted(() => {
 const filtered = computed(() => {
   const q = normalize(query.value)
   const matches = (text: string) => normalize(text).includes(q)
-  return apiIndex
+  const list = (apiIndex[2].items ?? []).filter((e) => e.items.length)
+  return list
     .map((section) => {
       // section title match
       if (matches(section.text)) {
         return section
       }
-
       // filter groups
       const matchedGroups = section.items
         .map((item) => {
           // group title match
           if (matches(item.text)) {
-            return item
-          }
-          // ssr special case
-          if (q.includes('ssr') && item.text.startsWith('Server')) {
             return item
           }
           // filter headers
@@ -57,6 +48,7 @@ const filtered = computed(() => {
     })
     .filter((i) => i) as APIGroup[]
 })
+
 </script>
 
 <template>
@@ -80,7 +72,11 @@ const filtered = computed(() => {
       :key="section.text"
       class="api-section"
     >
-      <h2 :id="section.anchor">{{ section.text }}</h2>
+      <h2 :id="section.anchor">
+        <a :href="withBase(section.link || '') + '.html'">
+          {{ section.text }}
+        </a>
+      </h2>
       <div class="api-groups">
         <div
           v-for="item of section.items"
@@ -90,7 +86,7 @@ const filtered = computed(() => {
           <h3>{{ item.text }}</h3>
           <ul>
             <li v-for="h of item.headers" :key="h.anchor">
-              <a :href="withBase(item.link) + '.html#' + h.anchor">{{
+              <a :href="withBase(item.link || '') + '.html#' + h.anchor">{{
                 h.text
               }}</a>
             </li>

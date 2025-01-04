@@ -21,10 +21,10 @@
 
 ## 书籍推荐
 
-- [x] 高性能网站建设指南
-- [x] 高性能 JavaScript
+<!-- - [x] 高性能网站建设指南 -->
+<!-- - [x] 高性能 JavaScript -->
 - [x] JavaScript 高级程序设计第四版
-- [ ] JavaScript 忍者秘籍第二版
+<!-- - [ ] JavaScript 忍者秘籍第二版
 - [x] 你不知道的 JavaScript <上册>
 - [x] 你不知道的 JavaScript <中册>
 - [ ] 你不知道的 JavaScript <下册>
@@ -35,5 +35,5 @@
 - [x] 深入理解 ES6
 - [x] React 进阶指路
 - [x] 深入 React 技术栈
-- [x] React 状态管理与同构实战
+- [x] React 状态管理与同构实战 -->
 <!-- (https://github.com/peng92055/study-hard/blob/master)  -->

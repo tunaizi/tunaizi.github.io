@@ -1,8 +1,12 @@
 import fs from 'fs'
 import path from 'path'
-import type { MultiSidebarConfig } from '@vue/theme/src/vitepress/config.ts'
+import type {
+  MultiSidebarConfig,
+  SidebarGroup
+} from '../../.vitepress/theme/src/vitepress/config.ts'
 import { sidebar } from '../../.vitepress/navigation'
 import _ from 'lodash'
+import { MenuItemWithLink } from '../../.vitepress/theme/src'
 
 // 定义单个标题的结构接口
 interface APIHeader {
@@ -12,13 +16,11 @@ interface APIHeader {
 
 // 定义API组的结构接口，包含文本、锚点和项目
 export interface APIGroup {
+  link: string
   text: string
   anchor: string
-  items: {
-    text: string
-    link: string
-    headers: APIHeader[]
-  }[]
+  headers: APIHeader[]
+  items: APIGroup[]
 }
 
 // 声明API组的解析数据类型
@@ -40,18 +42,16 @@ function slugify(text: string): string {
       .toLowerCase()
   )
 }
-
+function joinToCwd(...str: string[]) {
+  return path.posix.join(process.cwd(), '/src/', ...str)
+}
 // 从给定链接的markdown文件解析标题的工具函数
 function parsePageHeaders(link: string): APIHeader[] {
-  const errBack = [
-    {
-      anchor: '',
-      text: ''
-    }
-  ]
+  const errBack: APIHeader[] = []
   if (!link) return errBack
   try {
-    const fullPath = path.join(__dirname, '../', link) + '.md' // 解析完整文件路径
+    const fullPath = `${joinToCwd(link)}.md` // 解析完整文件路径
+
     const timestamp = fs.statSync(fullPath).mtimeMs // 获取文件的最后修改时间戳
 
     // 检查文件是否被缓存且时间戳匹配
@@ -121,106 +121,36 @@ const headersCache = new Map<
   }
 >()
 
-// type sidebarItem = {
-//   text: string
-//   items: sidebarItem[]
-//   link: string
-//   id: string
-//   anchor: string
-// }
-
-// function parseWatchFile(filePaths: string[]) {
-//   function getLink(f: string, s: string) {
-//     if (s.endsWith('.md')) {
-//       return s.replace('.md', '.html')
-//     }
-//     return f
-//   }
-//   function parse(ar: string[][]) {
-//     const root: sidebarItem = {
-//       text: '/start-docs/',
-//       items: [],
-//       link: '/start-docs/',
-//       id: '/9991',
-//       anchor: slugify('/start-docs/')
-//     }
-//     ar.forEach(([fileName, ...pathSegments]) => {
-//       let current = root
-//       const fullPath = pathSegments.reduce((acc, segment, index) => {
-//         if (index === 0) {
-//           return `/${segment}`
-//         }
-//         return `${acc}/${segment}`
-//       }, '')
-//       pathSegments.forEach((segment) => {
-//         let child = current.items.find((item) => item.id === segment)
-//         if (!child) {
-//           const link = getLink(fullPath, segment)
-//           child = {
-//             id: segment,
-//             items: [],
-//             link,
-//             anchor: slugify(link),
-//             text: segment
-//           }
-//           current.items.push(child)
-//         }
-//         current = child
-//       })
-//       if (fileName) {
-//         const link = getLink(fullPath, fileName)
-//         current.items.push({
-//           id: fileName,
-//           text: link,
-//           link,
-//           items: [],
-//           anchor: slugify(link)
-//         })
-//       }
-//     })
-//     return root.items
-//   }
-
-//   return parse(
-//     filePaths.map((e) =>
-//       e.replace(path.join(process.cwd(), '/src'), '').split('/').slice(1)
-//     )
-//   )
-// }
-// 主导出函数用于加载API数据
+type ExtendsSidebarGroup = SidebarGroup & { link?: string }
+function addHeaders(
+  targetList: (ExtendsSidebarGroup | MenuItemWithLink)[]
+): APIGroup[] {
+  if (!_.isArray(targetList) || !targetList.length) return []
+  return targetList.map(
+    (group: ExtendsSidebarGroup | MenuItemWithLink): APIGroup => {
+      let items = _.get(group, 'items', []) as ExtendsSidebarGroup['items']
+      let link = group.link || ''
+      const retItem = {
+        link,
+        headers: parsePageHeaders(link), // 从项目的markdown链接解析标题
+        text: group.text, // 组的文本（例如 'API'）
+        anchor: slugify(group.text), // 生成组标题的锚点
+        items: addHeaders(items)
+      }
+      if (!link && retItem.items.length) {
+        retItem.link = retItem.items[0].link
+      }
+      return retItem
+    }
+  )
+}
 
 export default {
   // 声明应触发热模块替换（HMR）的文件
   watch: './**/**.md',
   // 加载API数据并处理侧边栏项目
-  load(watchedFiles: string[]): APIGroup[] {
-    //@ts-ignore
-    const targetList = sidebar['/start-docs/studyhard/']
-    console.log(targetList, 'targetList')
-    return _.reduce(
-      targetList,
-      (acc, group) => {
-        if (_.isArray(group.items) && group.items.length) {
-          const ite: APIGroup = {
-            text: group.text, // 组的文本（例如 'API'）
-            anchor: slugify(group.text), // 生成组标题的锚点
-            items: group.items.map((item: { link: string }) => {
-              // console.log(item, 'item')
-
-              if (_.isString(item.link) && item.link.endsWith('.md')) {
-                item.link = item.link.replace(/(\.md)$/, '')
-              }
-              return {
-                ...item,
-                headers: parsePageHeaders(item.link) // 从项目的markdown链接解析标题
-              }
-            })
-          }
-          acc.push(ite)
-        }
-        return acc
-      },
-      [] as APIGroup[]
-    )
+  load(_watchedFiles: string[]): APIGroup[] {
+    const targetList = _.get(sidebar as MultiSidebarConfig, '/start-docs/')
+    return addHeaders(targetList)
   }
 }

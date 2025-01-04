@@ -1,4 +1,4 @@
-import type { Config as ThemeConfig } from '@vue/theme'
+import type { Config as ThemeConfig } from '../theme/src'
 import startDocsJson from './start-docs.json'
 export const sidebar = Object.assign(
   startDocsJson,

@@ -1,6 +1,6 @@
 import './styles/index.css'
 import { h, App } from 'vue'
-import { VPTheme } from '@vue/theme'
+import { VPTheme } from './src'
 import PreferenceSwitch from './components/PreferenceSwitch.vue'
 import SecurityUpdateBtn from './components/SecurityUpdateBtn.vue'
 import {
@@ -10,7 +10,7 @@ import {
 } from './components/preferences'
 import SponsorsAside from './components/SponsorsAside.vue'
 // import VueSchoolLink from './components/VueSchoolLink.vue'
-import WwAds from './components/WwAds.vue'
+// import WwAds from './components/WwAds.vue'
 import VPNavBarTitle from './components/VPNavBarTitle.vue'
 
 // import Banner from './components/Banner.vue'
@@ -25,7 +25,7 @@ export default Object.assign({}, VPTheme, {
       'sidebar-top': () => h(PreferenceSwitch),
       'sidebar-bottom': () => h(SecurityUpdateBtn),
       'aside-mid': () => h(SponsorsAside),
-      'aside-bottom': () => h(WwAds),
+      // 'aside-bottom': () => h(WwAds),
       // 'edit-link': () => 'sdddd'
     })
   },

@@ -13,9 +13,6 @@ onMounted(() => {
   <div class="wwads-container">
     <div class="wwads-cn wwads-vertical" data-id="53">
       wwads
-      wwads
-      wwads
-      wwads
     </div>
   </div>
 </template>

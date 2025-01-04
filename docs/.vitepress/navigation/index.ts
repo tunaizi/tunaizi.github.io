@@ -1,4 +1,4 @@
-import type { Config as ThemeConfig } from '@vue/theme'
+import type { Config as ThemeConfig } from '../theme/src'
 import _ from 'lodash'
 import { nav as nav1 } from './nav'
 import { sidebar as sidebar1 } from './sidebar'

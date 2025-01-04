@@ -1,5 +1,9 @@
 import { UserConfig } from 'vitepress'
 import AutoSidebar from './autoSideBar'
+import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+// import ElementPlus from 'unplugin-element-plus/vite'
 export default {
   define: {
     __VUE_OPTIONS_API__: false
@@ -35,10 +39,22 @@ export default {
     //     return config
     //   }
     // },
+    AutoImport({
+      resolvers: [ElementPlusResolver()]
+    }),
+    Components({
+      resolvers: [ElementPlusResolver()]
+    }),
     AutoSidebar({
       root: '/src/',
-      docs: '/src/start-docs/',
-      wrireToJson: '.vitepress/navigation/start-docs.json'
+      docs: '/src/',
+      wrireToJson: '.vitepress/navigation/start-docs.json',
+      textmap: {
+        '/start-docs/all-docs/aaa': '推荐页导航',
+        'all-docs': '所有文档',
+        '/start-docs/index': '全部文档',
+        '/start-docs/create-blog': 'vitepress md语法速查'
+      }
     })
   ]
 } as UserConfig['vite']

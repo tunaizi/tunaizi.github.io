@@ -1,4 +1,4 @@
-import type { Config as ThemeConfig } from '@vue/theme'
+import type { Config as ThemeConfig } from '../theme/src'
 export const copySidebar: ThemeConfig['sidebar'] = {
   '/guide/': [
     {

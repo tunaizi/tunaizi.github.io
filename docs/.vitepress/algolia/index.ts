@@ -1,4 +1,4 @@
-import type { Config as ThemeConfig } from '@vue/theme'
+import type { Config as ThemeConfig } from '../theme/src'
 const algolia: ThemeConfig['algolia'] = {
   indexName: 'vuejs_cn2',
   appId: 'UURH1MHAF7',

@@ -1,4 +1,4 @@
-import type { Config as ThemeConfig } from '@vue/theme'
+import type { Config as ThemeConfig } from '../theme/src'
 const i18n: ThemeConfig['i18n'] = {
   search: '搜索',
   menu: '菜单',

@@ -1,6 +1,6 @@
 import { defineConfigWithTheme } from 'vitepress'
-import type { Config as ThemeConfig } from '@vue/theme'
-import baseConfig from '@vue/theme/config'
+import type { Config as ThemeConfig } from './theme/src'
+import baseConfig from './theme/src/vitepress/config/baseConfig'
 import { headerPlugin } from './headerMdPlugin'
 import i18n from './i18n'
 import algolia from './algolia'
@@ -70,7 +70,7 @@ export default defineConfigWithTheme<ThemeConfig>({
     socialLinks: [{ icon: 'github', link: 'https://github.com/tunaizi/' }],
 
     editLink: {
-      repo: 'tunaizi/blog',
+      repo: 'tunaizi/tunaizi.github.io',
       text: '在 github 上编辑本页'
     },
 
@@ -79,9 +79,7 @@ export default defineConfigWithTheme<ThemeConfig>({
         text: '版权声明',
         link: 'Sdfsdfds'
       },
-      copyright:
-        // '本中文文档采用 知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议  (CC BY-NC-SA 4.0) 进行许可。'
-        'dfgdfg----sdfgsf'
+      copyright: '随便玩玩'
     }
   },
 

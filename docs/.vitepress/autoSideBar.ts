@@ -2,7 +2,7 @@ import glob from 'glob'
 import fs from 'fs'
 import path from 'path'
 import { Plugin, UserConfig, ViteDevServer, normalizePath } from 'vite'
-
+import _ from 'lodash'
 interface SidebarItem {
   text: string
   link?: string
@@ -21,6 +21,9 @@ interface PluginOptions {
   sidebarResolved?: (sidebar: SidebarConfig) => void
   mergeSidebar?: (sidebar: SidebarConfig, config: UserConfig) => UserConfig
   wrireToJson?: string
+  textmap?:
+    | Record<string, string>
+    | ((s: SidebarItem) => SidebarItem | void)
 }
 
 type NormalizedOptions = Required<PluginOptions>
@@ -99,8 +102,34 @@ function VitePluginAutoSidebar(options: PluginOptions = {}): Plugin {
     }
   }
 }
+const azReg = /^[A-Za-z]-/
 
+function isArrayAndLen(t: any) {
+  return !!(_.isArray(t) && t.length)
+}
 function getSidebarConfig(opts: NormalizedOptions): SidebarConfig {
+  function transTxt(item: SidebarItem, repAz = false) {
+    if (opts.textmap) {
+      if (_.isFunction(opts.textmap)) {
+        _.assign(item, opts.textmap(item) || {})
+      }
+      if (_.isPlainObject(opts.textmap)) {
+        let text = _.get(opts.textmap, item.link || item.text) || ''
+        text && _.assign(item, { text })
+      }
+    }
+    repAz && _.assign(item, { text: item.text.replace(azReg, '') })
+    return item
+  }
+  function stortForTxt(items: SidebarItem[]) {
+    function eqText(s1: string, s2: string) {
+      const m1 = String(_.get(s1.match(azReg), 0, ''))
+      const m2 = String(_.get(s2.match(azReg), 0, ''))
+      return m1.charCodeAt(0) - m2.charCodeAt(0)
+    }
+    items.sort((a, b) => eqText(_.get(a, 'text'), _.get(b, 'text')))
+    return items
+  }
   const docsPath = opts.docs
   const paths = glob.sync('**/*.md', {
     cwd: docsPath,
@@ -116,7 +145,7 @@ function getSidebarConfig(opts: NormalizedOptions): SidebarConfig {
     const topLevel = basePath
       ? `/${basePath}/${segments.shift()}/`
       : `/${segments.shift()}/`
-    if (topLevel.endsWith('.md')) return
+    if (topLevel.endsWith('.md/')) return
     if (!sidebar[topLevel]) {
       sidebar[topLevel] = []
     }
@@ -147,92 +176,25 @@ function getSidebarConfig(opts: NormalizedOptions): SidebarConfig {
   if (opts.sidebarResolved) {
     opts.sidebarResolved(sidebar)
   }
+
+  _.forOwn(sidebar, (group) => {
+    _.forEach(group, (item) => {
+      transTxt(item)
+      if (isArrayAndLen(item.items)) {
+        item.items = stortForTxt(item.items || [])
+        transTxt(item)
+        _.forEach(item.items, (item2) => {
+          transTxt(item2, true)
+          if (isArrayAndLen(item2.items)) {
+            _.forEach(item2.items, (item3) => transTxt(item3))
+          }
+        })
+      }
+    })
+  })
+
   return sidebar
 }
-// function getSidebarConfig1(opts: NormalizedOptions): SidebarConfig {
-//   const docsPath = opts.docs
-//   const paths = glob.sync('**/*.md', {
-//     cwd: docsPath,
-//     ignore: opts.ignores
-//   })
-//   const basePath = `/${path.posix.relative(opts.root, docsPath)}/`
-//   let baseItem: SidebarItem = {
-//     items: [],
-//     text: basePath,
-//     link: basePath
-//   }
-//   const sidebar: SidebarConfig = {}
-
-//   paths.forEach((fullPath) => {
-//     const segments = fullPath.split('/')
-//     const absolutePath = path.posix.resolve(docsPath, fullPath)
-//     if (segments.length === 0) return
-//     let topLevel = basePath
-//       ? `${basePath}${segments.shift()}/`
-//       : `/${segments.shift()}`
-
-//     if (topLevel.endsWith('.md/')) {
-//       topLevel = topLevel.replace(/\/$/, '')
-//       if (topLevel.endsWith('index.md/')) {
-//         baseItem.link = desuffix(topLevel)
-//         topLevel = basePath
-//       }
-//       if (basePath !== topLevel && topLevel.startsWith(basePath)) {
-//         if (!(basePath in sidebar)) sidebar[basePath] = [baseItem]
-//         baseItem.items = baseItem.items || []
-//         baseItem.items.push({
-//           text: topLevel.replace(/(\.md|index\.md)$/, ''),
-//           link: desuffix(topLevel),
-//           items: []
-//         })
-//         topLevel = topLevel.replace(/(\.md|index\.md)$/, '')
-//       } else {
-//         sidebar[basePath] = [baseItem]
-//       }
-//     }
-//     baseItem.items = baseItem.items || []
-//     if (!sidebar[topLevel]) {
-//       sidebar[topLevel] = []
-//     }
-//     let currentLevel: SidebarItem[] = sidebar[topLevel]
-//     segments.forEach((segment) => {
-//       let curConfig = currentLevel.find((item) => item.text === segment)
-//       if (!curConfig) {
-//         const itemConfig: SidebarItem = {
-//           text: '',
-//           items: []
-//         }
-//         if (segment.endsWith('.md')) {
-//           const route = getRoute(opts.root, absolutePath)
-//           itemConfig.text = matchTitle(absolutePath)
-//           itemConfig.link = route
-//           titleCache[route] = itemConfig.text
-//         } else {
-//           itemConfig.text = segment
-//           itemConfig.collapsed = false
-//           itemConfig.items = []
-//         }
-//         currentLevel.push(itemConfig)
-//         curConfig = itemConfig
-//       }
-//       currentLevel = curConfig.items || []
-//     })
-//   })
-//   if (opts.sidebarResolved) {
-//     opts.sidebarResolved(sidebar)
-//   }
-
-//   for (const key in sidebar) {
-//     if (!Object.prototype.hasOwnProperty(key)) {
-//       let item = sidebar[key]
-//       if (key !== basePath) {
-//         baseItem.items = baseItem.items?.concat(item)
-//         delete sidebar[key]
-//       }
-//     }
-//   }
-//   return sidebar
-// }
 
 function matchTitle(p: string): string {
   const content = fs.readFileSync(p, 'utf-8')
@@ -265,6 +227,7 @@ function normalizeOptions(options: PluginOptions): NormalizedOptions {
     ignores: (options.ignores ?? []).map(normalizePath),
     wrireToJson: normalizePath(options.wrireToJson || ''),
     sidebarResolved: options.sidebarResolved ?? function () {},
+    textmap: options.textmap || {},
     mergeSidebar:
       options.mergeSidebar ??
       function (sidebar: SidebarConfig, config: UserConfig) {
