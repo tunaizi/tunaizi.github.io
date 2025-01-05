@@ -70,7 +70,6 @@ export default defineConfigWithTheme<ThemeConfig>({
     socialLinks: [{ icon: 'github', link: 'https://github.com/tunaizi/' }],
 
     editLink: {
-      repo: 'tunaizi/tunaizi.github.io',
       text: '在 github 上编辑本页'
     },
 

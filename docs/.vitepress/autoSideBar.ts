@@ -177,14 +177,15 @@ function getSidebarConfig(opts: NormalizedOptions): SidebarConfig {
     opts.sidebarResolved(sidebar)
   }
 
-  _.forOwn(sidebar, (group) => {
+  _.forOwn(sidebar, (group, key) => {
+    sidebar[key] = group = stortForTxt(group || [])
     _.forEach(group, (item) => {
-      transTxt(item)
+      transTxt(item, true)
       if (isArrayAndLen(item.items)) {
-        item.items = stortForTxt(item.items || [])
+        // item.items = stortForTxt(item.items || [])
         transTxt(item)
         _.forEach(item.items, (item2) => {
-          transTxt(item2, true)
+          transTxt(item2)
           if (isArrayAndLen(item2.items)) {
             _.forEach(item2.items, (item3) => transTxt(item3))
           }

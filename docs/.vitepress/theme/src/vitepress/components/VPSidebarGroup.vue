@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { useData, useRouter } from 'vitepress'
 import { MenuItemWithLink } from '../../core'
+import { inject } from 'vue'
 // import VPSidebarLink from './VPSidebarLink.vue'
 import { useSidebar } from '../composables/sidebar'
 import { isActive } from '../support/utils'
@@ -8,7 +9,9 @@ import { TreeNodeData } from 'element-plus/es/components/tree/src/tree.type'
 const { page } = useData()
 const { go } = useRouter()
 const { sidebar } = useSidebar()
-const updateActive = (item: MenuItemWithLink, node: TreeNodeData) => {
+const closeSideBar = inject('close-sidebar') as () => void
+
+const updateActive = (item: any, node: TreeNodeData) => {
   const isAct = isActive(page.value.relativePath, item.link)
     ? 'active'
     : ''
@@ -33,8 +36,8 @@ const elTreeOpt = {
 // }
 
 function linkTo(data: MenuItemWithLink, node: TreeNodeData) {
-  console.log(node.isLeaf, node.level, 'node')
   if (data.link) {
+    closeSideBar()
     go(data.link)
   }
 }

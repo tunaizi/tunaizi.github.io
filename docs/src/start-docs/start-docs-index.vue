@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { data as apiIndex, APIGroup } from './start-docs.data'
 import { ref, computed, onMounted } from 'vue'
-import { withBase,  } from 'vitepress'
+import { withBase } from 'vitepress'
 
 const search = ref()
 const query = ref('')
@@ -14,7 +14,7 @@ onMounted(() => {
 const filtered = computed(() => {
   const q = normalize(query.value)
   const matches = (text: string) => normalize(text).includes(q)
-  const list = (apiIndex[2].items ?? []).filter((e) => e.items.length)
+  const list = apiIndex.filter((e) => e.items.length)
   return list
     .map((section) => {
       // section title match
@@ -48,7 +48,6 @@ const filtered = computed(() => {
     })
     .filter((i) => i) as APIGroup[]
 })
-
 </script>
 
 <template>

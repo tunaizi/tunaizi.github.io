@@ -44,7 +44,7 @@ export interface Config {
      *
      * If a branch isn't specified, it defaults to `main`.
      */
-    repo?: string
+    repo?: string | ((s: string) => string)
     text?: string
   }
 

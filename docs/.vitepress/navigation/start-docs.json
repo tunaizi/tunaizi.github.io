@@ -11,289 +11,283 @@
       "link": "/start-docs/create-blog"
     },
     {
-      "text": "所有文档",
+      "text": "",
+      "items": [],
+      "link": "/start-docs/aaa"
+    },
+    {
+      "text": "数据结构与算法",
       "items": [
         {
-          "text": "推荐页导航",
+          "text": "链表",
           "items": [],
-          "link": "/start-docs/all-docs/aaa"
+          "link": "/start-docs/A-数据结构与算法/链表"
+        },
+        {
+          "text": "递归和分治",
+          "items": [],
+          "link": "/start-docs/A-数据结构与算法/递归和分治"
+        },
+        {
+          "text": "# DFS 深度优先遍历和 BFS 广度优先遍历",
+          "items": [],
+          "link": "/start-docs/A-数据结构与算法/深度、广度优先遍历"
+        },
+        {
+          "text": "树&二叉树&二叉搜索树",
+          "items": [],
+          "link": "/start-docs/A-数据结构与算法/树"
+        },
+        {
+          "text": "数组-数据结构",
+          "items": [],
+          "link": "/start-docs/A-数据结构与算法/数组"
+        },
+        {
+          "text": "排序算法汇总",
+          "items": [],
+          "link": "/start-docs/A-数据结构与算法/排序"
         },
         {
           "text": "数据结构与算法",
-          "items": [
-            {
-              "text": "链表",
-              "items": [],
-              "link": "/start-docs/all-docs/A-数据结构与算法/链表"
-            },
-            {
-              "text": "递归和分治",
-              "items": [],
-              "link": "/start-docs/all-docs/A-数据结构与算法/递归和分治"
-            },
-            {
-              "text": "# DFS 深度优先遍历和 BFS 广度优先遍历",
-              "items": [],
-              "link": "/start-docs/all-docs/A-数据结构与算法/深度、广度优先遍历"
-            },
-            {
-              "text": "树&二叉树&二叉搜索树",
-              "items": [],
-              "link": "/start-docs/all-docs/A-数据结构与算法/树"
-            },
-            {
-              "text": "数组-数据结构",
-              "items": [],
-              "link": "/start-docs/all-docs/A-数据结构与算法/数组"
-            },
-            {
-              "text": "排序算法汇总",
-              "items": [],
-              "link": "/start-docs/all-docs/A-数据结构与算法/排序"
-            },
-            {
-              "text": "数据结构与算法",
-              "items": [],
-              "link": "/start-docs/all-docs/A-数据结构与算法/堆栈和队列"
-            },
-            {
-              "text": "哈希表 map&set",
-              "items": [],
-              "link": "/start-docs/all-docs/A-数据结构与算法/哈希表"
-            },
-            {
-              "text": "动态规划和贪心算法",
-              "items": [],
-              "link": "/start-docs/all-docs/A-数据结构与算法/动态规划和贪心算法"
-            },
-            {
-              "text": "快读入口",
-              "items": [],
-              "link": "/start-docs/all-docs/A-数据结构与算法/blog"
-            }
-          ],
-          "collapsed": false
+          "items": [],
+          "link": "/start-docs/A-数据结构与算法/堆栈和队列"
         },
         {
-          "text": "专题",
-          "items": [
-            {
-              "text": "前端长列表渲染优化",
-              "items": [],
-              "link": "/start-docs/all-docs/B-专题/长列表渲染优化"
-            },
-            {
-              "text": "# 请求场景题目",
-              "items": [],
-              "link": "/start-docs/all-docs/B-专题/请求并行串行问题及复用"
-            },
-            {
-              "text": "# 常用设计模式",
-              "items": [],
-              "link": "/start-docs/all-docs/B-专题/设计模式"
-            },
-            {
-              "text": "观察者模式和发布订阅模式",
-              "items": [],
-              "link": "/start-docs/all-docs/B-专题/观察者模式及发布订阅者模式"
-            },
-            {
-              "text": "防抖 And 节流",
-              "items": [],
-              "link": "/start-docs/all-docs/B-专题/节流-防抖"
-            },
-            {
-              "text": "纯函数",
-              "items": [],
-              "link": "/start-docs/all-docs/B-专题/纯函数与副作用函数"
-            },
-            {
-              "text": "# es6中箭头函数与普通函数的区别",
-              "items": [],
-              "link": "/start-docs/all-docs/B-专题/箭头函数与普通函数"
-            },
-            {
-              "text": "模块化",
-              "items": [],
-              "link": "/start-docs/all-docs/B-专题/模块化及打包模式"
-            },
-            {
-              "text": "检测是不是数组的方式",
-              "items": [],
-              "link": "/start-docs/all-docs/B-专题/检测数组类型的几种方式"
-            },
-            {
-              "text": "# 柯里化 currying",
-              "items": [],
-              "link": "/start-docs/all-docs/B-专题/柯里化"
-            },
-            {
-              "text": "# 单例模式",
-              "items": [],
-              "link": "/start-docs/all-docs/B-专题/单例模式和工厂模式"
-            },
-            {
-              "text": "常见的 Web 攻击",
-              "items": [],
-              "link": "/start-docs/all-docs/B-专题/前端网络安全"
-            },
-            {
-              "text": "从一个 url 到页面展示的全流程",
-              "items": [],
-              "link": "/start-docs/all-docs/B-专题/从URL到显示网页的全过程"
-            },
-            {
-              "text": "Vuex / Redux",
-              "items": [],
-              "link": "/start-docs/all-docs/B-专题/vuex或redux"
-            },
-            {
-              "text": "hashchange 和 h5 history popstate",
-              "items": [],
-              "link": "/start-docs/all-docs/B-专题/vue-router或react-router"
-            },
-            {
-              "text": "setTimeout",
-              "items": [],
-              "link": "/start-docs/all-docs/B-专题/setTimeout"
-            },
-            {
-              "text": "# JS与Native通信",
-              "items": [],
-              "link": "/start-docs/all-docs/B-专题/js与native通信"
-            },
-            {
-              "text": "class与构造函数",
-              "items": [],
-              "link": "/start-docs/all-docs/B-专题/class与函数"
-            },
-            {
-              "text": "# bind & call & apply",
-              "items": [],
-              "link": "/start-docs/all-docs/B-专题/bind&call&apply"
-            },
-            {
-              "text": "Promise/A+",
-              "items": [],
-              "link": "/start-docs/all-docs/B-专题/Promise原理及实现"
-            },
-            {
-              "text": "NPM包管理机制",
-              "items": [],
-              "link": "/start-docs/all-docs/B-专题/NPM包管理"
-            },
-            {
-              "text": "JS引擎的两种查找方式",
-              "items": [],
-              "link": "/start-docs/all-docs/B-专题/LHS和RHS"
-            },
-            {
-              "text": "继承的几种类型",
-              "items": [],
-              "link": "/start-docs/all-docs/B-专题/JS继承"
-            },
-            {
-              "text": "this指向",
-              "items": [],
-              "link": "/start-docs/all-docs/B-专题/JS的this关键字"
-            },
-            {
-              "text": "Object",
-              "items": [],
-              "link": "/start-docs/all-docs/B-专题/JS对象拷贝及深拷贝"
-            },
-            {
-              "text": "# 垃圾回收",
-              "items": [],
-              "link": "/start-docs/all-docs/B-专题/JS垃圾回收机制"
-            },
-            {
-              "text": "管理作用域",
-              "items": [],
-              "link": "/start-docs/all-docs/B-专题/JS作用域"
-            },
-            {
-              "text": "new 关键字",
-              "items": [],
-              "link": "/start-docs/all-docs/B-专题/JS中的new干了什么"
-            },
-            {
-              "text": "TCP/IP",
-              "items": [],
-              "link": "/start-docs/all-docs/B-专题/HTTP(s)及缓存机制"
-            },
-            {
-              "text": "# event bus",
-              "items": [],
-              "link": "/start-docs/all-docs/B-专题/EventBus"
-            },
-            {
-              "text": "怎么画 1px 像素线",
-              "items": [],
-              "link": "/start-docs/all-docs/B-专题/1PX"
-            }
-          ],
-          "collapsed": false
+          "text": "哈希表 map&set",
+          "items": [],
+          "link": "/start-docs/A-数据结构与算法/哈希表"
         },
         {
-          "text": "面试真题",
-          "items": [
-            {
-              "text": "JS 常用逻辑题",
-              "items": [],
-              "link": "/start-docs/all-docs/C-面试真题/常考篇"
-            },
-            {
-              "text": "JS 常用方法原理实现",
-              "items": [],
-              "link": "/start-docs/all-docs/C-面试真题/原理篇"
-            }
-          ],
-          "collapsed": false
+          "text": "动态规划和贪心算法",
+          "items": [],
+          "link": "/start-docs/A-数据结构与算法/动态规划和贪心算法"
         },
         {
-          "text": "前端基础体系",
-          "items": [
-            {
-              "text": "前端基础知识体系",
-              "items": [],
-              "link": "/start-docs/all-docs/D-前端基础体系/blog"
-            }
-          ],
-          "collapsed": false
+          "text": "快读入口",
+          "items": [],
+          "link": "/start-docs/A-数据结构与算法/blog"
+        }
+      ],
+      "collapsed": false
+    },
+    {
+      "text": "专题",
+      "items": [
+        {
+          "text": "前端长列表渲染优化",
+          "items": [],
+          "link": "/start-docs/B-专题/长列表渲染优化"
         },
         {
-          "text": "cli",
-          "items": [
-            {
-              "text": "学习制作项目CLI轨迹",
-              "items": [],
-              "link": "/start-docs/all-docs/E-cli/blog"
-            }
-          ],
-          "collapsed": false
+          "text": "# 请求场景题目",
+          "items": [],
+          "link": "/start-docs/B-专题/请求并行串行问题及复用"
         },
         {
-          "text": "css",
-          "items": [
-            {
-              "text": "CSS 常见问题",
-              "items": [],
-              "link": "/start-docs/all-docs/F-css/blog"
-            }
-          ],
-          "collapsed": false
+          "text": "# 常用设计模式",
+          "items": [],
+          "link": "/start-docs/B-专题/设计模式"
         },
+        {
+          "text": "观察者模式和发布订阅模式",
+          "items": [],
+          "link": "/start-docs/B-专题/观察者模式及发布订阅者模式"
+        },
+        {
+          "text": "防抖 And 节流",
+          "items": [],
+          "link": "/start-docs/B-专题/节流-防抖"
+        },
+        {
+          "text": "纯函数",
+          "items": [],
+          "link": "/start-docs/B-专题/纯函数与副作用函数"
+        },
+        {
+          "text": "# es6中箭头函数与普通函数的区别",
+          "items": [],
+          "link": "/start-docs/B-专题/箭头函数与普通函数"
+        },
+        {
+          "text": "模块化",
+          "items": [],
+          "link": "/start-docs/B-专题/模块化及打包模式"
+        },
+        {
+          "text": "检测是不是数组的方式",
+          "items": [],
+          "link": "/start-docs/B-专题/检测数组类型的几种方式"
+        },
+        {
+          "text": "# 柯里化 currying",
+          "items": [],
+          "link": "/start-docs/B-专题/柯里化"
+        },
+        {
+          "text": "# 单例模式",
+          "items": [],
+          "link": "/start-docs/B-专题/单例模式和工厂模式"
+        },
+        {
+          "text": "常见的 Web 攻击",
+          "items": [],
+          "link": "/start-docs/B-专题/前端网络安全"
+        },
+        {
+          "text": "从一个 url 到页面展示的全流程",
+          "items": [],
+          "link": "/start-docs/B-专题/从URL到显示网页的全过程"
+        },
+        {
+          "text": "Vuex / Redux",
+          "items": [],
+          "link": "/start-docs/B-专题/vuex或redux"
+        },
+        {
+          "text": "hashchange 和 h5 history popstate",
+          "items": [],
+          "link": "/start-docs/B-专题/vue-router或react-router"
+        },
+        {
+          "text": "setTimeout",
+          "items": [],
+          "link": "/start-docs/B-专题/setTimeout"
+        },
+        {
+          "text": "# JS与Native通信",
+          "items": [],
+          "link": "/start-docs/B-专题/js与native通信"
+        },
+        {
+          "text": "class与构造函数",
+          "items": [],
+          "link": "/start-docs/B-专题/class与函数"
+        },
+        {
+          "text": "# bind & call & apply",
+          "items": [],
+          "link": "/start-docs/B-专题/bind&call&apply"
+        },
+        {
+          "text": "Promise/A+",
+          "items": [],
+          "link": "/start-docs/B-专题/Promise原理及实现"
+        },
+        {
+          "text": "NPM包管理机制",
+          "items": [],
+          "link": "/start-docs/B-专题/NPM包管理"
+        },
+        {
+          "text": "JS引擎的两种查找方式",
+          "items": [],
+          "link": "/start-docs/B-专题/LHS和RHS"
+        },
+        {
+          "text": "继承的几种类型",
+          "items": [],
+          "link": "/start-docs/B-专题/JS继承"
+        },
+        {
+          "text": "this指向",
+          "items": [],
+          "link": "/start-docs/B-专题/JS的this关键字"
+        },
+        {
+          "text": "Object",
+          "items": [],
+          "link": "/start-docs/B-专题/JS对象拷贝及深拷贝"
+        },
+        {
+          "text": "# 垃圾回收",
+          "items": [],
+          "link": "/start-docs/B-专题/JS垃圾回收机制"
+        },
+        {
+          "text": "管理作用域",
+          "items": [],
+          "link": "/start-docs/B-专题/JS作用域"
+        },
+        {
+          "text": "new 关键字",
+          "items": [],
+          "link": "/start-docs/B-专题/JS中的new干了什么"
+        },
+        {
+          "text": "TCP/IP",
+          "items": [],
+          "link": "/start-docs/B-专题/HTTP(s)及缓存机制"
+        },
+        {
+          "text": "# event bus",
+          "items": [],
+          "link": "/start-docs/B-专题/EventBus"
+        },
+        {
+          "text": "怎么画 1px 像素线",
+          "items": [],
+          "link": "/start-docs/B-专题/1PX"
+        }
+      ],
+      "collapsed": false
+    },
+    {
+      "text": "面试真题",
+      "items": [
+        {
+          "text": "JS 常用逻辑题",
+          "items": [],
+          "link": "/start-docs/C-面试真题/常考篇"
+        },
+        {
+          "text": "JS 常用方法原理实现",
+          "items": [],
+          "link": "/start-docs/C-面试真题/原理篇"
+        }
+      ],
+      "collapsed": false
+    },
+    {
+      "text": "前端基础体系",
+      "items": [
+        {
+          "text": "前端基础知识体系",
+          "items": [],
+          "link": "/start-docs/D-前端基础体系/blog"
+        }
+      ],
+      "collapsed": false
+    },
+    {
+      "text": "cli",
+      "items": [
+        {
+          "text": "学习制作项目CLI轨迹",
+          "items": [],
+          "link": "/start-docs/E-cli/blog"
+        }
+      ],
+      "collapsed": false
+    },
+    {
+      "text": "css",
+      "items": [
+        {
+          "text": "CSS 常见问题",
+          "items": [],
+          "link": "/start-docs/F-css/blog"
+        }
+      ],
+      "collapsed": false
+    },
+    {
+      "text": "webpack",
+      "items": [
         {
           "text": "webpack",
-          "items": [
-            {
-              "text": "webpack",
-              "items": [],
-              "link": "/start-docs/all-docs/G-webpack/blog"
-            }
-          ],
-          "collapsed": false
+          "items": [],
+          "link": "/start-docs/G-webpack/blog"
         }
       ],
       "collapsed": false

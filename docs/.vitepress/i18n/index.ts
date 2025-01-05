@@ -101,7 +101,9 @@ export const localeLinks: ThemeConfig['localeLinks'] = [
   }
 ]
 
-export default {
-  i18n,
-  localeLinks
-}
+export default {}
+
+// export default {
+//   i18n,
+//   localeLinks
+// }

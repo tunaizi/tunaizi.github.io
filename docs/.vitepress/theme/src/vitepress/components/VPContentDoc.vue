@@ -11,8 +11,13 @@ const { page, frontmatter } = useData()
 const { config } = useConfig()
 
 const repoUrl = computed(() => {
-  const repo = config.value.editLink?.repo || 'tunaizi/tunaizi.github.io'
-  return `https://github.com/${repo}/edit/main/${page.value.relativePath}`
+  const repo =
+    config.value.editLink?.repo ||
+    'https://github.com/tunaizi/tunaizi.github.io/edit/main/docs/src'
+  if (typeof repo == 'function') {
+    return repo(page.value.relativePath)
+  }
+  return `${repo}/${page.value.relativePath}`
 })
 
 const pageClass = computed(() => {
