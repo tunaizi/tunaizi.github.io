@@ -1,6 +1,7 @@
 ---
 page: true
-title: tii
+title: 全部文档
+sidebar: false
 icon: /assets/logo.png
 
 ---

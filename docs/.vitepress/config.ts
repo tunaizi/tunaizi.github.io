@@ -45,8 +45,9 @@ export default defineConfigWithTheme<ThemeConfig>({
         href: '/images/logo.png'
       }
     ],
-    ['meta', { name: 'twitter:site', content: '@vuejs' }],
-    ['meta', { name: 'twitter:card', content: 'summary' }],
+    // ['meta', { name: 'twitter:site', content: '@vuejs' }],
+    // ['meta', { name: 'twitter:card', content: 'summary' }],
+    ['meta', { name: 'algolia-site-verification', content: '00996CC216D33DF6' }],
     // [
     //   'link',
     //   {
