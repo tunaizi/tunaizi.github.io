@@ -1,10 +1,14 @@
 import type { Config as ThemeConfig } from '../theme/src'
 const algolia: ThemeConfig['algolia'] = {
-  indexName: 'vuejs_cn2',
-  appId: 'UURH1MHAF7',
-  apiKey: 'c23eb8e7895f42daeaf2bf6f63eb4bf6',
+  indexName: 'tunaizi_github_io_ksom5we9dx_pages',
+  appId: 'KSOM5WE9DX',
+  apiKey: '511c700ca6be4e84487e255e7aaa5866',
   searchParameters: {
-    facetFilters: ['version:v3']
+    highlightPostTag: '__/ais-highlight__',
+    highlightPreTag: '__ais-highlight__',
+    clickAnalytics: false,
+    page: 0,
+    responseFields: ['*']
   },
   placeholder: '搜索文档',
   translations: {
