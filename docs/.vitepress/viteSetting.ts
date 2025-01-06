@@ -1,5 +1,5 @@
 import { UserConfig } from 'vitepress'
-import AutoSidebar from './autoSideBar'
+import AutoSidebar from './vitePlugins/autoSidebar'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
@@ -47,9 +47,7 @@ export default {
       resolvers: [ElementPlusResolver()]
     }),
     AutoSidebar({
-      root: '/src/',
-      docs: '/src/',
-      wrireToJson: '.vitepress/navigation/start-docs.json',
+      wrireToJson: '.vitepress/.log.json',
       textmap: {
         '/start-docs/all-docs/aaa': '推荐页导航',
         'all-docs': '所有文档',

@@ -1,4 +1,4 @@
-import type { Config as ThemeConfig } from '../theme/src'
+import type { Config as ThemeConfig } from '../../.vitepress/theme/src'
 export const copySidebar: ThemeConfig['sidebar'] = {
   '/guide/': [
     {

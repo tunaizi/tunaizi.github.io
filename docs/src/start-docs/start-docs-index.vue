@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { data as apiIndex, APIGroup } from './start-docs.data'
+import { data as apiIndex } from './start-docs.data'
 import { ref, computed, onMounted } from 'vue'
-import { withBase } from 'vitepress'
-
+import { withBase, useData } from 'vitepress'
+// import { APIGroup } from '../../.vitepress/vitePlugins/autoSidebar'
+const { theme } = useData()
 const search = ref()
 const query = ref('')
 const normalize = (s: string) => s.toLowerCase().replace(/-/g, ' ')
@@ -14,7 +15,9 @@ onMounted(() => {
 const filtered = computed(() => {
   const q = normalize(query.value)
   const matches = (text: string) => normalize(text).includes(q)
-  const list = apiIndex.filter((e) => e.items.length)
+  const list = theme.value.sidebar.filter((e) => e.items.length)
+  console.log(theme.value.nav, 'theme.value.nav')
+
   return list
     .map((section) => {
       // section title match

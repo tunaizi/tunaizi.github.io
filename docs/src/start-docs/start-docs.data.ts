@@ -4,10 +4,9 @@ import type {
   MultiSidebarConfig,
   SidebarGroup
 } from '../../.vitepress/theme/src/vitepress/config.ts'
-import { sidebar } from '../../.vitepress/navigation'
+import { sidebar } from '../../srcCopy/navigation/index.js'
 import _ from 'lodash'
 import { MenuItemWithLink } from '../../.vitepress/theme/src'
-
 // 定义单个标题的结构接口
 interface APIHeader {
   anchor: string
@@ -81,7 +80,6 @@ function extractHeadersFromMarkdown(src: string): APIHeader[] {
   const h2s = src.match(/^## [^\n]+/gm) // 匹配所有h2标题（## 标题）
   const anchorRE = /\{#([^}]+)\}/ // 正则表达式匹配标题中的锚点链接（例如 {#some-anchor}）
   let headers: APIHeader[] = []
-
   if (h2s) {
     // 处理每个h2标题并提取文本和锚点
     headers = h2s.map((h) => {
@@ -90,8 +88,6 @@ function extractHeadersFromMarkdown(src: string): APIHeader[] {
       return { text, anchor }
     })
   }
-  // console.log(headers, 'headers----------\n')
-
   return headers
 }
 

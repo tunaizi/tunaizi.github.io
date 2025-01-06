@@ -31,7 +31,7 @@ export function withConfigProvider(App: Component) {
     setup(_, { slots }) {
       const { theme } = useData()
       const config = computed(() => resolveConfig(theme.value))
-      console.log(config,"config");
+      // console.log(config,"config");
       provide(configSymbol, config)
       return () => h(App, null, slots)
     }

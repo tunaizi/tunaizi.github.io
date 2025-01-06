@@ -6,7 +6,7 @@
   - 值可以穿透。
   - Async/Await就是一个自执行的generate函数。利用generate函数的特性把异步的代码写成“同步”的形式。
 ## 简单实用
-```
+```js
   let promise = new Promise((resolve, reject) => {
     setTimeout(() => {
       console.log('hello promise')
@@ -16,7 +16,7 @@
   promise.then(res => console.log(res)).catch(err => console.log(err))
 ```
 ## 手写promise
-```
+```js
   const PENDING = 'pending';
   const FULFILLED = 'fulfilled';
   const REJECTED = 'rejected';
@@ -133,7 +133,7 @@
   }
 ```
 ## 手写promise.race
-  ```
+  ```js
     myPromise.race = function(promises) {
       return new myPromise((resolve, reject) => {
         promises.forEach(promise => {
@@ -144,7 +144,7 @@
   ```
 
 ## 手写promise.all
-  ```
+  ```js
     myPromise.all = function(promises) {
       //成功的数据集合
       const resolveValues = new Array(promises.length);

@@ -58,10 +58,9 @@ function linkTo(data: MenuItemWithLink, node: TreeNodeData) {
 <style scoped>
 .el-tree {
   --el-color-primary: var(--vt-c-brand);
-  --el-fill-color-blank: var(--vt-c-bg);
+  --el-fill-color-blank: transparent;
   --el-color-primary-light-9: var(--vt-c-bg);
   --el-tree-node-hover-bg-color: var(--vt-c-bg);
-  /* color: var(--vt-c-text-1); */
   --el-tree-node-content-height: 32px;
   --el-tree-text-color: var(--vt-c-text-2);
   --el-tree-expand-icon-color: var(--vt-c-text-1);

@@ -4,7 +4,7 @@ import baseConfig from './theme/src/vitepress/config/baseConfig'
 import { headerPlugin } from './headerMdPlugin'
 import i18n from './i18n'
 import algolia from './algolia'
-import { nav, sidebar } from './navigation'
+// import { nav, sidebar } from './navigation'
 import viteSettig from './viteSetting'
 import { inlinedScripts } from './inlined-scripts'
 // import { textAdPlugin } from './textAdMdPlugin'
@@ -58,8 +58,8 @@ export default defineConfigWithTheme<ThemeConfig>({
   ],
 
   themeConfig: {
-    nav,
-    sidebar,
+    // nav,
+    // sidebar,
     ...i18n,
     algolia,
     // carbonAds: {
