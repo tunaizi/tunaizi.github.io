@@ -34,13 +34,12 @@ function poll() {
 }
 
 function initialize(userOptions: AlgoliaSearchOptions) {
-  // Note: multi-lang search support is removed since the theme
-  // doesn't support multiple locales as of now
   const options = Object.assign({}, userOptions, {
+    attributesToRetrieve: [],
     container: '#docsearch',
 
     getMissingResultsUrl({ query }: { query: string }) {
-      return `https://github.com/vuejs/docs/issues/new?title=Missing%20search%20result%20for%20${query}`
+      return ``
     },
 
     navigator: {
@@ -60,6 +59,8 @@ function initialize(userOptions: AlgoliaSearchOptions) {
     },
 
     transformItems: (items: DocSearchHit[]) => {
+      console.log(items)
+
       return items.map((item) => {
         return Object.assign({}, item, {
           url: getRelativePath(item.url)
@@ -67,7 +68,10 @@ function initialize(userOptions: AlgoliaSearchOptions) {
       })
     },
 
-    hitComponent: ({ hit, children }: { hit: DocSearchHit; children: any }) => {
+    hitComponent: (obj: { hit: DocSearchHit; children: any }) => {
+      console.log(obj, '===')
+      const { hit, children } = obj
+
       const relativeHit = hit.url.startsWith('http')
         ? getRelativePath(hit.url as string)
         : hit.url

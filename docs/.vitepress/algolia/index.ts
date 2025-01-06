@@ -4,11 +4,7 @@ const algolia: ThemeConfig['algolia'] = {
   appId: 'KSOM5WE9DX',
   apiKey: '511c700ca6be4e84487e255e7aaa5866',
   searchParameters: {
-    highlightPostTag: '__/ais-highlight__',
-    highlightPreTag: '__ais-highlight__',
-    clickAnalytics: false,
-    page: 0,
-    responseFields: ['*']
+    facetFilters: ['*'],
   },
   placeholder: '搜索文档',
   translations: {
