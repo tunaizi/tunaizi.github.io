@@ -1,0 +1,1 @@
+import{_ as t,r as s,i as a}from"./chunks/framework.bb8f9838.js";const f=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"start-docs/F-css/选择器层级.md","filePath":"start-docs/F-css/选择器层级.md"}'),r={name:"start-docs/F-css/选择器层级.md"};function e(c,o,_,d,n,i){return s(),a("div")}const m=t(r,[["render",e]]);export{f as __pageData,m as default};
