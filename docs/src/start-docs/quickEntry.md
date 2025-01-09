@@ -3,8 +3,8 @@
 
 ## 快速访问
 
-<!-- - [x] [前端基础体系](./D-前端基础体系/blog.md)
-- [x] [JS 作用域](./B-专题/JS作用域.md)
+<!-- - [x] [前端基础体系](./D-前端基础体系/blog.md) -->
+<!-- - [x] [JS 作用域](./B-专题/JS作用域.md)
 - [x] [JS 对象拷贝](./B-专题/JS对象拷贝及深拷贝.md)
 - [x] [JS 继承](./B-专题/JS继承.md)
 - [x] [节流-防抖](./B-专题/节流-防抖.md)
@@ -12,8 +12,7 @@
 - [x] [JS 中的 new 干了什么](./B-专题/JS中的new干了什么.md)
 - [x] [class 与函数](./B-专题/class与函数.md)
 - [x] [bind&call&apply](./B-专题/bind&call&apply.md)
-- [ ] [HTTP 协议及缓存机制](<./B-专题/HTTP(s)及缓存机制.md>)
-- [x] [CLI 构建](./E-cli/blog.md) -->
+- [ ] [HTTP 协议及缓存机制](<./B-专题/HTTP(s)及缓存机制.md>) -->
   <!-- - [ ] [编写vscode插件](./vscode/blog.md) -->
   <!-- - [ ] [vue2源码](./vue2/blog.md)  -->
   <!-- - [x] [vue3源码](./vue3/blog.md)  -->

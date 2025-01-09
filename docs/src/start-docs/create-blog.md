@@ -52,6 +52,7 @@ footer: false
   <span v-for="i in 3">{{ i }}</span>
 </div>
 ```
+````
 
 :tada: :100: :tada: :100: :tada: :100: :tada: :100: :tada: :100: :tada: :100:
 
@@ -79,24 +80,21 @@ This is a details block.
 
 <!-- Do -->
 
-## [Getting Started](./getting-started)
+<!-- ## [Getting Started](./getting-started) -->
 
-[Getting Started](../guide/getting-started)
+<!-- [Getting Started](../guide/getting-started) -->
 
 <!-- Don't -->
 
-### [Getting Started](./getting-started.md)
+<!-- ### [Getting Started](./getting-started.md) -->
 
-### [Getting Started](./getting-started.html)
+<!-- ### [Getting Started](./getting-started.html) -->
 
-### Title <Badge type="info" text="default" />
+<!-- ### Title <Badge type="info" text="default" />
 
 ### Title <Badge type="tip" text="^1.9.0" />
 
 ### Title <Badge type="warning" text="beta" />
 
 ### Title <Badge type="danger" text="caution" />
-
-```
-
-```
+ -->
