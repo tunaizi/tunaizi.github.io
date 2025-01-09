@@ -24,7 +24,7 @@ export default Object.assign({}, VPTheme, {
       // banner: () => h(Banner),
       'navbar-title': () => h(VPNavBarTitle),
       'sidebar-top': () => h(PreferenceSwitch),
-      'sidebar-bottom': () => h(SecurityUpdateBtn),
+      // 'sidebar-bottom': () => h(SecurityUpdateBtn),
       'aside-mid': () => h(SponsorsAside)
       // 'aside-bottom': () => h(WwAds),
       // 'edit-link': () => 'sdddd'

@@ -108,6 +108,7 @@
 }
 
 .vt-doc strong {
+  color: var(--vt-c-green-lighter);
   font-weight: 600;
 }
 
@@ -201,8 +202,8 @@
   left: 2px;
   top: 1px;
   font-weight: bold;
-  font-size: 14px;
-  color: var(--vt-c-text-3);
+  font-size: 16px;
+  color: var(--vt-c-red-light);
   content: counter(item) '.';
 }
 
@@ -224,10 +225,10 @@
 .vt-doc ul > li:before {
   content: '';
   position: absolute;
-  width: 5px;
-  height: 5px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
-  background-color: var(--vt-c-text-3);
+  background-color: var(--vt-c-blue-light);
   transition: background-color 0.5s;
   left: -1.25rem;
   top: 0.75rem;

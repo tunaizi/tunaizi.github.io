@@ -1,16 +1,17 @@
 <script setup lang="ts">
 import { useConfig } from '../composables/config'
 import { VTFlyout } from '../../core'
-import VTIconLanguagesVue from '../../core/components/icons/VTIconLanguages.vue';
+import VTIconLanguagesVue from '../../core/components/icons/VTIconLanguages.vue'
 import VPNavBarLocaleItems from './VPNavBarLocaleItems.vue'
-import VPNavBarLocaleJoin from './VPNavBarLocaleJoin.vue';
+import VPNavBarLocaleJoin from './VPNavBarLocaleJoin.vue'
 
 const { config } = useConfig()
-const localeLinks = config.value.localeLinks
+const localeLinks = config.value.localeLinks?.length
 </script>
 
 <template>
   <VTFlyout
+    v-if="localeLinks"
     :label="config.i18n?.ariaLanguage ?? 'Select Language'"
     class="VPNavBarMenuGroup active VPNavBarLocale"
   >
@@ -35,7 +36,7 @@ const localeLinks = config.value.localeLinks
   width: 1px;
   height: 24px;
   background-color: var(--vt-c-divider-light);
-  content: "";
+  content: '';
 }
 
 .vt-locales-btn-icon-container::before {

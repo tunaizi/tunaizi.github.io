@@ -32,14 +32,6 @@ export default {
     stringify: true
   },
   plugins: [
-    // {
-    //   name: 'vite-plugin-vitepress-start',
-    //   config(config, env) {
-    //     const isDev = env.mode === 'development'
-    //     config.base = isDev ? '/' : '/blog/'
-    //     return config
-    //   }
-    // },
     AutoImport({
       resolvers: [ElementPlusResolver()]
     }),
@@ -49,8 +41,7 @@ export default {
     AutoSidebar({
       wrireToJson: '.vitepress/.log.json',
       textmap: {
-        '/start-docs/all-docs/aaa': '推荐页导航',
-        'all-docs': '所有文档',
+        '/start-docs/quickEntry': '快速访问',
         '/start-docs/index': '全部文档',
         '/start-docs/create-blog': 'vitepress md语法速查'
       }

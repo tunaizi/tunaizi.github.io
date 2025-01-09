@@ -3,6 +3,7 @@ import { nextTick, ref, watchPostEffect } from 'vue'
 import { useConfig } from '../composables/config'
 import { useSidebar } from '../composables/sidebar'
 import VPSidebarGroup from './VPSidebarGroup.vue'
+// import VPSidebarGroupCopy from './VPSidebarGroupCopy.vue'
 const { sidebar, hasSidebar } = useSidebar()
 const { config } = useConfig()
 
@@ -18,7 +19,6 @@ watchPostEffect(async () => {
     navEl.value?.focus()
   }
 })
-
 </script>
 
 <template>
@@ -38,6 +38,9 @@ watchPostEffect(async () => {
       <span id="sidebar-aria-label" class="visually-hidden">{{
         config.i18n?.ariaSidebarNav ?? 'Sidebar Navigation'
       }}</span>
+      <!-- <div v-for="group in sidebar" :key="group.text" class="group">
+        <VPSidebarGroupCopy :text="group.text" :items="group.items" />
+      </div> -->
       <VPSidebarGroup />
       <slot name="bottom" />
     </nav>

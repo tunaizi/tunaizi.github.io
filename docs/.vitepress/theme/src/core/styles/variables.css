@@ -38,22 +38,28 @@
   --vt-c-divider-dark-2: rgba(84, 84, 84, 0.48);
 
   --vt-c-text-light-1: var(--vt-c-indigo);
-  --vt-c-text-light-2: rgba(60, 60, 60, 0.70);
+  --vt-c-text-light-2: rgba(60, 60, 60, 0.7);
   --vt-c-text-light-3: rgba(60, 60, 60, 0.33);
   --vt-c-text-light-4: rgba(60, 60, 60, 0.18);
   --vt-c-text-light-code: var(--vt-c-indigo-soft);
 
   --vt-c-text-dark-1: rgba(255, 255, 255, 0.87);
-  --vt-c-text-dark-2: rgba(235, 235, 235, 0.60);
+  --vt-c-text-dark-2: rgba(235, 235, 235, 0.6);
   --vt-c-text-dark-3: rgba(235, 235, 235, 0.38);
   --vt-c-text-dark-4: rgba(235, 235, 235, 0.18);
   --vt-c-text-dark-code: var(--vt-c-indigo-light);
 
-  --vt-c-green: #42b883;
+  /* --vt-c-green: #42b883;
   --vt-c-green-light: #42d392;
   --vt-c-green-lighter: #35eb9a;
   --vt-c-green-dark: #33a06f;
-  --vt-c-green-darker: #155f3e;
+  --vt-c-green-darker: #155f3e; */
+
+  --vt-c-green: #e3643a;
+  --vt-c-green-light: #fc8861;
+  --vt-c-green-lighter: #f79b7c;
+  --vt-c-green-dark: #ad3c16;
+  --vt-c-green-darker: #631d06;
 
   --vt-c-blue: #3b8eed;
   --vt-c-blue-light: #549ced;
@@ -153,11 +159,16 @@
  * -------------------------------------------------------------------------- */
 
 :root {
-  --vt-shadow-1: 0 1px 2px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06);
-  --vt-shadow-2: 0 3px 12px rgba(0, 0, 0, 0.07), 0 1px 4px rgba(0, 0, 0, 0.07);
-  --vt-shadow-3: 0 12px 32px rgba(0, 0, 0, 0.1), 0 2px 6px rgba(0, 0, 0, 0.08);
-  --vt-shadow-4: 0 14px 44px rgba(0, 0, 0, 0.12), 0 3px 9px rgba(0, 0, 0, 0.12);
-  --vt-shadow-5: 0 18px 56px rgba(0, 0, 0, 0.16), 0 4px 12px rgba(0, 0, 0, 0.16);
+  --vt-shadow-1: 0 1px 2px rgba(0, 0, 0, 0.04),
+    0 1px 2px rgba(0, 0, 0, 0.06);
+  --vt-shadow-2: 0 3px 12px rgba(0, 0, 0, 0.07),
+    0 1px 4px rgba(0, 0, 0, 0.07);
+  --vt-shadow-3: 0 12px 32px rgba(0, 0, 0, 0.1),
+    0 2px 6px rgba(0, 0, 0, 0.08);
+  --vt-shadow-4: 0 14px 44px rgba(0, 0, 0, 0.12),
+    0 3px 9px rgba(0, 0, 0, 0.12);
+  --vt-shadow-5: 0 18px 56px rgba(0, 0, 0, 0.16),
+    0 4px 12px rgba(0, 0, 0, 0.16);
 }
 
 /**

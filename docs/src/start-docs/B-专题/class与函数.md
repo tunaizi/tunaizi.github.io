@@ -1,7 +1,7 @@
 # class与构造函数
 
 ## function来做构造函数
-```
+```js
   function Car(name) {
     this.name = name
   }
@@ -17,7 +17,7 @@
 ```
 
 ## es6新增类
-```
+```js
   class Car1 {
     constructor(name) {
       this.name = name

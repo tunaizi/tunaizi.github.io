@@ -8,10 +8,6 @@
       target="_blank"
     >
       这是左边的最下面的部分
-      这是左边的最下面的部分
-      这是左边的最下面的部分
-      这是左边的最下面的部分
-      这是左边的最下面的部分
       <svg
         class="icon"
         xmlns="http://www.w3.org/2000/svg"

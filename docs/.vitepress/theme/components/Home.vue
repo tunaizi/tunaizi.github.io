@@ -163,8 +163,13 @@ section {
 }
 
 html:not(.dark) .accent,
-.dark .tagline {
-  background: -webkit-linear-gradient(315deg, #42d392 25%, #647eff);
+.tagline {
+  background: -webkit-linear-gradient(
+    315deg,
+    var(--vt-c-green) 25%,
+    var(--vt-c-red-light) 65%,
+    var(--vt-c-purple-dark)
+  );
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

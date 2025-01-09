@@ -24,7 +24,7 @@ const localeLinks = computed(() => {
 
 <template>
   <div v-for="item in localeLinks" :key="item.text" class="vt-locales-menu-item">
-    <a 
+    <a
       :href="item.link"
       target="_blank"
       class="vt-locales-menu-item-text"

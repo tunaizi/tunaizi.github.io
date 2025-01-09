@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import { data as apiIndex } from './start-docs.data'
 import { ref, computed, onMounted } from 'vue'
 import { withBase, useData } from 'vitepress'
-// import { APIGroup } from '../../.vitepress/vitePlugins/autoSidebar'
+import { SidebarItem } from '../../.vitepress/vitePlugins/autoSidebar'
 const { theme } = useData()
 const search = ref()
 const query = ref('')
@@ -15,30 +14,30 @@ onMounted(() => {
 const filtered = computed(() => {
   const q = normalize(query.value)
   const matches = (text: string) => normalize(text).includes(q)
-  const list = theme.value.sidebar.filter((e) => e.items.length)
-  console.log(theme.value.nav, 'theme.value.nav')
-
+  const list = theme.value.sidebar.filter(
+    (e: { items: string | any[] }) => e.items.length
+  ) as SidebarItem[]
   return list
-    .map((section) => {
-      // section title match
+    .map((section: SidebarItem) => {
       if (matches(section.text)) {
         return section
       }
       // filter groups
-      const matchedGroups = section.items
-        .map((item) => {
+      const matchedGroups = (section.items || [])
+        .map((item: SidebarItem) => {
           // group title match
           if (matches(item.text)) {
             return item
           }
           // filter headers
-          const matchedHeaders = item.headers.filter(
-            ({ text, anchor }) => matches(text) || matches(anchor)
+          const matchedHeaders = (item.headers || []).filter(
+            ({ text, anchor }: SidebarItem) =>
+              matches(text) || matches(anchor || '')
           )
           return matchedHeaders.length
             ? {
                 text: item.text,
-                link: item.link.replace('.md', ''),
+                link: (item.link || '').replace('.md', ''),
                 headers: matchedHeaders
               }
             : null
@@ -49,7 +48,7 @@ const filtered = computed(() => {
         ? { text: section.text, items: matchedGroups }
         : null
     })
-    .filter((i) => i) as APIGroup[]
+    .filter((i) => i) as Required<SidebarItem>[]
 })
 </script>
 
@@ -85,7 +84,11 @@ const filtered = computed(() => {
           :key="item.text"
           class="api-group"
         >
-          <h3>{{ item.text }}</h3>
+          <a :href="withBase(item.link || '') + '.html'">
+            <h3>
+              {{ item.text }}
+            </h3>
+          </a>
           <ul>
             <li v-for="h of item.headers" :key="h.anchor">
               <a :href="withBase(item.link || '') + '.html#' + h.anchor">{{

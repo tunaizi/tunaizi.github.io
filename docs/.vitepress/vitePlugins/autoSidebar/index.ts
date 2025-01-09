@@ -1,15 +1,14 @@
 import glob from 'glob'
-import fs from 'fs'
 import path from 'path'
 import { Plugin, UserConfig, ViteDevServer, normalizePath } from 'vite'
 import _ from 'lodash'
+export type * from './type'
 import type {
   PluginOptions,
   SidebarConfig,
   NormalizedOptions,
   SidebarItem
 } from './type'
-
 import {
   joinToCwd,
   writeTo,

@@ -1,11 +1,18 @@
 <script lang="ts" setup>
 import { useData, useRouter } from 'vitepress'
 import { MenuItemWithLink } from '../../core'
-import { inject } from 'vue'
+import {
+  ComponentPublicInstance,
+  inject,
+  nextTick,
+  VNode,
+  VNodeRef
+} from 'vue'
 // import VPSidebarLink from './VPSidebarLink.vue'
 import { useSidebar } from '../composables/sidebar'
 import { isActive } from '../support/utils'
 import { TreeNodeData } from 'element-plus/es/components/tree/src/tree.type'
+
 const { page } = useData()
 const { go } = useRouter()
 const { sidebar } = useSidebar()
@@ -31,9 +38,42 @@ const elTreeOpt = {
   class: updateActive
 }
 
-// function renderContent(h: Function, { data }: { data: MenuItemWithLink }) {
-//   return h(VPSidebarLink, { item: data, link: data.link })
-// }
+// 定义一个条件类型来提取 ref 的类型
+type ExtractRefType<T> = T extends (
+  ref: infer R,
+  refs: Record<string, any>
+) => void
+  ? R
+  : never
+
+// 使用 ExtractRefType 提取 VNodeRef 中的 ref 类型
+type RefType = ExtractRefType<VNodeRef>
+
+function renderContent(
+  h: (
+    type: string,
+    opt: { class: string; ref: VNodeRef },
+    children?: string
+  ) => VNode,
+  { data }: { data: MenuItemWithLink }
+) {
+  return h(
+    'span',
+    {
+      class: 'el-tree-node__label',
+      ref: (el: RefType) => {
+        if (el && el instanceof HTMLElement) {
+          nextTick(() => {
+            const isAct = isActive(page.value.relativePath, data.link)
+            isAct &&
+              el.scrollIntoView({ behavior: 'smooth', block: 'center' })
+          })
+        }
+      }
+    },
+    data.text
+  )
+}
 
 function linkTo(data: MenuItemWithLink, node: TreeNodeData) {
   if (data.link) {
@@ -52,6 +92,7 @@ function linkTo(data: MenuItemWithLink, node: TreeNodeData) {
     :highlight-current="true"
     :indent="10"
     @node-click="linkTo"
+    :render-content="renderContent"
   ></el-tree>
 </template>
 

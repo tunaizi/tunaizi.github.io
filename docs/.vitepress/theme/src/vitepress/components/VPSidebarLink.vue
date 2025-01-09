@@ -20,8 +20,11 @@ watchPostEffect(updateActive)
 </script>
 
 <template>
-  <a :class="{ link: true, active }" :href="item.link">
-    <!-- @click="closeSideBar" -->
+  <a
+    :class="{ link: true, active }"
+    :href="item.link"
+    @click="closeSideBar"
+  >
     <p class="link-text">{{ item.text }}</p>
   </a>
 </template>
@@ -40,8 +43,7 @@ watchPostEffect(updateActive)
 
 .link:hover .link-text {
   color: var(--vt-c-brand-text-1);
-  font-size: 16px;
-  transition: all 0.25s;
+  transition: color 0.25s;
 }
 
 .link.active .link-text {

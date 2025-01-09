@@ -55,6 +55,8 @@ footer: false
 
 :tada: :100: :tada: :100: :tada: :100: :tada: :100: :tada: :100: :tada: :100:
 
+//--所有的表情 markdown-it-emoji lib/data/full.mjs
+
 ::: info
 This is an info box.
 :::

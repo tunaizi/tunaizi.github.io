@@ -20,10 +20,10 @@ export default defineConfigWithTheme<ThemeConfig>({
   srcDir: 'src',
   srcExclude: ['tutorial/**/description.md'],
   head: [
-    ['meta', { name: 'theme-color', content: '#f72424' }],
-    ['meta', { property: 'og:url', content: 'https://vuejs.org/' }],
-    ['meta', { property: 'og:type', content: 'website' }],
-    ['meta', { property: 'og:title', content: 'Vue.js' }],
+    // ['meta', { name: 'theme-color', content: '' }],
+    // ['meta', { property: 'og:url', content: 'https://vuejs.org/' }],
+    // ['meta', { property: 'og:type', content: 'website' }],
+    // ['meta', { property: 'og:title', content: 'Vue.js' }],
     // [
     //   'meta',
     //   {
