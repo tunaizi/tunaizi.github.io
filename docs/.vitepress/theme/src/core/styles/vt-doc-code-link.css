@@ -1,0 +1,42 @@
+.vt-doc [class*='language-'] > button.link {
+  position: absolute;
+  top: 44px;
+  right: 4px;
+  z-index: 3;
+  display: block;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  min-width: 40px;
+  padding: 0 12px;
+  height: 40px;
+  background-color: #292d3e;
+  opacity: 0;
+  cursor: pointer;
+  background-position: 50%;
+  background-size: 20px;
+  background-repeat: no-repeat;
+  transition: opacity 0.4s;
+  background-image: url('./FX-yunhangdaima.svg');
+}
+
+.dark .vt-doc [class*='language-'] > button.link {
+  background-color: var(--vt-c-bg-soft);
+}
+
+.vt-doc [class*='language-']:hover > button.link {
+  /* .vt-doc [class*='language-'] > button.link:focus { */
+  opacity: 1;
+}
+
+.vt-doc [class*='language-'] > button.link:hover {
+  background-color: #343848;
+}
+
+.dark .vt-doc [class*='language-'] > button.link:hover {
+  background-color: #2f2f2f;
+}
+.vt-doc [class*='language-']:hover > button.link + span.lang,
+.vt-doc [class*='language-'] > button.link:focus + span.lang {
+  opacity: 0;
+}

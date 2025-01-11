@@ -7,7 +7,8 @@ import algolia from './algolia'
 // import { nav, sidebar } from './navigation'
 import viteSettig from './viteSetting'
 import { inlinedScripts } from './inlined-scripts'
-// import { textAdPlugin } from './textAdMdPlugin'
+import { textAdPlugin } from './textAdMdPlugin'
+import { codeMdPlugin } from './codeMdPlugin'
 
 export default defineConfigWithTheme<ThemeConfig>({
   extends: baseConfig,
@@ -47,7 +48,10 @@ export default defineConfigWithTheme<ThemeConfig>({
     ],
     // ['meta', { name: 'twitter:site', content: '@vuejs' }],
     // ['meta', { name: 'twitter:card', content: 'summary' }],
-    ['meta', { name: 'algolia-site-verification', content: '00996CC216D33DF6' }],
+    [
+      'meta',
+      { name: 'algolia-site-verification', content: '00996CC216D33DF6' }
+    ],
     // [
     //   'link',
     //   {
@@ -84,13 +88,47 @@ export default defineConfigWithTheme<ThemeConfig>({
   },
 
   markdown: {
-    theme: 'github-dark',
+    theme: 'monokai',
     config(md) {
+      // console.log(md);
+
       //@ts-ignore
-      md.use(headerPlugin)
+      md.use(headerPlugin).use(codeMdPlugin)
       // .use(textAdPlugin)
     }
   },
 
   vite: viteSettig
 })
+
+/*
+css-variables
+monokai //vscode
+dark-plus
+nord
+dracula-soft
+one-dark-pro
+dracula
+poimandres
+github-dark-dimmed
+rose-pine-dawn
+github-dark
+rose-pine-moon
+github-light
+rose-pine
+light-plus
+slack-dark
+material-theme-darker
+slack-ochin
+material-theme-lighter
+solarized-dark
+material-theme-ocean
+solarized-light
+material-theme-palenight
+vitesse-black
+material-theme
+vitesse-dark
+min-dark
+vitesse-light
+min-light
+*/

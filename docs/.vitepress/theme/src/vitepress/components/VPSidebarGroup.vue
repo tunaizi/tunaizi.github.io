@@ -63,11 +63,9 @@ function renderContent(
       class: 'el-tree-node__label',
       ref: (el: RefType) => {
         if (el && el instanceof HTMLElement) {
-          nextTick(() => {
-            const isAct = isActive(page.value.relativePath, data.link)
-            isAct &&
-              el.scrollIntoView({ behavior: 'smooth', block: 'center' })
-          })
+          const isAct = isActive(page.value.relativePath, data.link)
+          isAct &&
+            el.scrollIntoView({ behavior: 'smooth', block: 'center' })
         }
       }
     },

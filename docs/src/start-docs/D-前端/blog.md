@@ -1,7 +1,9 @@
 # 前端基础知识体系
 
 ## JavaScript
+
 ![知识架构框架图](./知识架构框架图.jpg)
+
 - 运行时
 
   - 数据结构
@@ -19,36 +21,36 @@
         ```js
         function sleep(duration) {
           return new Promise((resolve, reject) => {
-            setTimeout(resolve, duration);
-          });
+            setTimeout(resolve, duration)
+          })
         }
 
-        sleep(5000).then(() => console.log('hhh'));
+        sleep(5000).then(() => console.log('hhh'))
         ```
 
       - 实现一个红绿灯
 
         ```js
         function sleep(duration) {
-          return new Promise(resolve => {
-            setTimeout(resolve, duration);
-          });
+          return new Promise((resolve) => {
+            setTimeout(resolve, duration)
+          })
         }
 
         async function changeColor(duration, color) {
-          document.getElementById('traffic').style.background = color;
-          await sleep(duration);
+          document.getElementById('traffic').style.background = color
+          await sleep(duration)
         }
 
         async function main() {
           while (true) {
-            await changeColor(3000, 'green');
-            await changeColor(1000, 'yellow');
-            await changeColor(2000, 'red');
+            await changeColor(3000, 'green')
+            await changeColor(1000, 'yellow')
+            await changeColor(2000, 'red')
           }
         }
 
-        main();
+        main()
         ```
 
     - 微任务执行
@@ -255,19 +257,3 @@
     - 包管理 npm
     - AI 智能切图 tensorFlow
     - pwa 进一步发展
-
-## 排除元素的 Number 和 parseInt，用 JS 代码实现 String 转 Number？
-
-```js
-function strToNum(string) {
-  let chars = string.split('').map(c => c.charCodeAt(0) - '0'.charCodeAt(0));
-  let n = 0;
-  for (var char of chars) {
-    n *= 10;
-    n += char;
-  }
-  return n;
-}
-
-strToNum('1002');
-```

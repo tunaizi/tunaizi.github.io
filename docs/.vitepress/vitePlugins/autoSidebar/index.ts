@@ -71,7 +71,7 @@ function getSidebarConfig(opts: NormalizedOptions): SidebarConfig {
   const docsPath = opts.docs
   const paths = glob.sync('**/*.md', {
     cwd: docsPath,
-    ignore: opts.ignores
+    ignore: opts.ignores.concat('**/_*.md', '_*.md', '**/.*.md', '.*.md')
   })
   const basePath = path.relative(opts.root, docsPath)
   const sidebar: SidebarConfig = {}

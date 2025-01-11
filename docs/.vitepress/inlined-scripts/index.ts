@@ -14,6 +14,11 @@ export const inlinedScripts: HeadConfig[] = [
     'script',
     {},
     fs.readFileSync(path.resolve(__dirname, './uwu.js'), 'utf-8')
+  ],
+  [
+    'script',
+    { id: 'code-link' },
+    fs.readFileSync(path.resolve(__dirname, './codeLink.js'), 'utf-8')
   ]
 
   // [
