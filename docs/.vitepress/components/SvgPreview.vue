@@ -3,44 +3,20 @@
     <div class="preview-header">
       <div class="preview-controls">
         <span class="preview-title">SVG 预览</span>
-        <div class="preview-actions">
-          <button
-            class="control-button"
-            @click="toggleSize"
-            :title="isExpanded ? '收起' : '展开'"
-          >
-            {{ isExpanded ? '⊟' : '⊞' }}
-          </button>
-          <button
-            class="copy-button"
-            @click="copyCode"
-            :class="{ copied }"
-          >
-            {{ copied ? '已复制!' : '复制代码' }}
-          </button>
-        </div>
       </div>
       <div class="size-controls" v-if="showSizeControls">
         <label>
           宽度:
-          <input
-            type="number"
-            v-model="width"
-            @input="updateSize"
-          >
+          <input type="number" v-model="width" @input="updateSize" />
         </label>
         <label>
           高度:
-          <input
-            type="number"
-            v-model="height"
-            @input="updateSize"
-          >
+          <input type="number" v-model="height" @input="updateSize" />
         </label>
       </div>
     </div>
 
-    <div class="preview-content" :class="{ expanded: isExpanded }">
+    <div class="preview-content">
       <div
         class="svg-result"
         v-html="sanitizedSvgContent"
@@ -95,22 +71,6 @@ const sanitizedSvgContent = computed(() => {
   return code
 })
 
-const copyCode = async () => {
-  try {
-    await navigator.clipboard.writeText(props.code)
-    copied.value = true
-    setTimeout(() => {
-      copied.value = false
-    }, 2000)
-  } catch (err) {
-    console.error('复制失败:', err)
-  }
-}
-
-const toggleSize = () => {
-  isExpanded.value = !isExpanded.value
-}
-
 const updateSize = () => {
   // 可以添加尺寸限制
   width.value = Math.max(0, Math.min(1000, width.value))
@@ -132,7 +92,9 @@ onMounted(() => {
 }
 
 .preview-header {
-  padding: 12px 16px;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
   background-color: var(--vp-c-bg-soft);
   border-bottom: 1px solid var(--vp-c-divider);
 }
@@ -154,31 +116,7 @@ onMounted(() => {
   color: var(--vp-c-text-1);
 }
 
-.control-button,
-.copy-button {
-  padding: 4px 12px;
-  font-size: 12px;
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 4px;
-  background-color: var(--vp-c-bg);
-  color: var(--vp-c-text-1);
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.control-button:hover,
-.copy-button:hover {
-  background-color: var(--vp-c-bg-mute);
-}
-
-.copy-button.copied {
-  background-color: var(--vp-c-green);
-  color: white;
-  border-color: var(--vp-c-green);
-}
-
 .size-controls {
-  margin-top: 8px;
   display: flex;
   gap: 16px;
 }
@@ -187,7 +125,7 @@ onMounted(() => {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .size-controls input {
@@ -206,10 +144,6 @@ onMounted(() => {
   transition: all 0.3s ease;
 }
 
-.preview-content.expanded {
-  min-height: 400px;
-}
-
 .svg-result {
   display: flex;
   justify-content: center;
@@ -222,16 +156,6 @@ onMounted(() => {
   background-color: var(--vp-c-bg-soft);
 }
 
-:root.dark .control-button,
-:root.dark .copy-button {
-  background-color: var(--vp-c-bg-mute);
-}
-
-:root.dark .control-button:hover,
-:root.dark .copy-button:hover {
-  background-color: var(--vp-c-bg-soft);
-}
-
 /* 响应式设计 */
 @media (max-width: 640px) {
   .preview-header {
@@ -241,12 +165,6 @@ onMounted(() => {
   .preview-content {
     padding: 16px;
   }
-
-  .control-button,
-  .copy-button {
-    padding: 3px 8px;
-  }
-
   .size-controls {
     flex-direction: column;
     gap: 8px;

@@ -46,7 +46,6 @@ console.log(wasm)
 wasm().then(({ instance }) => {
   console.log(instance.exports.add(1, 2))
 })
-
 ```
 
 ## 性能优化建议
@@ -59,8 +58,8 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
-          'vendor': ['vue', 'vue-router'],
-          'utils': ['./src/utils']
+          vendor: ['vue', 'vue-router'],
+          utils: ['./src/utils']
         }
       }
     }
@@ -152,14 +151,13 @@ const result = wasmModule.instance.exports.someFunction(42)
 3. 开发时注意内存管理
 4. 权衡使用成本和收益
 
-
 我来介绍在普通 JavaScript 环境中如何使用 WebAssembly：
 
-````javascript
+```javascript
 // 方式一：使用 instantiateStreaming (推荐)
 async function loadWasm() {
   try {
-    const response = await fetch('/path/to/example.wasm');
+    const response = await fetch('/path/to/example.wasm')
     const result = await WebAssembly.instantiateStreaming(response, {
       env: {
         // 导入的 JavaScript 函数，可以在 WASM 中调用
@@ -169,106 +167,109 @@ async function loadWasm() {
         // 其他导入函数
         abort: () => console.error('Abort called from WASM')
       }
-    });
-    
+    })
+
     // 使用 WASM 导出的函数
-    const { add, subtract } = result.instance.exports;
-    console.log(add(5, 3));      // 8
-    console.log(subtract(10, 4)); // 6
+    const { add, subtract } = result.instance.exports
+    console.log(add(5, 3)) // 8
+    console.log(subtract(10, 4)) // 6
   } catch (err) {
-    console.error('WASM 加载失败:', err);
+    console.error('WASM 加载失败:', err)
   }
 }
 
 // 方式二：传统方式（兼容性更好）
 async function loadWasmLegacy() {
   try {
-    const response = await fetch('/path/to/example.wasm');
-    const bytes = await response.arrayBuffer();
+    const response = await fetch('/path/to/example.wasm')
+    const bytes = await response.arrayBuffer()
     const result = await WebAssembly.instantiate(bytes, {
       env: {
         consoleLog: (value) => console.log(value),
         memory: new WebAssembly.Memory({ initial: 256 })
       }
-    });
-    
+    })
+
     // 使用导出的函数
-    const { multiply } = result.instance.exports;
-    console.log(multiply(6, 7)); // 42
+    const { multiply } = result.instance.exports
+    console.log(multiply(6, 7)) // 42
   } catch (err) {
-    console.error('WASM 加载失败:', err);
+    console.error('WASM 加载失败:', err)
   }
 }
 
 // 调用加载函数
-loadWasm();
+loadWasm()
 // 或
-loadWasmLegacy();
-````
+loadWasmLegacy()
+```
 
 一个完整的实际例子（包含 C++ 源码）：
 
-````cpp
+```cpp
 // math.cpp
 extern "C" {
     int add(int a, int b) {
         return a + b;
     }
-    
+
     int fibonacci(int n) {
         if (n <= 1) return n;
         return fibonacci(n-1) + fibonacci(n-2);
     }
 }
-````
+```
 
 编译成 WASM 后，在 JavaScript 中使用：
 
-````javascript
+```javascript
 // math.js
 const wasmModule = {
   // 存储加载后的 WASM 实例
   instance: null,
-  
+
   // 初始化函数
   async init() {
     try {
-      const response = await fetch('/path/to/math.wasm');
-      const result = await WebAssembly.instantiateStreaming(response);
-      this.instance = result.instance;
-      return true;
+      const response = await fetch('/path/to/math.wasm')
+      const result = await WebAssembly.instantiateStreaming(response)
+      this.instance = result.instance
+      return true
     } catch (err) {
-      console.error('WASM 加载失败:', err);
-      return false;
+      console.error('WASM 加载失败:', err)
+      return false
     }
   },
-  
+
   // 包装 WASM 函数
   add(a, b) {
-    if (!this.instance) throw new Error('WASM 未初始化');
-    return this.instance.exports.add(a, b);
+    if (!this.instance) throw new Error('WASM 未初始化')
+    return this.instance.exports.add(a, b)
   },
-  
+
   fibonacci(n) {
-    if (!this.instance) throw new Error('WASM 未初始化');
-    return this.instance.exports.fibonacci(n);
+    if (!this.instance) throw new Error('WASM 未初始化')
+    return this.instance.exports.fibonacci(n)
   }
-};
+}
 
 // 使用示例
 async function run() {
-  await wasmModule.init();
-  
-  console.log('加法结果:', wasmModule.add(5, 3));        // 8
-  console.log('斐波那契数:', wasmModule.fibonacci(10));  // 55
+  await wasmModule.init()
+
+  console.log('加法结果:', wasmModule.add(5, 3)) // 8
+  console.log('斐波那契数:', wasmModule.fibonacci(10)) // 55
 }
 
-run();
-````
+run()
 
-注意事项：
+```
+::: warning 注意事项：
+
 1. WASM 文件需要通过 HTTP(S) 服务器提供，不能通过本地文件系统直接加载
 2. 服务器需要正确设置 MIME 类型：`application/wasm`
 3. 对于较大的 WASM 模块，建议添加加载状态提示
 4. 考虑添加错误处理和降级方案
 5. 在生产环境中应该处理内存管理相关的问题
+:::
+   

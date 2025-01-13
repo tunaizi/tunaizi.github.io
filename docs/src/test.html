@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+
+    // 1. Object.keys() - 获取可枚举的属性名
+    const keys = Object.keys(Array.prototype);
+    console.log(keys);
+
+    // 2. Object.getOwnPropertyNames() - 获取所有属性名(包括不可枚举)
+    const allProps = Object.getOwnPropertyNames(Array.prototype);
+    console.log(allProps);
+
+    // 3. Reflect.ownKeys() - 获取所有属性名(包括 Symbol)
+    const allKeysWithSymbols = Reflect.ownKeys(Array.prototype);
+    console.log(allKeysWithSymbols);
+
+  </script>
+</html>
