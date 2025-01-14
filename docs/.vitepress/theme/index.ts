@@ -12,7 +12,6 @@ import {
 import SponsorsAside from './components/SponsorsAside.vue'
 // import VueSchoolLink from './components/VueSchoolLink.vue'
 // import WwAds from './components/WwAds.vue'
-import VPNavBarTitle from './components/VPNavBarTitle.vue'
 import SvgPreview from '../components/SvgPreview.vue'
 import replCodeLink from '../replCodeLink'
 
@@ -24,7 +23,6 @@ export default Object.assign({}, VPTheme, {
     // @ts-ignore
     return h(VPTheme.Layout, null, {
       // banner: () => h(Banner),
-      'navbar-title': () => h(VPNavBarTitle),
       'sidebar-top': () => h(PreferenceSwitch),
       // 'sidebar-bottom': () => h(SecurityUpdateBtn),
       'aside-mid': () => h(SponsorsAside)
@@ -41,7 +39,6 @@ export default Object.assign({}, VPTheme, {
     router: Router
     siteData: SiteData
   }) {
-    console.log(router, siteData)
     app.provide('prefer-composition', preferComposition)
     app.provide('prefer-sfc', preferSFC)
     app.provide('filter-headers', filterHeadersByPreference)

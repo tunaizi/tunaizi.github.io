@@ -3,7 +3,6 @@ import AutoSidebar from './vitePlugins/autoSidebar'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
-import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js'
 
 export default {
   define: {
@@ -24,13 +23,17 @@ export default {
     }
   },
   build: {
-    chunkSizeWarningLimit: Infinity
+    chunkSizeWarningLimit: Infinity,
+    minify: false, // 取消代码压缩
+    terserOptions: {
+      compress: false, // 取消代码混淆
+      mangle: false // 取消变量名混淆
+    }
   },
   json: {
     stringify: true
   },
   plugins: [
-    cssInjectedByJsPlugin(),
     AutoImport({
       resolvers: [ElementPlusResolver()]
     }),
