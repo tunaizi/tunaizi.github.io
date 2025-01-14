@@ -11,6 +11,12 @@
     "strict": true,
     "jsx": "preserve",
     "baseUrl": ".",
+    "typeRoots": [
+      "./node_modules/@types"
+    ],
+    "types": [
+      "node"
+    ],
     "paths": {
       "@theme/*": [
         ".vitepress/theme/*"
@@ -18,8 +24,13 @@
     }
   },
   "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
     "env.d.ts",
     "src/**/*",
-    ".vitepress/**/*"
-, ".vitepress/theme", "srcCopy/navigation"  ]
+    ".vitepress/**/*",
+    ".vitepress/theme",
+    "*.vue",
+    "src/**/*.vue"
+  ]
 }

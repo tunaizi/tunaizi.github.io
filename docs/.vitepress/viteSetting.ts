@@ -39,6 +39,7 @@ export default {
       resolvers: [ElementPlusResolver()]
     }),
     AutoSidebar({
+      ignores: ['repl.md'],
       wrireToJson: '.vitepress/.log.json',
       textmap: {
         '/start-docs/quickEntry': '快速访问',

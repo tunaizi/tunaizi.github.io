@@ -3,13 +3,14 @@ import { h, App } from 'vue'
 import { VPTheme } from './src'
 import { Router, SiteData } from 'vitepress'
 import PreferenceSwitch from './components/PreferenceSwitch.vue'
-import SecurityUpdateBtn from './components/SecurityUpdateBtn.vue'
+// import SecurityUpdateBtn from './components/SecurityUpdateBtn.vue'
 import {
   preferComposition,
   preferSFC,
   filterHeadersByPreference
 } from './components/preferences'
 import SponsorsAside from './components/SponsorsAside.vue'
+import ExampleRepl, { codeLink } from './components/repl'
 // import VueSchoolLink from './components/VueSchoolLink.vue'
 // import WwAds from './components/WwAds.vue'
 import VPNavBarTitle from './components/VPNavBarTitle.vue'
@@ -45,9 +46,10 @@ export default Object.assign({}, VPTheme, {
     app.provide('prefer-composition', preferComposition)
     app.provide('prefer-sfc', preferSFC)
     app.provide('filter-headers', filterHeadersByPreference)
-    // app.component('VueSchoolLink', VueSchoolLink)
     app.component('SvgPreview', SvgPreview)
+    app.component('ExampleRepl', ExampleRepl)
+    codeLink(router)
+    // app.component('VueSchoolLink', VueSchoolLink)
     // app.component('TextAd', TextAd)
   }
 })
-
