@@ -1,6 +1,6 @@
 ---
-# layout: page
-page: true
+layout: page
+# page: true
 navbar: false
 sidebar: false
 aside: false
@@ -16,7 +16,7 @@ import ReplLoading from '../.vitepress/theme/components/ReplLoading.vue'
 export default {
   components: {
     ExampleRepl: defineAsyncComponent({
-      loader: () =>import('./repl/ExampleRepl.vue'),
+      loader: () =>import('../.vitepress/repl/ExampleRepl.vue'),
       loadingComponent: ReplLoading
     })
   }

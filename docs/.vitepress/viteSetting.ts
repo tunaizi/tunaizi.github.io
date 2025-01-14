@@ -10,8 +10,8 @@ export default {
     __VUE_OPTIONS_API__: false
   },
   optimizeDeps: {
-    include: ['gsap', 'dynamics.js']
-    // exclude: ['@vue/repl']
+    include: ['gsap', 'dynamics.js'],
+    exclude: ['@vue/repl']
   },
   ssr: {
     external: ['@vue/repl'],

@@ -36,9 +36,6 @@ const store = useStore({
   })
 })
 
-watchEffect(updateExample)
-onHashChange(updateExample)
-
 function updateExample() {
   let hash = location.hash.slice(1) || 'hello-world'
   const files = resolveSFCExample(convertToExampleData(hash), false)
@@ -49,10 +46,20 @@ function updateExample() {
     changeAct && setTimeout(() => store.setActive(changeAct), 0)
   }
 }
+const isClient = ref(false)
+onMounted(() => {
+  isClient.value = true
+  watchEffect(updateExample)
+  onHashChange(updateExample)
+})
 </script>
 
 <template>
-  <div ref="heightProvider" :style="{ '--vh': viewHeight }">
+  <div
+    v-if="isClient"
+    ref="heightProvider"
+    :style="{ '--vh': viewHeight }"
+  >
     <Repl
       :store="store"
       :showImportMap="true"
