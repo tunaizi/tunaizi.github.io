@@ -19,7 +19,7 @@ export default defineConfigWithTheme<ThemeConfig>({
   title: 'BLOG',
   description: '',
   srcDir: 'src',
-  srcExclude: ['tutorial/**/description.md'],
+  srcExclude: [],
   head: [
     // ['meta', { name: 'theme-color', content: '' }],
     // ['meta', { property: 'og:url', content: 'https://vuejs.org/' }],

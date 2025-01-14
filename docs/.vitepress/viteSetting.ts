@@ -3,15 +3,16 @@ import AutoSidebar from './vitePlugins/autoSidebar'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js'
+
 export default {
   define: {
     __VUE_OPTIONS_API__: false
   },
   optimizeDeps: {
-    include: ['gsap', 'dynamics.js'],
-    exclude: ['@vue/repl']
+    include: ['gsap', 'dynamics.js']
+    // exclude: ['@vue/repl']
   },
-  // @ts-ignore
   ssr: {
     external: ['@vue/repl'],
     noExternal: ['element-plus']
@@ -19,12 +20,9 @@ export default {
   server: {
     host: true,
     fs: {
-      // for when developing with locally linked theme
-      // 用于在本地链接主题时进行开发
       allow: ['../..']
     }
   },
-
   build: {
     chunkSizeWarningLimit: Infinity
   },
@@ -32,6 +30,7 @@ export default {
     stringify: true
   },
   plugins: [
+    cssInjectedByJsPlugin(),
     AutoImport({
       resolvers: [ElementPlusResolver()]
     }),

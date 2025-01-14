@@ -1,37 +1,5 @@
 import { onBeforeUnmount } from 'vue'
-import { Router } from 'vitepress'
-let codeLinkStart = 0
-export function codeLink(router: Router) {
-  const inBrowser = typeof document !== 'undefined'
-  if (inBrowser && !codeLinkStart) {
-    window.addEventListener('click', (e: MouseEvent) => {
-      const el = e.target as HTMLElement
-      if (el.matches('div[class*="language-"] > button.link')) {
-        const parent = el.parentElement as HTMLElement
-        const previousElementSibling = el.previousElementSibling
-        if (!parent || !previousElementSibling) {
-          return
-        }
-        const isShell = /language-(shellscript|shell|bash|sh|zsh)/.test(
-          parent.className
-        )
-        let text = ''
-        previousElementSibling
-          .querySelectorAll('span.line:not(.diff.remove)')
-          .forEach((node) => (text += (node.textContent || '') + '\n'))
-        text = text.slice(0, -1)
-        if (isShell) {
-          text = text.replace(/^ *(\$|>) /gm, '').trim()
-        }
-        const key = `code-link`
-        sessionStorage.setItem(key, decodeURIComponent(text))
-        const newUrl = '/repl#' + key
-        router.go(newUrl)
-      }
-    })
-    codeLinkStart = 1
-  }
-}
+// const codeMap = new Map()
 export type ExampleData = {
   [key: string]: string | Record<string, string>
 } & {
@@ -245,39 +213,73 @@ export function onHashChange(cb: () => void) {
     window.removeEventListener('hashchange', cb)
   })
 }
-export const welcomeSFCCode = `
 
+export const welcomeSFCCode = `
 <script setup>
 import { ref, h } from 'vue'
-import txt from './ht.js'
+import content from './run.js'
 </script>
 <template>
-  <div v-html="txt"></div>
+  <div v-html="content"></div>
 </template>
 `
+const jsonSFCCode = `
+<script setup>
+import { ref, h } from 'vue'
+import content from './run.json'
+</script>
+<template>
+  {{content}}
+</template>
+`
+const cssSFCCode = `
+<script setup>
+import { ref, h } from 'vue'
+import  './run.css'
+</script>
+<template>
+  <div>hellow world</div>
+</template>
+`
+export function convertToExampleData(hash: string): ExampleData {
+  const code = sessionStorage.getItem(hash) || ''
+  if (!code) return {}
+  const lang = hash.split('-').pop() || ''
+  const runForRawCode = () => decodeURIComponent(code)
+  const runForExport = () => 'export default `' + runForRawCode() + '`'
 
-export const data = {
-  'hello-world': {
-    'src/index.vue': welcomeSFCCode,
-    'src/ht.js':
-      'export default `' +
-      `<svg width="200" height="200">
-    <!-- 每个属性都可以单独修改 -->
-    <rect x="10" y="10"
-          width="100" height="50"
-          fill="blue"
-          stroke="black"
-          stroke-width="2"/>
-</svg>` +
-      '`'
-  }
-} as Record<string, ExampleData>
+  const fileTypeMap: Record<string, ExampleData> = {
+    xml: {
+      'src/index.vue': welcomeSFCCode,
+      'src/run.js': runForExport()
+    },
+    get html() {
+      return this.xml
+    },
+    get js() {
+      return this.javascript
+    },
+    css: {
+      'src/index.vue': cssSFCCode,
+      'src/run.css': runForRawCode()
+    },
+    javascript: {
+      'src/index.vue': `<script setup>
 
-export function zuzhang(str: string): ExampleData {
-  const data = {
-    'src/index.vue': welcomeSFCCode,
-    'src/ht.js': 'export default `' + decodeURIComponent(str) + '`'
+
+${runForRawCode()}
+
+
+</script>`
+    },
+    vue: {
+      'src/index.vue': runForRawCode()
+    },
+    json: {
+      'src/index.vue': jsonSFCCode,
+      'src/run.json': runForRawCode()
+    }
   }
-  console.log(data)
-  return data
+  if (!(lang in fileTypeMap)) return {}
+  return fileTypeMap[lang]
 }

@@ -11,8 +11,8 @@ const props = defineProps<{
 
 const isOpen = ref(false)
 
-const groupId = computed(() =>
-  `NavScreenGroup-${props.text.replace(' ', '-').toLowerCase()}`
+const groupId = computed(
+  () => `NavScreenGroup-${props.text.replace(' ', '-').toLowerCase()}`
 )
 
 function toggle() {
@@ -35,10 +35,7 @@ function toggle() {
     <div :id="groupId" class="items">
       <template v-for="item in items" :key="item.text">
         <div v-if="'link' in item" :key="item.text" class="item">
-          <VPNavScreenMenuGroupLink
-            :text="item.text"
-            :link="item.link"
-          />
+          <VPNavScreenMenuGroupLink :text="item.text" :link="item.link" />
         </div>
 
         <div v-else class="group">
@@ -96,11 +93,13 @@ function toggle() {
 .button:hover {
   color: var(--vt-c-brand);
 }
+.button:hover .button-icon {
+  color: var(--vt-c-brand) !important;
+}
 
 .button-icon {
-  width: 14px;
-  height: 14px;
-  fill: var(--vt-c-text-2);
+  width: 24px;
+  height: 24px;
   transition: fill 0.5s, transform 0.25s;
 }
 

@@ -29,7 +29,10 @@ const pageClass = computed(() => {
 <template>
   <div
     class="VPContentDoc"
-    :class="{ 'has-aside': frontmatter.aside !== false }"
+    :class="{
+      'has-aside': frontmatter.aside !== false,
+      VPContentDocRepl: frontmatter.isRepl === true
+    }"
   >
     <div class="container">
       <div class="aside" v-if="frontmatter.aside !== false">

@@ -43,12 +43,22 @@
 4. css 写一个环状进度条
 
    ```css
-   width: 100px;
-   height: 100px;
-   border: 8px solid gray;
-   border-top-color: red;
-   border-radius: 100%;
-   animation: loading 1s linear infinite;
+   @keyframes loading {
+     0% {
+       transform: rotate(0deg);
+     }
+     100% {
+       transform: rotate(360deg);
+     }
+   }
+   .rounded-progress {
+     width: 100px;
+     height: 100px;
+     border: 8px solid gray;
+     border-top-color: red;
+     border-radius: 100%;
+     animation: loading 1s linear infinite;
+   }
    ```
 
 5. 获取元素可视区域
@@ -63,13 +73,15 @@
 6. css 写一个三角形
 
    ```css
-   width: 0;
-   height: 0;
-   border-width: 10px;
-   border-top-color: red;
-   border-bottom-color: transparent;
-   border-left-color: transparent;
-   border-right-color: transparent;
+   .shanjiao {
+     width: 0;
+     height: 0;
+     border-width: 10px;
+     border-top-color: red;
+     border-bottom-color: transparent;
+     border-left-color: transparent;
+     border-right-color: transparent;
+   }
    ```
 
 7. position 为 relative 的元素 可以使用 top、left 进行定位吗？

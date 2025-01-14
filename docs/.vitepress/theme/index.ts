@@ -10,11 +10,11 @@ import {
   filterHeadersByPreference
 } from './components/preferences'
 import SponsorsAside from './components/SponsorsAside.vue'
-import ExampleRepl, { codeLink } from './components/repl'
 // import VueSchoolLink from './components/VueSchoolLink.vue'
 // import WwAds from './components/WwAds.vue'
 import VPNavBarTitle from './components/VPNavBarTitle.vue'
 import SvgPreview from '../components/SvgPreview.vue'
+import replCodeLink from '../replCodeLink'
 
 // import Banner from './components/Banner.vue'
 // import TextAd from './components/TextAd.vue'
@@ -42,13 +42,11 @@ export default Object.assign({}, VPTheme, {
     siteData: SiteData
   }) {
     console.log(router, siteData)
-
     app.provide('prefer-composition', preferComposition)
     app.provide('prefer-sfc', preferSFC)
     app.provide('filter-headers', filterHeadersByPreference)
     app.component('SvgPreview', SvgPreview)
-    app.component('ExampleRepl', ExampleRepl)
-    codeLink(router)
+    replCodeLink(router)
     // app.component('VueSchoolLink', VueSchoolLink)
     // app.component('TextAd', TextAd)
   }

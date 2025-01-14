@@ -71,6 +71,7 @@ button {
   right: 0;
   top: 0;
   padding: 5px;
+  font-size: 24px;
 }
 
 .close {
