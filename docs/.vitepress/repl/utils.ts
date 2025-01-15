@@ -1,3 +1,4 @@
+import { update } from 'lodash'
 import { onBeforeUnmount } from 'vue'
 // const codeMap = new Map()
 export type ExampleData = {
@@ -241,13 +242,25 @@ import  './run.css'
   <div>hellow world</div>
 </template>
 `
-export function convertToExampleData(hash: string): ExampleData {
-  const code = sessionStorage.getItem(hash) || ''
+function getHash() {
+  return location.hash.slice(1)
+}
+export function updateStoreCode(code: string) {
+  localStorage.setItem(
+    getHash(),
+    encodeURIComponent(code.replace(/^export default `|`$/g, ''))
+  )
+}
+export function removeStoreCode() {
+  localStorage.removeItem(getHash())
+}
+export function convertToExampleData(): ExampleData {
+  const hash = getHash()
+  const code = localStorage.getItem(hash) || ''
   if (!code) return {}
   const lang = hash.split('-').pop() || ''
   const runForRawCode = () => decodeURIComponent(code)
   const runForExport = () => 'export default `' + runForRawCode() + '`'
-
   const fileTypeMap: Record<string, ExampleData> = {
     xml: {
       'src/index.vue': welcomeSFCCode,

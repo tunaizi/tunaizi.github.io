@@ -1,3 +1,4 @@
+import { Ref } from 'vue'
 import {
   LocaleLinkItem,
   MenuItemChildWithChildren,
@@ -6,6 +7,7 @@ import {
 } from '../core'
 
 export interface Config {
+  isDark?: Ref<Boolean>
   /**
    * The appearance option to enable/disable light/dark mode.
    *

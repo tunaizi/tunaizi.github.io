@@ -7,7 +7,8 @@ import PreferenceSwitch from './components/PreferenceSwitch.vue'
 import {
   preferComposition,
   preferSFC,
-  filterHeadersByPreference
+  filterHeadersByPreference,
+  useAppearance
 } from './components/preferences'
 import SponsorsAside from './components/SponsorsAside.vue'
 // import VueSchoolLink from './components/VueSchoolLink.vue'
@@ -42,6 +43,7 @@ export default Object.assign({}, VPTheme, {
     app.provide('prefer-composition', preferComposition)
     app.provide('prefer-sfc', preferSFC)
     app.provide('filter-headers', filterHeadersByPreference)
+    app.provide('appearance', useAppearance())
     app.component('SvgPreview', SvgPreview)
     replCodeLink(router)
     // app.component('VueSchoolLink', VueSchoolLink)

@@ -23,10 +23,8 @@ export default function codeLink(router: Router) {
           text = text.replace(/^ *(\$|>) /gm, '').trim()
         }
         const key = `code-link-${parent.id}-${lang}`
-        // if (!codeMap.has(key)) {
-        //   codeMap.set(key, text)
-        // }
-        sessionStorage.setItem(key, encodeURIComponent(text))
+        !Object.keys(localStorage).includes(key) &&
+          localStorage.setItem(key, encodeURIComponent(text))
         const newUrl = '/repl#' + key
         router.go(newUrl)
       }

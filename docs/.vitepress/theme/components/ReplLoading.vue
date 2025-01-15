@@ -6,7 +6,7 @@
       <div></div>
       <div></div>
     </div>
-    <div>正在加载 Repl 环境...</div>
+    <div>正在加载交互式解释器环境...</div>
   </div>
 </template>
 

@@ -6,8 +6,8 @@ icon: /assets/logo.png
 
 ---
 
-<!-- <script setup>
+<script setup>
 import Home from '@theme/components/Home.vue'
 </script>
 
-<Home /> -->
+<Home />
