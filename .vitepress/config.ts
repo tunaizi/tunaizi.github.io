@@ -12,9 +12,9 @@ import { codeMdPlugin } from './codeMdPlugin'
 
 export default defineConfigWithTheme<ThemeConfig>({
   extends: baseConfig,
-  sitemap: {
-    hostname: 'https://cn.vuejs.org'
-  },
+  // sitemap: {
+  // hostname: 'https://cn.vuejs.org'
+  // },
   lang: 'zh-CN',
   title: 'BLOG',
   description: '',
@@ -72,7 +72,12 @@ export default defineConfigWithTheme<ThemeConfig>({
     //   placement: 'vuejsorg'
     // },
 
-    socialLinks: [{ icon: 'github', link: 'https://github.com/tunaizi/' }],
+    socialLinks: [
+      {
+        icon: 'github',
+        link: 'https://github.com/tunaizi/tunaizi.github.io'
+      }
+    ],
 
     editLink: {
       text: '在 github 上编辑本页'

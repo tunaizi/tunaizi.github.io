@@ -40,7 +40,7 @@ jobs:
           path: |
             ~/.npm
             ./node_modules
-          key: ${{ runner.os }}-npm-cache-${{ hashFiles(./package-lock.json') }}
+          key: ${{ runner.os }}-npm-cache-${{ hashFiles('./package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-npm-cache-
 
