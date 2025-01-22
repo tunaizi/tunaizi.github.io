@@ -7,7 +7,7 @@ import SponsorsGroup from './SponsorsGroup.vue'
 // NOTE: hide the home video
 // https://github.com/vuejs-translations/docs-zh-cn/issues/177
 // import VueMasteryModal from './VueMasteryModal.vue'
-
+import PartnerList from './partners/components/PartnerList.vue'
 onMounted(load)
 </script>
 
@@ -53,6 +53,7 @@ onMounted(load)
         </svg>
       </a> -->
     </p>
+    <PartnerList />
   </section>
 
   <section
@@ -149,12 +150,12 @@ section {
 }
 
 #hero {
-  padding: 96px 32px;
+  padding: 65px 32px;
   text-align: center;
 }
 
 .tagline {
-  font-size: 76px;
+  font-size: 67px;
   line-height: 1.25;
   font-weight: 900;
   letter-spacing: -1.5px;
@@ -278,7 +279,10 @@ html:not(.dark) .accent,
   background-color: var(--vt-c-green);
   color: #fff;
   margin-right: 18px;
-  padding: 8px 1em;
+  width: 240px;
+  padding: 12px 24px;
+  font-weight: 600;
+  margin-bottom: 24px;
 }
 
 .dark .actions .get-started {

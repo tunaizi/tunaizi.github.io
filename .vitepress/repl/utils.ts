@@ -1,6 +1,4 @@
-import { update } from 'lodash'
 import { onBeforeUnmount } from 'vue'
-// const codeMap = new Map()
 export type ExampleData = {
   [key: string]: string | Record<string, string>
 } & {
@@ -214,15 +212,6 @@ export function onHashChange(cb: () => void) {
     window.removeEventListener('hashchange', cb)
   })
 }
-const jsonSFCCode = `
-<script setup>
-import { ref, h } from 'vue'
-import content from './run.json'
-</script>
-<template>
-  {{content}}
-</template>
-`
 const cssSFCCode = `
 <script setup>
 import { ref, h } from 'vue'
@@ -312,8 +301,15 @@ ${runForRawCode()}
       'src/index.vue': runForRawCode()
     },
     json: {
-      'src/index.vue': jsonSFCCode,
-      'src/run.json': runForRawCode()
+      'src/index.vue': `
+<script setup>
+import { ref, h } from 'vue'
+const content  = ${runForRawCode()}
+</script>
+<template>
+  {{content}}
+</template>
+`
     }
   }
   if (!(lang in fileTypeMap)) return {}
