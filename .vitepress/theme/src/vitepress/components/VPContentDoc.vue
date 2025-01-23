@@ -13,7 +13,7 @@ const { config } = useConfig()
 const repoUrl = computed(() => {
   const repo =
     config.value.editLink?.repo ||
-    'https://github.com/tunaizi/tunaizi.github.io/edit/main/docs/src'
+    'https://github.com/tunaizi/tunaizi.github.io/edit/main/src'
   if (typeof repo == 'function') {
     return repo(page.value.relativePath)
   }

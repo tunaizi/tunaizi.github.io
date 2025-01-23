@@ -1,17 +1,7 @@
 import { UserConfig } from 'vitepress'
+import { MenuItemWithLink } from '@theme/src'
 
-export interface APIHeader {
-  anchor: string
-  text: string
-}
-
-export interface SidebarItem {
-  text: string
-  link?: string
-  anchor?: string
-  activeMatch?: string
-  items?: SidebarItem[]
-  headers?: APIHeader[]
+export interface SidebarItem extends MenuItemWithLink {
   collapsed?: boolean
 }
 

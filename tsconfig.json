@@ -18,6 +18,9 @@
       "node"
     ],
     "paths": {
+      // "waterfall": [
+      //   ".vitepress/components/Waterfall/*"
+      // ],
       "@theme/*": [
         ".vitepress/theme/*"
       ]
@@ -28,7 +31,6 @@
     "src/**/*.d.ts",
     "env.d.ts",
     "src/**/*",
-    ".vitepress/**/*",
     ".vitepress/theme",
     "*.vue",
     "src/**/*.vue"

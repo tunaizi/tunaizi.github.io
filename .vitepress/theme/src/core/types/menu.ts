@@ -1,8 +1,17 @@
 export type MenuItem = MenuItemWithLink | MenuItemWithChildren
 
+export interface APIHeader {
+  anchor: string
+  text: string
+}
+
 export interface MenuItemWithLink {
   text: string
-  link: string
+  link?: string
+  anchor?: string
+  activeMatch?: string
+  headers?: APIHeader[]
+  collapsed?: boolean
   items?: MenuItemWithLink[]
 }
 

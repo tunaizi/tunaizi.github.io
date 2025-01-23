@@ -1,7 +1,8 @@
 import fs from 'fs'
 import _ from 'lodash'
 import { joinToCwd, slugify, cleanHeaderText, headersCache } from './utils'
-import { SidebarConfig, APIHeader, SidebarItem } from './type'
+import { SidebarConfig, SidebarItem } from './type'
+import { APIHeader } from '@theme/src'
 
 async function parsePageHeaders(link: string): Promise<APIHeader[]> {
   const errBack: APIHeader[] = []

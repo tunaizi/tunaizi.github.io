@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
 import SiteMap from './SiteMap.vue'
 import NewsLetter from './NewsLetter.vue'
 import { load, data, base } from './sponsors'
@@ -7,8 +7,10 @@ import SponsorsGroup from './SponsorsGroup.vue'
 // NOTE: hide the home video
 // https://github.com/vuejs-translations/docs-zh-cn/issues/177
 // import VueMasteryModal from './VueMasteryModal.vue'
-import PartnerList from './partners/components/PartnerList.vue'
+import Waterfall from '../../components/Waterfall'
+import IframeCropper from './IframeCropper.vue'
 onMounted(load)
+
 </script>
 
 <template>
@@ -26,7 +28,7 @@ onMounted(load)
       <!-- NOTE: hide the home video -->
       <!-- <VueMasteryModal /> -->
       <a class="get-started" href="/start-docs/">
-        全部文档
+        分类阅读
         <svg
           class="icon"
           xmlns="http://www.w3.org/2000/svg"
@@ -39,6 +41,8 @@ onMounted(load)
           />
         </svg>
       </a>
+      <IframeCropper></IframeCropper>
+
       <!-- <a class="setup" href="/guide/quick-start.html">安装</a> -->
       <!-- <a class="security" href="https://v2.cn.vuejs.org/eol/" target="_blank">
         获取针对 Vue 2 的安全更新
@@ -53,7 +57,7 @@ onMounted(load)
         </svg>
       </a> -->
     </p>
-    <PartnerList />
+    <Waterfall/>
   </section>
 
   <section
@@ -470,5 +474,15 @@ html:not(.dark) .accent,
   .uwu #uwu {
     margin: -60px auto -10px;
   }
+}
+
+.ai-content {
+  height: 80vh;
+}
+</style>
+
+<style>
+.el-dialog__body {
+  height: 70vh;
 }
 </style>
