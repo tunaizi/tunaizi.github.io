@@ -26,7 +26,7 @@ const {
     :is="page ? 'div' : 'a'"
     class="partner-card"
     :class="{ hero, page, flipLogo }"
-    :href="'/partners/' + normalizeName(name) + '.html'"
+    :href="website.url"
   >
     <div class="info">
       <!-- <a :href="website.url" target="_blank">
