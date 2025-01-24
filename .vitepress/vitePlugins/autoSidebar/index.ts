@@ -39,6 +39,10 @@ function VitePluginAutoSidebar(options: PluginOptions = {}): Plugin {
           event: 'add' | 'addDir' | 'change' | 'unlink' | 'unlinkDir',
           filePath: string
         ) => {
+          function callback() {
+            console.log('插件从新运行:', filePath)
+            restart()
+          }
           // if (
           //   opts.wrireToJson &&
           //   joinToCwd(opts.wrireToJson) === filePath
@@ -46,11 +50,12 @@ function VitePluginAutoSidebar(options: PluginOptions = {}): Plugin {
           //   console.log('插件从新运行。。。。')
           //   return
           // }
+
           if (event === 'addDir') return
           if (event === 'unlinkDir') return
           if (event === 'add') return
           if (event === 'unlink') {
-            restart()
+            callback()
             return
           }
           if (event === 'change') {
@@ -58,7 +63,7 @@ function VitePluginAutoSidebar(options: PluginOptions = {}): Plugin {
             const route = getRoute(opts.root, filePath)
             if (!route || !title) return
             if (title === titleCache[route]) return
-            restart()
+            callback()
             return
           }
         }

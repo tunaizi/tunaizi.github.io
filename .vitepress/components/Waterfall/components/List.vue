@@ -170,7 +170,6 @@ export default defineComponent({
     provide('imgLoaded', renderer)
 
     const getRenderURL = (item: ViewCard): string => {
-      console.log(item,"=====")
       return getValue(item, props.imgSelector)[0]
     }
 

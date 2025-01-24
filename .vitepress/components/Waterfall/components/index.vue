@@ -23,8 +23,9 @@
     </WaterfallList>
   </div> -->
   <div class="featured">
+    <!-- <POP :list="navList"></POP> -->
     <WaterfallList
-      :list="data"
+      :list="navList"
       :row-key="config.rowKey"
       :gutter="config.gutter"
       :has-around-gutter="config.hasAroundGutter"
@@ -47,28 +48,38 @@
 </template>
 
 <script lang="ts" setup>
-// import imageData from '../imageData.json'
 import { useConfig } from '@theme/src/vitepress/composables/config'
-const vitepressConfig = useConfig()
-const data = computed(() => {
-  return (vitepressConfig?.config.value.nav || []).reduce(
-    //@ts-ignore
-    (p, e) => (p = p.concat(e.items)),
-    [] as ViewCard[]
-  )
-})
 import WaterfallList from './List.vue'
+import POP from './pop.vue'
 import Card from './Card.vue'
 
 import loading from '../image/loading.png'
 import error from '../image/error.png'
-import { computed, ref, reactive } from 'vue'
+import { computed, ref, reactive, onMounted, onUnmounted } from 'vue'
 import { ViewCard } from '../types/waterfall'
 
-// import { ViewCard } from '../types/waterfall'
-// const data = reactive<ViewCard[]>(
-//   (imageData?.list ?? []) as unknown as ViewCard[]
-// )
+const vitepressConfig = useConfig()
+const interval = ref(0)
+const navList = computed(() => {
+  return (vitepressConfig?.config.value.nav || []).reduce(
+    (p, e) => (p = p.concat(e.items as ViewCard[])),
+    [] as ViewCard[]
+  )
+})
+// const data = computed(() => {
+//   interval.value
+//   const getRandomIndex = () =>
+//     Math.floor(Math.random() * navList.value.length)
+//   const indexCache: Record<number, number> = {}
+//   const result = Array.from({ length: 12 }, () => {
+//     let index = -1
+//     while (index in indexCache || index === -1) {
+//       indexCache[index] = index = getRandomIndex()
+//     }
+//     return { ...navList.value[index], id: Math.random().toString(16) }
+//   })
+//   return result
+// })
 
 const props = withDefaults(
   defineProps<{
@@ -159,6 +170,8 @@ const config = computed(() => {
   padding: 0 10vw;
   box-sizing: border-box;
   margin: 0 auto;
+  width: 100%;
+  height: 70vh;
 }
 @media (max-width: 960px) {
   .featured {

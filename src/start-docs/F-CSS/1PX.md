@@ -45,4 +45,6 @@
   - border-image or background-image
     - 使用 2 倍的边框为 1px 的图，将 border-weidth 设置为 1px。
 
-## 参考[https://mp.weixin.qq.com/s/IrV0-v3v5Cl969yFCI58Rg]
+## 参考
+
+- 6种移动端 1px 解决方案(完整版):[https://mp.weixin.qq.com/s/IrV0-v3v5Cl969yFCI58Rg]

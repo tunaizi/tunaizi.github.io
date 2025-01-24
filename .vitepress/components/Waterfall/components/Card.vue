@@ -11,7 +11,6 @@ const props = defineProps<{
 
 const { text, link, anchor, activeMatch, items, headers, collapsed } =
   props.data
-console.log(props.data, '=========')
 </script>
 
 <template>
