@@ -27,7 +27,7 @@ import java.util.ArrayList;
 
 我们在讲函数的时候提到，函数一个功能就是实现特定逻辑的一组语句打包，而且JavaScript的作用域就是基于函数的，所以把函数作为模块化的第一步是很自然的事情，在一个文件里面编写几个相关函数就是最开始的模块了
 
-```
+```js
 function fn1(){
     statement
 }
@@ -45,7 +45,7 @@ function fn2(){
 
 为了解决上面问题，对象的写法应运而生，可以把所有的模块成员封装在一个对象中
 
-```
+```js
 var myModule = {
     var1: 1,
 
@@ -75,7 +75,7 @@ myModel.var1 = 100;
 
 可以通过立即执行函数，来达到隐藏细节的目的
 
-```
+```js
 var myModule = (function(){
     var var1 = 1;
     var var2 = 2;
@@ -114,7 +114,7 @@ var myModule = (function(){
 
 看个例子
 
-```
+```js
 //模块定义 myModel.js
 
 var name = 'Byron';
@@ -165,7 +165,7 @@ requireJS主要解决两个问题
 2、js加载的时候浏览器会停止页面渲染，加载文件越多，页面失去响应时间越长
 看一个使用requireJS的例子
 
-```
+```js
 // 定义模块 myModule.js
 define("myModule",['dependency'], function(){
     var name = 'Byron';
@@ -216,7 +216,7 @@ require()函数在加载依赖的函数的时候是异步加载的，这样浏�
 
 下载require.js以后，下一步就要加载我们自己的代码了。假定我们自己的代码文件是main.js，也放在js目录下面。那么，只需要写成下面这样就行了：
 
-```
+```html
 　<script src="js/require.js" data-main="js/main"></script>
 ```
 
@@ -241,7 +241,7 @@ factory是一个函数，有三个参数，function(require, exports, module)
 
 看个例子：
 
-```
+```js
 // 定义模块  myModule.js
 define(function (require, exports, module) {
     // let $ = require("jquery");
@@ -311,7 +311,7 @@ ES6的模块化已经不是规范了，而是JS语言的特性。随着ES6的推
 
 一个模块就是一个独立的文件。该文件内部的所有变量，外部无法获取。如果你希望外部能够读取模块内部的某个变量，就必须使用`export`关键字输出该变量。下面是一个 JS 文件，里面使用`export`命令输出变量。
 
-```
+```js
 export var firstName = 'Michael';
 export var lastName = 'Jackson';
 export var year = 1958;
@@ -326,7 +326,7 @@ export function f() {};
 
 简化
 
-```
+```js
 var firstName = 'Michael';
 var lastName = 'Jackson';
 var year = 1958;
@@ -358,7 +358,7 @@ function set() {
 
 如果想为输入的变量重新取一个名字，import命令要使用as关键字，将输入的变量重命名。
 
-```
+```js
 import { lastName as surname } from './profile.js';
 ```
 
@@ -386,7 +386,7 @@ a.foo = 'hello'; // 合法操作
 
 为了给用户提供方便，让他们不用阅读文档就能加载模块，就要用到`export default`命令，为模块指定默认输出。
 
-```
+```js
 // export-default.js
 export default function () {
   console.log('foo');
@@ -397,7 +397,7 @@ export default function () {
 
 其他模块加载该模块时，`import`命令可以为该匿名函数指定任意名字。
 
-```
+```js
 import customName from './export-default';
 customName(); // 'foo'
 ```
@@ -410,45 +410,44 @@ customName(); // 'foo'
 
 ## 浏览器加载
 
-浏览器加载 ES6 模块，也使用`<script>`标签，但是要加入`type="module"`属性。
+浏览器加载 ES6 模块，也使用`<script></script>`标签，但是要加入`type="module"`属性。
 
 ```html
-<script type="module" src="./foo.js"></script>
+<script type="module" src="./foo.js"></>
 ```
 
-浏览器对于带有`type="module"`的`<script>`，都是异步加载，不会造成堵塞浏览器，即等到整个页面渲染完，再执行模块脚本，等同于打开了`<script>`标签的`defer`属性。
+浏览器对于带有`type="module"`的script标签，都是异步加载，不会造成堵塞浏览器，即等到整个页面渲染完，再执行模块脚本，等同于打开了`<script></>`标签的`defer`属性。
 
 ```html
 <script type="module" src="./foo.js"></script>
 <!-- 等同于 -->
-<script type="module" src="./foo.js" defer></script>
+<script type="module" src="./foo.js" defer></>
 ```
 
-如果网页有多个`<script type="module">`，它们会按照在页面出现的顺序依次执行。
+如果网页有多个`<script type="module"></script>`，它们会按照在页面出现的顺序依次执行。
 
-<script>标签的async属性也可以打开，这时只要加载完成，渲染引擎就会中断渲染立即执行。执行完成后，再恢复渲染
+- \<script></>标签的async属性也可以打开，这时只要加载完成，渲染引擎就会中断渲染立即执行。执行完成后，再恢复渲染
 
+```js
+<script type="module" src="./foo.js" async><script/>
 ```
-<script type="module" src="./foo.js" async></script>
-```
 
-一旦使用了async属性，<script type="module">就不会按照在页面出现的顺序执行，而是只要该模块加载完成，就执行该模块。
+一旦使用了async属性，<script type="module"></script>就不会按照在页面出现的顺序执行，而是只要该模块加载完成，就执行该模块。
 
 ES6 模块也允许内嵌在网页中，语法行为与加载外部脚本完全一致。
 
-```
+```html
 <script type="module">
   import utils from "./utils.js";
-
   // other code
-</script>
+</>
 ```
 
 
 
 举例来说，jQuery 就支持模块加载。
 
-```
+```html
 <script type="module">
   import $ from "./jquery/src/jquery.js";
   $('#message').text('Hi from jQuery!');
@@ -461,23 +460,23 @@ ES6 模块也允许内嵌在网页中，语法行为与加载外部脚本完全�
 
 当浏览器碰到 `script` 脚本的时候：
 
-```
-1. <script src="script.js"></script>
+```txt
+1. `<script src="script.js"></script>`
 
 没有 defer 或 async，浏览器会立即加载并执行指定的脚本，“立即”指的是在渲染该 script 标签之下的文档元素之前，也就是说不等待后续载入的文档元素，读到就加载并执行。
 
-2. <script async src="script.js"></script>
+2. `<script async src="script.js"></script>`
 
 有 async，加载和渲染后续文档元素的过程将和 script.js 的加载与执行并行进行（异步）。
 
-3. <script defer src="myscript.js"></script>
+3. `<script defer src="myscript.js"></script>`
 
 有 defer，加载后续文档元素的过程将和 script.js 的加载并行进行（异步），但是 script.js 的执行要在所有元素解析完成之后，DOMContentLoaded(文档加载完毕后执行类型 jq的$(document).ready()) 事件触发之前完成。
 ```
 
 
 
-然后从实用角度来说呢，首先把所有脚本都丢到 `</body>` 之前是最佳实践，因为对于旧浏览器来说这是唯一的优化选择，此法可保证非脚本的其他一切元素能够以最快的速度得到加载和解析。
+然后从实用角度来说呢，首先把所有脚本都丢到 `\</body\>` 之前是最佳实践，因为对于旧浏览器来说这是唯一的优化选择，此法可保证非脚本的其他一切元素能够以最快的速度得到加载和解析。
 
 接着，我们来看一张图咯：
 

@@ -10,7 +10,6 @@ import SponsorsGroup from './SponsorsGroup.vue'
 import Waterfall from '../../components/Waterfall'
 import IframeCropper from './IframeCropper.vue'
 onMounted(load)
-
 </script>
 
 <template>
@@ -57,7 +56,9 @@ onMounted(load)
         </svg>
       </a> -->
     </p>
-    <Waterfall/>
+    <ClientOnly>
+      <Waterfall />
+    </ClientOnly>
   </section>
 
   <section

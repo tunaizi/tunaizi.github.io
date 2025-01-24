@@ -39,13 +39,13 @@ function VitePluginAutoSidebar(options: PluginOptions = {}): Plugin {
           event: 'add' | 'addDir' | 'change' | 'unlink' | 'unlinkDir',
           filePath: string
         ) => {
-          if (
-            opts.wrireToJson &&
-            joinToCwd(opts.wrireToJson) === filePath
-          ) {
-            console.log('插件从新运行。。。。')
-            return
-          }
+          // if (
+          //   opts.wrireToJson &&
+          //   joinToCwd(opts.wrireToJson) === filePath
+          // ) {
+          //   console.log('插件从新运行。。。。')
+          //   return
+          // }
           if (event === 'addDir') return
           if (event === 'unlinkDir') return
           if (event === 'add') return
