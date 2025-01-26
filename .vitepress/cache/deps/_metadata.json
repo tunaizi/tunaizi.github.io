@@ -1,83 +1,89 @@
 {
   "hash": "8207ac30",
-  "browserHash": "00d99542",
+  "browserHash": "90db192e",
   "optimized": {
     "vue": {
       "src": "../../../node_modules/vue/dist/vue.runtime.esm-browser.js",
       "file": "vue.js",
-      "fileHash": "0d1c9bf5",
+      "fileHash": "83f31ef7",
       "needsInterop": false
     },
     "vitepress > @vue/devtools-api": {
       "src": "../../../node_modules/@vue/devtools-api/lib/esm/index.js",
       "file": "vitepress___@vue_devtools-api.js",
-      "fileHash": "6a4c5f25",
+      "fileHash": "786e8762",
       "needsInterop": false
     },
     "gsap": {
       "src": "../../../node_modules/gsap/index.js",
       "file": "gsap.js",
-      "fileHash": "eaf28bc0",
+      "fileHash": "c325dea5",
       "needsInterop": false
     },
     "dynamics.js": {
       "src": "../../../node_modules/dynamics.js/lib/dynamics.js",
       "file": "dynamics__js.js",
-      "fileHash": "8ba1b7b4",
+      "fileHash": "f3755b96",
       "needsInterop": true
     },
     "element-plus/es": {
       "src": "../../../node_modules/element-plus/es/index.mjs",
       "file": "element-plus_es.js",
-      "fileHash": "5f275036",
+      "fileHash": "ca7f0e65",
       "needsInterop": false
     },
     "element-plus/es/components/base/style/css": {
       "src": "../../../node_modules/element-plus/es/components/base/style/css.mjs",
       "file": "element-plus_es_components_base_style_css.js",
-      "fileHash": "5147e303",
+      "fileHash": "ca3599fc",
       "needsInterop": false
     },
     "element-plus/es/components/tree/style/css": {
       "src": "../../../node_modules/element-plus/es/components/tree/style/css.mjs",
       "file": "element-plus_es_components_tree_style_css.js",
-      "fileHash": "a6d5de18",
+      "fileHash": "a0607f84",
       "needsInterop": false
+    },
+    "lodash": {
+      "src": "../../../node_modules/lodash/lodash.js",
+      "file": "lodash.js",
+      "fileHash": "63014247",
+      "needsInterop": true
     },
     "element-plus/es/components/dialog/style/css": {
       "src": "../../../node_modules/element-plus/es/components/dialog/style/css.mjs",
       "file": "element-plus_es_components_dialog_style_css.js",
-      "fileHash": "f709d032",
+      "fileHash": "de44dfb7",
       "needsInterop": false
     },
     "element-plus/es/components/button/style/css": {
       "src": "../../../node_modules/element-plus/es/components/button/style/css.mjs",
       "file": "element-plus_es_components_button_style_css.js",
-      "fileHash": "50fcea75",
+      "fileHash": "8bc79a85",
       "needsInterop": false
     },
     "html2canvas": {
       "src": "../../../node_modules/html2canvas/dist/html2canvas.esm.js",
       "file": "html2canvas.js",
-      "fileHash": "fc6dd571",
+      "fileHash": "f203cffe",
       "needsInterop": false
     },
     "cropperjs": {
       "src": "../../../node_modules/cropperjs/dist/cropper.esm.js",
       "file": "cropperjs.js",
-      "fileHash": "0306f02c",
+      "fileHash": "5f65d438",
       "needsInterop": false
     }
   },
   "chunks": {
-    "chunk-6TXSS7SU": {
-      "file": "chunk-6TXSS7SU.js"
-    },
     "chunk-TEJP7X63": {
       "file": "chunk-TEJP7X63.js"
     },
     "chunk-UXIASGQL": {
       "file": "chunk-UXIASGQL.js"
+    },
+    "chunk-6TXSS7SU": {
+      "file": "chunk-6TXSS7SU.js"
     }
   }
 }

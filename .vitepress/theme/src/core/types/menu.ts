@@ -3,6 +3,7 @@ export type MenuItem = MenuItemWithLink | MenuItemWithChildren
 export interface APIHeader {
   anchor: string
   text: string
+  level?: number
 }
 
 export interface MenuItemWithLink {

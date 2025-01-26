@@ -7,7 +7,8 @@ import SponsorsGroup from './SponsorsGroup.vue'
 // NOTE: hide the home video
 // https://github.com/vuejs-translations/docs-zh-cn/issues/177
 // import VueMasteryModal from './VueMasteryModal.vue'
-import Waterfall from '../../components/Waterfall'
+// import Waterfall from '../../components/Waterfall'
+import canvasBubble from '../../components/canvasBubble/index.vue'
 import IframeCropper from './IframeCropper.vue'
 onMounted(load)
 </script>
@@ -56,10 +57,11 @@ onMounted(load)
         </svg>
       </a> -->
     </p>
-    <ClientOnly>
-      <Waterfall />
-    </ClientOnly>
+    <!-- <ClientOnly> -->
+    <!-- <Waterfall /> -->
+    <!-- </ClientOnly> -->
   </section>
+  <canvasBubble></canvasBubble>
 
   <section
     v-if="false && data && data.platinum_china"
@@ -157,6 +159,7 @@ section {
 #hero {
   padding: 65px 32px;
   text-align: center;
+  padding-bottom: 0 !important;
 }
 
 .tagline {

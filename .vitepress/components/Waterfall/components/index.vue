@@ -23,7 +23,6 @@
     </WaterfallList>
   </div> -->
   <div class="featured">
-    <!-- <POP :list="navList"></POP> -->
     <WaterfallList
       :list="navList"
       :row-key="config.rowKey"
@@ -50,7 +49,6 @@
 <script lang="ts" setup>
 import { useConfig } from '@theme/src/vitepress/composables/config'
 import WaterfallList from './List.vue'
-import POP from './pop.vue'
 import Card from './Card.vue'
 
 import loading from '../image/loading.png'
